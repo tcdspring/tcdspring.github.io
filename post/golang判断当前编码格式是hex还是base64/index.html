@@ -1,0 +1,189 @@
+<!doctype html>
+
+<html lang="zh_CN">
+
+<head>
+  <title>Tcdspring Github Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Unknown" />
+  <meta name="author" content="" />
+  <meta name="generator" content="Hugo 0.52" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://tcdspring.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://tcdspring.github.io/">Tcdspring Github Page</a>
+            </h1>
+
+      <ul id="social-media">
+             
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/">
+                <i class="fa-li fa  fa-lg"></i><span>Tcdspring Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/about">
+                <i class="fa-li fa  fa-lg"></i><span>About me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>golang判断当前字符串编码格式</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-06-04T16:13:53&#43;08:00">Jun 4, 2019</time>
+        </li>
+        
+        
+
+        
+
+        <li>1 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分</p>
+
+<pre><code>
+func DecodeHexOrBase64(content string) ([]byte, error) {
+	dat := []byte(content)
+	isHex := true
+	for _, v := range dat {
+		if v &gt;= 48 &amp;&amp; v &lt;= 57 || v &gt;= 65 &amp;&amp; v &lt;= 70 || v &gt;= 97 &amp;&amp; v &lt;= 102 {
+			// isHex = true
+		} else {
+			isHex = false
+			break
+		}
+	}
+	if isHex {
+		d, err := hex.DecodeString(content)
+		if len(d) == 0 || err != nil {
+			return base64.StdEncoding.DecodeString(content)
+		} 
+		return d, err
+	} else {
+		return base64.StdEncoding.DecodeString(content)
+	}
+}
+
+</code></pre>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://tcdspring.github.io/post/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/"><i class="fa fa-chevron-circle-left"></i> golang跨平台编译</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://tcdspring.github.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/">git误操作导致文件夹不能被提交 <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'Tcdspring';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>All rights reserved - 2019 | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://tcdspring.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://tcdspring.github.io/js/scripts.js"></script>
+</body>
+
+</html>

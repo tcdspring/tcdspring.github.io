@@ -1,0 +1,191 @@
+<!doctype html>
+
+<html lang="zh_CN">
+
+<head>
+  <title>Tcdspring Github Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Unknown" />
+  <meta name="author" content="" />
+  <meta name="generator" content="Hugo 0.52" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://tcdspring.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://tcdspring.github.io/">Tcdspring Github Page</a>
+            </h1>
+
+      <ul id="social-media">
+             
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/">
+                <i class="fa-li fa  fa-lg"></i><span>Tcdspring Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/about">
+                <i class="fa-li fa  fa-lg"></i><span>About me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>代码行数统计工具（cloc）</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-06-04T16:13:53&#43;08:00">Jun 4, 2019</time>
+        </li>
+        
+        
+
+        
+
+        <li>1 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>安装<code>cloc</code></p>
+
+<pre><code>npm install -g cloc                    # https://www.npmjs.com/package/cloc
+sudo apt-get install cloc              # Debian, Ubuntu
+sudo yum install cloc                  # Red Hat, Fedora
+sudo dnf install cloc                  # Fedora 22 or later
+sudo pacman -S cloc                    # Arch
+sudo pkg install cloc                  # FreeBSD
+sudo port install cloc                 # Mac OS X with MacPorts
+brew install cloc                      # Mac OS X with Homebrew
+choco install cloc                     # Windows with Chocolatey
+</code></pre>
+
+<p>如何使用：</p>
+
+<pre><code>lu@lu-Z87-HD3:~$ cloc .
+      67 text files.
+      67 unique files.                              
+       4 files ignored.
+
+github.com/AlDanial/cloc v 1.76  T=1.02 s (62.6 files/s, 12778.9 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Go                              54           2018           1118           9463
+Markdown                         2             92              0            229
+Bourne Shell                     6             43             29             68
+JSON                             2              0              0             11
+-------------------------------------------------------------------------------
+SUM:                            64           2153           1147           9771
+-------------------------------------------------------------------------------
+</code></pre>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        
+        <li>
+            <a href="https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/">ubuntu下查找so文件的归属 <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'Tcdspring';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>All rights reserved - 2019 | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://tcdspring.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://tcdspring.github.io/js/scripts.js"></script>
+</body>
+
+</html>

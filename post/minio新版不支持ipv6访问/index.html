@@ -1,0 +1,195 @@
+<!doctype html>
+
+<html lang="zh_CN">
+
+<head>
+  <title>Tcdspring Github Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Unknown" />
+  <meta name="author" content="" />
+  <meta name="generator" content="Hugo 0.52" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="https://tcdspring.github.io/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://tcdspring.github.io/">Tcdspring Github Page</a>
+            </h1>
+
+      <ul id="social-media">
+             
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/">
+                <i class="fa-li fa  fa-lg"></i><span>Tcdspring Blog</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://tcdspring.github.io/about">
+                <i class="fa-li fa  fa-lg"></i><span>About me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>minio新版不支持IPv6访问</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2019-06-04T16:13:53&#43;08:00">Jun 4, 2019</time>
+        </li>
+        
+        
+
+        
+
+        <li>1 min read</li>
+    </ul>
+</aside>
+    
+
+    <p>最近，公司的项目用到了<a href="https://minio.io/">minio</a>, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&hellip;</p>
+
+<p>当时编译minio的时候也不知道用的是哪个版本，也不知道从哪个版本起，minio就不再支持ipv6访问了，所以只能将github上minio的tag一个一个去编译，然后尝试能否ipv6访问，从而确定哪个版本做了修改，经过多次的尝试，终于发现：
+<a href="https://github.com/minio/minio/releases/tag/RELEASE.2018-08-02T23-11-36Z">RELEASE.2018-08-02T23-11-36Z.tar.gz</a>是支持的，但是<a href="https://github.com/minio/minio/releases/tag/RELEASE.2018-08-18T03-49-57Z">RELEASE.2018-08-18T03-49-57Z.zip</a>已经不再支持了，所以将这两个tag的代码下载下来，进行diff操作</p>
+
+<pre><code>diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/ minio-RELEASE.2018-08-18T03-49-57Z/ &gt; diff.log
+</code></pre>
+
+<p>然后打开diff.log,发现有68000多行，不过ipv6不能访问，很大几率是跟监听的网络类型相关的，于是搜索关键字<code>listen(</code>，发现在 <code>cmd/http/listener.go</code>中有如下修改：</p>
+
+<pre><code>diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go
+--- minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go	2018-08-03 05:21:38.000000000 +0800
++++ minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go	2018-08-18 09:51:34.000000000 +0800
+@@ -300,6 +300,7 @@
+ 	updateBytesWrittenFunc func(int)) (listener *httpListener, err error) {
+ 
+ 	var tcpListeners []*net.TCPListener
++
+ 	// Close all opened listeners on error
+ 	defer func() {
+ 		if err == nil {
+@@ -314,7 +315,7 @@
+ 
+ 	for _, serverAddr := range serverAddrs {
+ 		var l net.Listener
+-		if l, err = net.Listen(&quot;tcp&quot;, serverAddr); err != nil {
++		if l, err = listen(&quot;tcp4&quot;, serverAddr); err != nil {
+ 			return nil, err
+ 		}
+</code></pre>
+
+<p>监听的网络由之前的<code>tcp</code>变为了现在的<code>tcp4</code>，这就很明显了，<code>tcp</code>是支持ipv4和ipv6的，但是<code>tcp4</code>就只支持ipv4了，将<code>tcp4</code>改为<code>tcp</code>，然后重新编译运行，发现ipv6确实可以访问了，但是不知道minio开发组为何会限制ipv6的访问，去github上看递交的commit的note，也没看到相关的说明，当然也有可能这是开发人员的无心之举，还得再研究研究代码，看看这样修改会不会导致什么意想不到的BUG.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/"><i class="fa fa-chevron-circle-left"></i> ubuntu下查找so文件的归属</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://tcdspring.github.io/post/gomod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/">gomod导入本地库 <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'Tcdspring';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>All rights reserved - 2019 | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://tcdspring.github.io/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="https://tcdspring.github.io/js/scripts.js"></script>
+</body>
+
+</html>
