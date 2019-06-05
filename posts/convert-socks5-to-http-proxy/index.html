@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="author" content="Tcdspring">
+		<meta name="description" content="Unknown">
+		<meta name="generator" content="Hugo 0.52" />
+		<title>convert socks5 to http proxy &middot; 路过麦田</title>
+		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tcdspring.github.io/posts'>Archive</a>
+	<a href='https://tcdspring.github.io/tags'>Tags</a>
+	<a href='https://tcdspring.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        convert socks5 to http proxy
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 149 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    
+
+<h3 id="安装">安装</h3>
+
+<pre><code>sudo apt-get install polipo
+
+sudo service polipo stop
+</code></pre>
+
+<h3 id="设置">设置</h3>
+
+<pre><code># 快速运行
+sudo polipo socksParentProxy=localhost:1080
+
+# 使用配置文件
+
+sudo vi /etc/polipo/config
+
+# 输入下面内容
+
+socksParentProxy = “127.0.0.1:1080″
+socksProxyType = socks5
+proxyAddress = &quot;::0&quot;        # both IPv4 and IPv6
+# or IPv4 only
+# proxyAddress = &quot;0.0.0.0&quot;
+proxyPort = 8123
+
+
+运行：
+
+$ sudo polipo -c /etc/polipo/config
+</code></pre>
+
+<h3 id="使用">使用</h3>
+
+<pre><code># http/https
+http_proxy=http://localhost:8123 apt-get update
+http_proxy=http://localhost:8123 curl www.google.com
+http_proxy=http://localhost:8123 wget www.google.com
+
+https_proxy=http://localhost:8123 wget https://google.com
+
+# ftp
+ftp_proxy=http://localhost:8123 
+
+# git
+git config --global http.proxy 127.0.0.1:8123
+git clone https://github.com/xxx/xxx.git
+git xxx
+git xxx
+git config --global --unset-all http.proxy
+
+# gradle
+gradlew -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
+gradlew -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123
+gradlew -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123
+gradlew -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123
+
+</code></pre>
+
+<h3 id="开机启动">开机启动</h3>
+
+<pre><code># 编写polipo.service
+sudo vi /etc/systemd/system/polipo.service
+
+[Unit]
+Description=polipo service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/polipo -c /etc/polipo/config
+
+[Install]
+WantedBy=multi-user.target
+
+# 使polipo.service生效
+sudo systemctl daemon-reload
+sudo systemctl start polipo.service
+
+# 写入环境变量
+
+vi ~/.bashrc
+
+# 添加下面代码
+
+export http_proxy=http://localhost:8123
+export https_proxy=http://localhost:8123
+
+# 保存后执行
+
+source ~/.bashrc # 使环境变量生效
+
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.github.com/tcdspring">
+        github-square
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> Tcdspring
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tcdspring.github.io/js/main.js"></script>
+<script src="https://tcdspring.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

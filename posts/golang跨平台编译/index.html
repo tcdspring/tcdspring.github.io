@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="author" content="Tcdspring">
+		<meta name="description" content="Unknown">
+		<meta name="generator" content="Hugo 0.52" />
+		<title>golang跨平台编译 &middot; 路过麦田</title>
+		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tcdspring.github.io/posts'>Archive</a>
+	<a href='https://tcdspring.github.io/tags'>Tags</a>
+	<a href='https://tcdspring.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        golang跨平台编译
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 143 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <p>Golang在跨平台编译时是很方便的，下面这个表格列出了golang支持的平台和架构.</p>
+
+<table>
+<thead>
+<tr>
+<th>GOOS - Target Operating System</th>
+<th>GOARCH - Target Platform</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>android</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>darwin</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>darwin</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>darwin</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>darwin</td>
+<td>arm64</td>
+</tr>
+
+<tr>
+<td>dragonfly</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>freebsd</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>freebsd</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>freebsd</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>arm64</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>ppc64</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>ppc64le</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>mips</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>mipsle</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>mips64</td>
+</tr>
+
+<tr>
+<td>linux</td>
+<td>mips64le</td>
+</tr>
+
+<tr>
+<td>netbsd</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>netbsd</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>netbsd</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>openbsd</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>openbsd</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>openbsd</td>
+<td>arm</td>
+</tr>
+
+<tr>
+<td>plan9</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>plan9</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>solaris</td>
+<td>amd64</td>
+</tr>
+
+<tr>
+<td>windows</td>
+<td>386</td>
+</tr>
+
+<tr>
+<td>windows</td>
+<td>amd64</td>
+</tr>
+</tbody>
+</table>
+
+<p>编译时命令格式如下：</p>
+
+<pre><code>env GOOS=target-OS GOARCH=target-architecture go build package-import-path
+
+# 例如在ubuntu上编译arm64架构的二进制
+$ GOOS=linux GOARCH=arm64 go build
+</code></pre>
+
+<p>如果代码中不包含C的代码，纯Go编写的，则以上命令就可以跨平台编译了</p>
+
+<p>如果代码中包含C代码，则需要CGO来交叉编译</p>
+
+<p>在linux上编译arm平台的二进制</p>
+
+<pre><code>
+sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev
+
+sudo apt-get install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+
+CGO_ENABLED=1 GOOS=linux GOARCH=arm go build
+</code></pre>
+
+<p>在linux上编译arm64平台的二进制</p>
+
+<pre><code>sudo apt-get install gcc-aarch64-linux-gnu
+
+CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build
+</code></pre>
+
+<p>提示找不到<code>openssl/rand.h</code>文件，如果出现了上述的问题，可以尝试下面的方案：</p>
+
+<pre><code># for macOS：
+
+brew install openssl
+brew link openssl --force
+
+或者
+export CGO_LDFLAGS=&quot;-L/usr/local/opt/openssl/lib&quot;
+export CGO_CPPFLAGS=&quot;-I/usr/local/opt/openssl/include&quot;
+
+# for Debian, Ubuntu
+sudo apt-get install libssl-dev
+</code></pre>
+
+<p>完成之后，重新安装即可。</p>
+
+<pre><code>go get -v github.com/xeodou/go-sqlcipher
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.github.com/tcdspring">
+        github-square
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> Tcdspring
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tcdspring.github.io/js/main.js"></script>
+<script src="https://tcdspring.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

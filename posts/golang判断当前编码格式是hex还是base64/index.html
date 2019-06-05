@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="author" content="Tcdspring">
+		<meta name="description" content="Unknown">
+		<meta name="generator" content="Hugo 0.52" />
+		<title>golang判断当前字符串编码格式 &middot; 路过麦田</title>
+		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tcdspring.github.io/posts'>Archive</a>
+	<a href='https://tcdspring.github.io/tags'>Tags</a>
+	<a href='https://tcdspring.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        golang判断当前字符串编码格式
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 87 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <p>由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分</p>
+
+<pre><code>
+func DecodeHexOrBase64(content string) ([]byte, error) {
+	dat := []byte(content)
+	isHex := true
+	for _, v := range dat {
+		if v &gt;= 48 &amp;&amp; v &lt;= 57 || v &gt;= 65 &amp;&amp; v &lt;= 70 || v &gt;= 97 &amp;&amp; v &lt;= 102 {
+			// isHex = true
+		} else {
+			isHex = false
+			break
+		}
+	}
+	if isHex {
+		d, err := hex.DecodeString(content)
+		if len(d) == 0 || err != nil {
+			return base64.StdEncoding.DecodeString(content)
+		} 
+		return d, err
+	} else {
+		return base64.StdEncoding.DecodeString(content)
+	}
+}
+
+</code></pre>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.github.com/tcdspring">
+        github-square
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> Tcdspring
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tcdspring.github.io/js/main.js"></script>
+<script src="https://tcdspring.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

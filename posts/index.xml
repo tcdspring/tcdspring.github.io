@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>路过麦田</title>
-    <link>https://tcdspring.github.io/</link>
-    <description>Recent content on 路过麦田</description>
+    <title>Posts on 路过麦田</title>
+    <link>https://tcdspring.github.io/posts/</link>
+    <description>Recent content in Posts on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh_CN</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tcdspring.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>About Hugo</title>
-      <link>https://tcdspring.github.io/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://tcdspring.github.io/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
-    </item>
     
     <item>
       <title>Android studio gradle 问题汇总</title>

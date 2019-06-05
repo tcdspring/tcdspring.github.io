@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.52" />
-		<title>Tags &middot; 路过麦田</title>
+		<title>git误操作导致文件夹不能被提交 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -24,8 +24,8 @@
 		
 	</head>
 
-   <body>
-      <nav class="main-nav">
+    <body>
+       <nav class="main-nav">
 	
 	
 		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
@@ -39,28 +39,53 @@
 	
 </nav>
 
-      <div class="profile">
-    <section id="wrapper">
-        <header id="header">
-            <a href='https://tcdspring.github.io/about'>
-                <img id="avatar" class="2x" src="https://tcdspring.github.io/images/avatar.png"/>
-            </a>
-            <h1>路过麦田</h1>
-            <h2>没事儿的时候就爱瞎折腾&hellip;</h2>
-        </header>
-    </section>
-</div>
 
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        git误操作导致文件夹不能被提交
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 15 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <p>在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.</p>
 
+<p>也查看过<code>.gitignore</code>文件，里面并没有该目录，将目录改名也好，删除并重建，都不行</p>
 
-       <section id="wrapper" class="tags">
-           <div class="page-tags">
-               <ul>
-                  
-                  
-              </ul>
-           </div>
-           <footer id="footer">
+<p>在网上查看好久，终于找到了解决方案：</p>
+
+<pre><code>// 查看当前被忽略的文件或目录
+git status --ignored
+</code></pre>
+
+<p>发现里面确实有<code>build</code>目录</p>
+
+<p>然后执行下面命令，将<code>build</code>目录强加回去</p>
+
+<pre><code>git add -f build
+</code></pre>
+
+<p>这样<code>build</code>目录就可以和其他文件一样被git托管了.</p>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
     
         <div id="social">
 
@@ -86,9 +111,9 @@
     </p>
 </footer>
 
-       </section>
+        </section>
 
-       <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
 <script src="https://tcdspring.github.io/js/main.js"></script>
 <script src="https://tcdspring.github.io/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -99,5 +124,5 @@
 
 
 
-   </body>
+    </body>
 </html>

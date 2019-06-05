@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="author" content="Tcdspring">
+		<meta name="description" content="Unknown">
+		<meta name="generator" content="Hugo 0.52" />
+		<title>Android studio gradle 问题汇总 &middot; 路过麦田</title>
+		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tcdspring.github.io/posts'>Archive</a>
+	<a href='https://tcdspring.github.io/tags'>Tags</a>
+	<a href='https://tcdspring.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        Android studio gradle 问题汇总
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 346 words
+                    · 2 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <p>总结一下在android开发中遇到的各式各样的问题</p>
+
+<h2 id="1-mac上android-studio更新gradle时出现no-route-to-host">1. Mac上Android Studio更新Gradle时出现No route to host</h2>
+
+<p>更新代码后，android studio又出现了<code>Gradle project sync failed</code></p>
+
+<p>又是老问题<code>No route to host</code>，
+很明显，又被墙了，只能用代理了</p>
+
+<h4 id="方案一">方案一</h4>
+
+<p>开启Shadowsocks全局代理模式</p>
+
+<p>结果：更新失败</p>
+
+<h4 id="方案二">方案二</h4>
+
+<p>手动代理</p>
+
+<p>Appparance &amp; Behavior &gt; System Settings &gt; HTTP Proxy</p>
+
+<p>选择Manual proxy configuration</p>
+
+<p>选择 SOCKS</p>
+
+<p><strong>Host name:</strong> 127.0.0.1</p>
+
+<p><strong>Port number:</strong> 1080</p>
+
+<p>结果：更新失败</p>
+
+<h4 id="方案三">方案三</h4>
+
+<p>在gradle.properties文件中添加下面代码：</p>
+
+<pre><code>systemProp.http.proxyHost=127.0.0.1
+systemProp.http.proxyPort=1080
+</code></pre>
+
+<p>结果：更新失败</p>
+
+<h4 id="方案四">方案四</h4>
+
+<p>在gradle.properties文件中添加下面代码：</p>
+
+<pre><code>org.gradle.jvmargs=-Xmx1536m -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
+</code></pre>
+
+<p>结果：更新成功</p>
+
+<h3 id="代理服务器汇总">代理服务器汇总：</h3>
+
+<p>南阳理工学院镜像服务器地址:</p>
+
+<p>mirror.nyist.edu.cn 端口：80</p>
+
+<p>中国科学院开源协会镜像站地址:</p>
+
+<p>IPV4/IPV6: mirrors.opencas.cn 端口：80</p>
+
+<p>IPV4/IPV6: mirrors.opencas.org 端口：80</p>
+
+<p>IPV4/IPV6: mirrors.opencas.ac.cn 端口：80</p>
+
+<p>上海GDG镜像服务器地址:</p>
+
+<p>sdk.gdgshanghai.com 端口：8000</p>
+
+<p>北京化工大学镜像服务器地址:</p>
+
+<p>IPv4: ubuntu.buct.edu.cn/ 端口：80</p>
+
+<p>IPv4: ubuntu.buct.cn/ 端口：80</p>
+
+<p>IPv6: ubuntu.buct6.edu.cn/ 端口：80</p>
+
+<p>大连东软信息学院镜像服务器地址:</p>
+
+<p>mirrors.neusoft.edu.cn 端口：80</p>
+
+<p>腾讯Bugly 镜像:</p>
+
+<p>android-mirror.bugly.qq.com 端口：8080</p>
+
+<p>腾讯镜像使用方法:<a href="http://android-mirror.bugly.qq.com:8080/include/usage.html">http://android-mirror.bugly.qq.com:8080/include/usage.html</a></p>
+
+<h2 id="2-shell命令更新android-sdk">2. shell命令更新android sdk</h2>
+
+<pre><code># android/sdk/tools/sdkmanager
+# 使用http代理 --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+# proxy_host以及proxy_port列表可以上网搜索
+
+sdkmanager --list --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+
+# 更新所有可更新的模块
+sdkmanager --update --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+
+# 按模块名更新
+# sdkmanager &quot;&lt;package&gt;&quot; 
+# &lt;package&gt; is a sdk-style path (e.g. &quot;build-tools;23.0.0&quot; or &quot;platforms;android-23&quot;).
+
+sdkmanager &quot;platforms;android-28&quot; --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+</code></pre>
+
+<p>可能会遇到下面的问题：</p>
+
+<pre><code>File /Users/lu/.android/repositories.cfg could not be loaded
+</code></pre>
+
+<p>直接在该目录创建该文件即可</p>
+
+<pre><code>touch ~/.android/repositories.cfg
+</code></pre>
+
+<h2 id="3-gradle使用阿里云镜像">3. Gradle使用阿里云镜像</h2>
+
+<p>gradle 生命周期中有一个叫初始化(Initialization)的过程，这个过程运行在 build script之前，我们可以在这个地方做一点系统全局的设置，就比如<em>配置仓库地址</em></p>
+
+<p>对单个项目生效，在项目中的build.gradle修改内容</p>
+
+<pre><code>buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+    }
+}
+
+</code></pre>
+
+<p>对所有项目生效：
+1. 命令行
+2. 放一个init.gradle 文件到USER_HOME/.gradle/目录下
+3. 放一个后缀是.gradle的文件到 USER_HOME/.gradle/init.d/ 目录下
+4. 放一个后缀是.gradle的文件到 GRADLE_HOME/init.d/ 目录下</p>
+
+<p>init.gradle文件内容</p>
+
+<pre><code>allprojects {
+    repositories {
+         maven {
+             name &quot;aliyunmaven&quot;
+             url &quot;http://maven.aliyun.com/nexus/content/groups/public/&quot;
+         }
+    }
+}
+
+</code></pre>
+
+<h2 id="4-使用d8编译器">4. 使用D8编译器</h2>
+
+<p>转载：<a href="http://yifeng.studio/2018/04/07/android-studio-d8-dex-compiler/">http://yifeng.studio/2018/04/07/android-studio-d8-dex-compiler/</a></p>
+
+<p>Google在 Android Studio 3.1 新版本中，将 D8 作为新版本开发工具默认的 Dex 编译器。那么什么是 D8 呢，D8 与之前的 Dex 打包器有何区别呢？</p>
+
+<p>大家知道，安卓项目在打包生成 Apk 安装文件的过程中，最重要的一步便是将我们所写的 java 代码编译过成 .class 字节文件再打包转化成一个或多个 .dex 格式的代码压缩文件。这种 dex 文件便是 Android 虚拟机所能识别、解析并运行的程序。</p>
+
+<p>Google 一直在致力于提升 Dex 文件的编译和运行优化工作，并开发出称之为下一代 dex 编译器：D8。其实早在 AS 3.0 Beta 版本中，Google 已经引入 D8 的测试使用。直到当前 3.1 新版本的发布，才正式将其作为默认 Dex 编译器。</p>
+
+<p>根据官方介绍，新版 D8 Dex 编译器相比之前称之为 DX 的旧版编译器，在 dex 文件的编译和使用上，至少具备这么三个优势：</p>
+
+<blockquote>
+<ol>
+<li>更快的编译速度；2. 更小的文件大小；3. 更优的运行性能</li>
+</ol>
+</blockquote>
+
+<p>大家也可以亲自体验一下 D8 的效果。如果你使用的 Android Studio 还是 3.0 版本，可以在项目的 gradle.properties 文件手动开启 D8 编译器：</p>
+
+<pre><code>android.enableD8=true
+</code></pre>
+
+<h2 id="5-修复app-transformdexwithinstantrunslicesapkxxx">5. 修复app:transformDexWithInstantRunSlicesApkxxx</h2>
+
+<p>类似这样的异常记录：</p>
+
+<pre><code>java.lang.RuntimeException: java.lang.RuntimeException: java.io.FileNotFoundException: XXX\app\build\intermediates\instant_run_split_apk_resources\debug\instantRunSplitApkResourcesDebug\out\slice_3\resources_ap 
+
+</code></pre>
+
+<p>解决方案：</p>
+
+<ol>
+<li>升级Gradle到5.4版本</li>
+</ol>
+
+<p>打开<code>gradle/gradle-wrapper.properties</code>
+将gradle版本改为5.4</p>
+
+<pre><code>distributionUrl=https\://services.gradle.org/distributions/gradle-5.4-all.zip
+</code></pre>
+
+<p>重新编译即可</p>
+
+<ol>
+<li><p>禁用<code>instant run</code>功能</p>
+
+<pre><code>File -&gt; Settings -&gt; Instant Run 
+</code></pre></li>
+</ol>
+
+<p>取消勾选，重新编译即可</p>
+
+<h2 id="6-解决android-studio中gradle-sync操作卡住的问题">6. 解决android studio中Gradle Sync操作卡住的问题</h2>
+
+<p>在同步的时候经常会出现卡在访问<code>dl.google.com</code>的时候，例如：</p>
+
+<pre><code>Could not get resource 'https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.3.2/gradle-3.3.2.pom'
+
+</code></pre>
+
+<p>对于自定义的maven也经常会出现这个问题，忽略自定义的maven服务器，直接访问google的服务器，针对这个问题，可以在命令行中执行同步的命令，因为非命令行同步时不容易指定参数，肯定是通过不了的</p>
+
+<p>还有一种方式是采用<code>Offline work</code>，将该选项打勾，每次都从缓存中读取，也勉强能用，但是一旦依赖库有更新时，还是会遇到这个问题</p>
+
+<p>下面记录一下目前可以使用的解决方案：</p>
+
+<pre><code># 安装了http代理工具，比如polipo
+./gradlew --refresh-dependencies --info -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123
+
+# 或者
+
+# 使用shadowsocks
+./gradlew --refresh-dependencies --info -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
+
+# --refresh-dependencies 更新依赖项
+# --info 显示执行过程
+# --stacktrace 显示堆栈信息
+
+</code></pre>
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.github.com/tcdspring">
+        github-square
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> Tcdspring
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tcdspring.github.io/js/main.js"></script>
+<script src="https://tcdspring.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta name="author" content="Tcdspring">
+		<meta name="description" content="Unknown">
+		<meta name="generator" content="Hugo 0.52" />
+		<title>ubuntu下查找so文件的归属 &middot; 路过麦田</title>
+		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
+
+		
+		<link rel="stylesheet" href="https://tcdspring.github.io/css/monosocialiconsfont.css">
+		
+
+		
+
+		
+
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='https://tcdspring.github.io/'> <span class="arrow">←</span>Home</a>
+	
+	<a href='https://tcdspring.github.io/posts'>Archive</a>
+	<a href='https://tcdspring.github.io/tags'>Tags</a>
+	<a href='https://tcdspring.github.io/about'>About</a>
+
+	
+
+	
+</nav>
+
+
+        <section id="wrapper" class="post">
+            <article>
+                <header>
+                    <h1>
+                        ubuntu下查找so文件的归属
+                    </h1>
+                    <h2 class="headline">
+                    Jun 4, 2019 16:13
+                    · 41 words
+                    · 1 minute read
+                      <span class="tags">
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    <p>在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：</p>
+
+<pre><code>error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory，
+</code></pre>
+
+<p>这时候就需要知道<code>libcrypto.so.1.0.0</code>位于哪个包中，这样才能安装该包解决问题，那怎么知道这个so位于哪个包中呢？</p>
+
+<p>RedHat中有<a href="http://manpages.ubuntu.com/manpages/xenial/man1/repoquery.1.html">repoquery</a>命令，可以解决该问题</p>
+
+<p>ubuntu中也可以安装该命令，但是这并不是一个好主意，这个工具会安装很多<code>yum</code>的库，没准儿会导致系统出现一些兼容性问题，那ubuntu中怎么做呢，可以尝试安装并使用下面的工具：</p>
+
+<pre><code>sudo apt install apt-file
+
+sudo apt-file update
+
+apt-file search libcrypto.so.1.0.0
+
+# output:
+# nsight-compute: /usr/lib/nsight-compute/host/
+# linux-desktop-glibc_2_11_3-x64/libcrypto.so.1.0.0
+# nsight-systems: /usr/lib/nsight-systems/Host-x86_64/libcrypto.so.1.0.0
+</code></pre>
+
+<p>这样我们就可以知道缺失的so属于哪个库，并安装该库。</p>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://www.github.com/tcdspring">
+        github-square
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2019 <i class="fa fa-heart" aria-hidden="true"></i> Tcdspring
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://tcdspring.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://tcdspring.github.io/js/main.js"></script>
+<script src="https://tcdspring.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>
