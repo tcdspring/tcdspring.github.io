@@ -173,14 +173,5 @@ sudo apt install apt-file sudo apt-file update apt-file search libcrypto.so.1.0.
 npm install -g cloc # https://www.npmjs.com/package/cloc sudo apt-get install cloc # Debian, Ubuntu sudo yum install cloc # Red Hat, Fedora sudo dnf install cloc # Fedora 22 or later sudo pacman -S cloc # Arch sudo pkg install cloc # FreeBSD sudo port install cloc # Mac OS X with MacPorts brew install cloc # Mac OS X with Homebrew choco install cloc # Windows with Chocolatey  如何使用：</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://tcdspring.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tcdspring.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
