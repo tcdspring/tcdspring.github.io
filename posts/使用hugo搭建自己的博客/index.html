@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.55.6" />
-		<title> &middot; 路过麦田</title>
+		<title>使用Hugo搭建自己的博客 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -42,12 +42,12 @@
             <article>
                 <header>
                     <h1>
-                        
+                        使用Hugo搭建自己的博客
                     </h1>
                     <h2 class="headline">
-                    Jan 1, 0001 00:00
-                    · 0 word
-                    · 0 minute read
+                    Jun 5, 2019 16:07
+                    · 145 words
+                    · 1 minute read
                       <span class="tags">
                       
                       </span>
@@ -55,12 +55,171 @@
                 </header>
                 
                 <section id="post-body">
-                    
+                    <p>生命在于折腾，生命不息，折腾不止。</p>
+
+<p>最近又开始了折腾博客，以前的文章都写在<a href="https://www.jianshu.com/u/29dc71d35eaf">简书</a>上，现在准备使用<a href="https://gohugo.io/">Hugo</a>来搭建一个静态博客。</p>
+
+<p>对比了一下Jekyll、Hexo、Hugo，最终还是选择了Hugo。</p>
+
+<p>Hugo使用go编写，编译后只有一个二进制文件，不用安装任何依赖，这一点让人很舒服。
+Jekyll使用ruby编写，Hexo则是使用nodejs编写，这两种都属于解释型语言，运行效率上比起go来还是要差一点的，Hexo在文章很多的时候编译生成静态网站是很费时的，但是Hugo就没有这个问题，编译速度很快。最主要的一点还是自己也是go的爱好者，这一年陆陆续续用go写了几个项目，包括公司的部分服务也开始用go来写，虽然跟Hugo没啥关系，但就是莫名的想支持一下，呵呵。</p>
+
+<p>至于如何安装Hugo，如何搭建网站，网络上也有不少的教程，这里也不再叙述了，自己写出来的未必有官方文档那样详细，所以建议看官方文档。</p>
+
+<p><a href="https://gohugo.io/documentation/">https://gohugo.io/documentation/</a></p>
+
+<p>下面主要记录一些自己在搭建博客的过程中遇到的一些问题，以及如何解决，会不定期的更新。</p>
+
+<h2 id="安装">安装</h2>
+
+<p>安装很简单，直接从官方文档上抄了一段：</p>
+
+<pre><code># macos
+brew install hugo
+
+# ubuntu 
+sudo apt install hugo
+
+# windows
+choco install hugo -confirm
+# or
+scoop install hugo
+</code></pre>
+
+<p>如果windows上不知道choco和scoop是啥的话，可以直接下载编译好的压缩包（各个平台都有），解压即可。</p>
+
+<p><a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p>
+
+<h2 id="创建网站">创建网站</h2>
+
+<p>创建网站可参考下面的文档：</p>
+
+<p><a href="https://www.gohugo.org/">https://www.gohugo.org/</a></p>
+
+<p>按照文档一步一步来就可以入门了，但是涉及到一些配置的话，还得深入查看文档才行。</p>
+
+<p>创建网站后，需要下载主题，<a href="https://www.gohugo.org/theme/">https://www.gohugo.org/theme/</a></p>
+
+<p>如果本地网站目录中没有<code>themes</code>目录的话，自己创建一个，然后下载主题到该目录内。</p>
+
+<p>我个人使用的主题是<a href="https://github.com/nodejh/hugo-theme-cactus-plus/blob/master/README_zh-cn.md">hugo-theme-cactus-plus</a></p>
+
+<pre><code>$ cd themes
+$ git clone https://github.com/nodejh/hugo-theme-cactus-plus.git
+</code></pre>
+
+<p>一般来说，下载的主题都会自带一个配置样例的，具体的配置参考样例即可。或者可以参考下面这个配置样例：
+<a href="https://github.com/gohugoio/hugo/blob/master/docs/config.toml">https://github.com/gohugoio/hugo/blob/master/docs/config.toml</a></p>
+
+<p>本地运行：</p>
+
+<pre><code>hugo server --theme=hugo-theme-cactus-plus --buildDrafts
+</code></pre>
+
+<p>如果在config.toml中指定了主题的话，这里就可以不用指定<code>--theme</code>参数了，<code>--buildDrafts</code>参数指定了的话，就会连草稿一同展示出来。</p>
+
+<p>编译：
+进入站点根目录，然后执行：</p>
+
+<pre><code>hugo 
+</code></pre>
+
+<p>没错，只要输入命令回车即可，都不用带什么参数就可以生成网站的静态文件，并存放在<code>public</code>文件夹中，非常简单。</p>
+
+<h2 id="使用github-pages发布网站">使用Github Pages发布网站</h2>
+
+<p>如果只在本地机器上玩那就没意思了，所以还是得把网站发布到网上去，github就提供了这样一个功能
+<a href="https://www.gohugo.org/doc/tutorials/github-pages-blog/">https://www.gohugo.org/doc/tutorials/github-pages-blog/</a></p>
+
+<p>拿bob来举例吧</p>
+
+<p>github帐号名：bob，本地利用Hugo生成的网站：blogs</p>
+
+<ol>
+<li>在github上创建名为bob.github.io的repository，创建完成后，添加一个文件index.html，内容就找一个<code>hello world</code>的网页，把源码贴进去就行，保存后，就可以访问<code>https://bob.github.io</code>，展示的内容就是你的<code>hello world</code></li>
+<li>clone该repository到blogs的public文件夹中，此时最好确保public是空文件夹，否则push的时候会出现问题</li>
+<li>clone完成以后，执行hugo命令来生成静态网站，这时候index.html会有冲突，解决冲突后push即可</li>
+<li>过一分钟左右，访问<code>https://bob.github.io</code>，网站内容应该已经生效</li>
+</ol>
+
+<h4 id="gh-pages分支问题">gh-pages分支问题</h4>
+
+<p>我在搭建博客的时候，也遇到了gh-pages的问题，严格来说算不上什么问题，只是不太明白这个分支是干嘛用的，后来慢慢清楚了。</p>
+
+<p>上面举例的bob.github.io，所有的操作都在master分支上，github pages会使用bob.github.io这个repository的master分支的内容作为网站来显示，所以对于bob.github.io这个repository来说，就不需要创建gh-pages分支。</p>
+
+<p>但是如果你的其他项目需要网页来展示呢，比如有一个项目hugo001，其中也有一些网页需要展示，那怎么办？</p>
+
+<p>访问<code>https://bob.github.io</code>这个网站，这时网站展示的是bob.github.io这个repository中的静态网站，如果你想展示hugo001中网页的内容，那就需要给hugo001创建分支gh-pages，并将需要展示的静态网页push到该分支上，然后访问<code>https://bob.github.io/hugo001</code>就可以展示该项目中静态网站了。</p>
+
+<p>总结一下就是：</p>
+
+<ul>
+<li><code>https://bob.github.io</code> 展示的是帐号为bob的github用户创建的名为bob.github.io的repository中master分支的内容</li>
+<li><code>https://bob.github.io/hugo001</code> 展示的是帐号为bob的github用户创建的名为hugo001的repository中gh-pages分支的内容</li>
+</ul>
+
+<h2 id="googleanalytics踩坑">GoogleAnalytics踩坑</h2>
+
+<p>这个问题是自己失误导致的，毕竟刚入门，照葫芦画瓢，一不小心，就出问题了，搞了一个小时才搞定。</p>
+
+<p>Hugo是支持google统计的，依照官网的说法，只需要两步就可以搞定了：</p>
+
+<p><img src="https://tcdspring.github.io/static/configuring_google_analytics.png" alt="Example image" /></p>
+
+<h3 id="1-在config-toml中添加-googleanalytics-ua-123-45">1. 在config.toml中添加<code>googleAnalytics = &quot;UA-123-45&quot;</code></h3>
+
+<p>这个UA-123-45改为你自己在<a href="https://analytics.google.com">https://analytics.google.com</a>上申请的tracking id</p>
+
+<h3 id="2-在你的模板中添加下面的代码">2. 在你的模板中添加下面的代码</h3>
+
+<pre><code>{{ template &quot;_internal/google_analytics.html&quot; . }}
+
+# or
+
+{{ template &quot;_internal/google_analytics_async.html&quot; . }}
+
+</code></pre>
+
+<p>这段代码可以加在你下载的主题（比如说hugo-theme-cactus-plus这个主题）目录中的layouts/partials/head.html文件中，加在<head>标签中</p>
+
+<p>但是，有的主题已经包含了这段代码，所以你只需要在config.toml中加入你的tracking id即可，这个hugo-theme-cactus-plus主题在themes/hugo-theme-cactus-plus/partials/js.html中已经包含了这段代码，并且还包含的百度统计的代码，真是厉害了</p>
+
+<p>一般来说你按上面操作完成后，就基本上搞定了，剩下的就是打开google统计来查看数据是否生效了，但是我犯了一个错误，让我纠结了好久，我把</p>
+
+<pre><code>googleAnalytics = &quot;UA-123-45&quot;
+</code></pre>
+
+<p>这行代码加在了config.toml文件中的[params]属性后面：</p>
+
+<pre><code>languageCode = &quot;zh_CN&quot; #语言
+paginate = 15 #分页每页记录数
+theme = &quot;hugo-theme-cactus-plus&quot;
+....
+
+[params]
+
+  description = &quot;Unknown&quot;
+
+  bio= &quot;无聊的时候就爱瞎折腾...&quot; #作者简介
+  
+  enableGoogleAnalytics = true
+  enableBaiduAnalytics = false
+
+  googleAnalytics = &quot;UA-123-45&quot;
+
+  ....
+
+</code></pre>
+
+<p>就是因为这行代码加在了[params]所属的范围内，导致Hugo在解析模板的时候找不到googleAnalytics这个参数的值，所以将其忽略，生成的html中就不会包含google统计的代码，我还以为访问google统计很慢呢，刷新了好几次，数据都不变，真的是很尴尬&hellip;</p>
+
+<p>往往最简单的地方也越容易出错，所以在这些细小的地方一定要仔细。</p>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2f%25E4%25BD%25BF%25E7%2594%25A8hugo%25E6%2590%25AD%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584%25E5%258D%259A%25E5%25AE%25A2%2f -  "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2f%25E4%25BD%25BF%25E7%2594%25A8hugo%25E6%2590%25AD%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584%25E5%258D%259A%25E5%25AE%25A2%2f - %e4%bd%bf%e7%94%a8Hugo%e6%90%ad%e5%bb%ba%e8%87%aa%e5%b7%b1%e7%9a%84%e5%8d%9a%e5%ae%a2 "><span class="icon-twitter"> tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
