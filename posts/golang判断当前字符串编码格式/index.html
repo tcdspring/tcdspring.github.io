@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.55.6" />
-		<title>Git误操作导致文件夹不能被提交 &middot; 路过麦田</title>
+		<title>Golang判断当前字符串编码格式 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -42,11 +42,11 @@
             <article>
                 <header>
                     <h1>
-                        Git误操作导致文件夹不能被提交
+                        Golang判断当前字符串编码格式
                     </h1>
                     <h2 class="headline">
                     Jun 4, 2019 16:13
-                    · 15 words
+                    · 87 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -55,29 +55,37 @@
                 </header>
                 
                 <section id="post-body">
-                    <p>在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.</p>
+                    <p>由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分</p>
 
-<p>也查看过<code>.gitignore</code>文件，里面并没有该目录，将目录改名也好，删除并重建，都不行</p>
+<pre><code>
+func DecodeHexOrBase64(content string) ([]byte, error) {
+	dat := []byte(content)
+	isHex := true
+	for _, v := range dat {
+		if v &gt;= 48 &amp;&amp; v &lt;= 57 || v &gt;= 65 &amp;&amp; v &lt;= 70 || v &gt;= 97 &amp;&amp; v &lt;= 102 {
+			// isHex = true
+		} else {
+			isHex = false
+			break
+		}
+	}
+	if isHex {
+		d, err := hex.DecodeString(content)
+		if len(d) == 0 || err != nil {
+			return base64.StdEncoding.DecodeString(content)
+		} 
+		return d, err
+	} else {
+		return base64.StdEncoding.DecodeString(content)
+	}
+}
 
-<p>在网上查看好久，终于找到了解决方案：</p>
-
-<pre><code>// 查看当前被忽略的文件或目录
-git status --ignored
 </code></pre>
-
-<p>发现里面确实有<code>build</code>目录</p>
-
-<p>然后执行下面命令，将<code>build</code>目录强加回去</p>
-
-<pre><code>git add -f build
-</code></pre>
-
-<p>这样<code>build</code>目录就可以和其他文件一样被git托管了.</p>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fgit%25E8%25AF%25AF%25E6%2593%258D%25E4%25BD%259C%25E5%25AF%25BC%25E8%2587%25B4%25E6%2596%2587%25E4%25BB%25B6%25E5%25A4%25B9%25E4%25B8%258D%25E8%2583%25BD%25E8%25A2%25AB%25E6%258F%2590%25E4%25BA%25A4%2f - Git%e8%af%af%e6%93%8d%e4%bd%9c%e5%af%bc%e8%87%b4%e6%96%87%e4%bb%b6%e5%a4%b9%e4%b8%8d%e8%83%bd%e8%a2%ab%e6%8f%90%e4%ba%a4 "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fgolang%25E5%2588%25A4%25E6%2596%25AD%25E5%25BD%2593%25E5%2589%258D%25E5%25AD%2597%25E7%25AC%25A6%25E4%25B8%25B2%25E7%25BC%2596%25E7%25A0%2581%25E6%25A0%25BC%25E5%25BC%258F%2f - Golang%e5%88%a4%e6%96%ad%e5%bd%93%e5%89%8d%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%bc%96%e7%a0%81%e6%a0%bc%e5%bc%8f "><span class="icon-twitter"> tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(

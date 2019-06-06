@@ -29,138 +29,97 @@
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
-      <description>&lt;p&gt;总结一下在android开发中遇到的各式各样的问题&lt;/p&gt;</description>
+      <description>&lt;p&gt;总结一下在android开发中遇到的各式各样的问题，不定期更新&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>apt-get使用代理</title>
-      <link>https://tcdspring.github.io/posts/apt-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
-      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
-      
-      <guid>https://tcdspring.github.io/posts/apt-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
-      <description>在使用apt-get update时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：
-export http_proxy=http://127.0.0.1:8123 sudo apt-get update  目前是不可行的，因为apt-get已经不再使用这种方式来指定代理了
-方法1：
-sudo apt-get -c ~/apt_proxy.conf update # apt_proxy.conf 内容： Acquire::http::proxy &amp;quot;http://127.0.0.1:8123/&amp;quot;; Acquire::ftp::proxy &amp;quot;ftp://127.0.0.1:8123/&amp;quot;; Acquire::https::proxy &amp;quot;https://127.0.0.1:8123/&amp;quot;;  方法2：
-sudo apt-get -o Acquire::http::proxy=&amp;quot;http://127.0.0.1:8123/&amp;quot; update  </description>
-    </item>
-    
-    <item>
-      <title>convert socks5 to http proxy</title>
+      <title>Convert socks5 to http proxy</title>
       <link>https://tcdspring.github.io/posts/convert-socks5-to-http-proxy/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/convert-socks5-to-http-proxy/</guid>
-      <description>安装 sudo apt-get install polipo sudo service polipo stop  设置 # 快速运行 sudo polipo socksParentProxy=localhost:1080 # 使用配置文件 sudo vi /etc/polipo/config # 输入下面内容 socksParentProxy = “127.0.0.1:1080″ socksProxyType = socks5 proxyAddress = &amp;quot;::0&amp;quot; # both IPv4 and IPv6 # or IPv4 only # proxyAddress = &amp;quot;0.0.0.0&amp;quot; proxyPort = 8123 运行： $ sudo polipo -c /etc/polipo/config  使用 # http/https http_proxy=http://localhost:8123 apt-get update http_proxy=http://localhost:8123 curl www.google.com http_proxy=http://localhost:8123 wget www.google.com https_proxy=http://localhost:8123 wget https://google.</description>
+      <description>&lt;p&gt;在某些场景下需要将socks5的流量转化为http，在网上搜索了一下，找到了这个工具：&lt;code&gt;polipo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>docker容器中交叉编译go项目</title>
+      <title>Docker容器中交叉编译go项目</title>
       <link>https://tcdspring.github.io/posts/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</guid>
-      <description>项目正在逐步使用go mod工具做版本管理，但是在这过程中也遇到了一些问题，主要还是交叉编译的问题
-之前项目在GOPATH中，编译就交给xgo这个工具来做，一直很顺利，但是xgo是不支持非GOPATH目录的项目的，如果将项目移到其他目录中，并使用xgo来编译，会出现如下的错误：
-Checking for required docker image karalabe/xgo-latest... found. Cross compiling .... Building locally .... Compiling for linux/arm64... can&#39;t load package: package .: no Go files in / 2019/05/16 14:24:52 Failed to cross compile package: exit status 1.  用到xgo主要是因为项目中引用了github.com/mattn/go-sqlite3，而且编译的二进制主要运行在arm平台上，所以用到了交叉编译
-目标平台是arm64架构的ubuntu16.04，自己正在用的是amd64架构的ubuntu19.04，在安装了各种gcc后也能编译出arm64的二进制，但是运行时会报错：
-anet@anet-box:/data$ ./minioext ./minioext: /lib/aarch64-linux-gnu/libc.so.6: version `GLIBC_2.28&#39; not found (required by ./minioext)  查看GLIBC版本
-anet@anet-box:/lib/aarch64-linux-gnu$ strings libc.so.6 |grep GLIBC_ GLIBC_2.17 GLIBC_2.18 GLIBC_2.22 GLIBC_2.23 GLIBC_PRIVATE  目标平台版本太低，而我自己的系统又太高，所以编译出来的二进制无法运行，自己系统上编译器是arm-linux-gnueabi-gcc-7以及aarch64-linux-gnu-gcc-7，版本也是太高了
-在查看了xgo的shell脚本后，发现xgo使用的是arm-linux-gnueabi-gcc-5，所有的toolchain都是5系列的，但是通过执行命令
-apt-cache search gcc-5-arm-linux-gnueabi  来搜索gcc-5*发现是没结果的，</description>
+      <description>&lt;p&gt;项目正在逐步使用&lt;code&gt;go mod&lt;/code&gt;工具做版本管理，但是在这过程中也遇到了一些问题，主要还是交叉编译的问题&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>docker操作小记</title>
-      <link>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</link>
+      <title>Docker操作小记</title>
+      <link>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/</guid>
-      <description>在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。
-方法一 使用docker attach进入
-sudo docker run -itd ubuntu:16.04 /bin/bash // 输出一段字符串 // 比如说 245b07d79040514233c306acc48d7f372f2adad3a045448156aedf4c604b0c50  拿到输出的字符串，然后执行下面命令：
-sudo docker attach 245b07d79  成功后会进入容器中，可以进行交互了。
-方法二 使用docker exec进入
-在docker1.3.x版本后提供了一个新的命令exec，用这种方式更简单一些
-sudo docker ps sudo docker exec -it 245b07d79 /bin/bash  还有可以通过ssh进入容器，只不过还得需要先进入容器中安装或者配置ssh，比较麻烦，所以就不是很推荐这种方式。</description>
+      <guid>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</guid>
+      <description>&lt;p&gt;在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>git误操作导致文件夹不能被提交</title>
+      <title>Git误操作导致文件夹不能被提交</title>
       <link>https://tcdspring.github.io/posts/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</guid>
-      <description>在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.
-也查看过.gitignore文件，里面并没有该目录，将目录改名也好，删除并重建，都不行
-在网上查看好久，终于找到了解决方案：
-// 查看当前被忽略的文件或目录 git status --ignored  发现里面确实有build目录
-然后执行下面命令，将build目录强加回去
-git add -f build  这样build目录就可以和其他文件一样被git托管了.</description>
+      <description>&lt;p&gt;在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>golang判断当前字符串编码格式</title>
-      <link>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E6%98%AFhex%E8%BF%98%E6%98%AFbase64/</link>
+      <title>Go mod导入本地库</title>
+      <link>https://tcdspring.github.io/posts/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%E6%98%AFhex%E8%BF%98%E6%98%AFbase64/</guid>
-      <description>由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分
- func DecodeHexOrBase64(content string) ([]byte, error) { dat := []byte(content) isHex := true for _, v := range dat { if v &amp;gt;= 48 &amp;amp;&amp;amp; v &amp;lt;= 57 || v &amp;gt;= 65 &amp;amp;&amp;amp; v &amp;lt;= 70 || v &amp;gt;= 97 &amp;amp;&amp;amp; v &amp;lt;= 102 { // isHex = true } else { isHex = false break } } if isHex { d, err := hex.DecodeString(content) if len(d) == 0 || err !</description>
+      <guid>https://tcdspring.github.io/posts/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</guid>
+      <description>&lt;p&gt;项目目前都已经切换到了&lt;code&gt;go mod&lt;/code&gt;中，但是也遇到了一些问题，比如说导入本地依赖包.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>golang跨平台编译</title>
+      <title>Golang判断当前字符串编码格式</title>
+      <link>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
+      <description>&lt;p&gt;由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang跨平台编译</title>
       <link>https://tcdspring.github.io/posts/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</guid>
-      <description>Golang在跨平台编译时是很方便的，下面这个表格列出了golang支持的平台和架构.
-   GOOS - Target Operating System GOARCH - Target Platform     android arm   darwin 386   darwin amd64   darwin arm   darwin arm64   dragonfly amd64   freebsd 386   freebsd amd64   freebsd arm   linux 386   linux amd64   linux arm   linux arm64   linux ppc64   linux ppc64le   linux mips   linux mipsle   linux mips64   linux mips64le   netbsd 386   netbsd amd64   netbsd arm   openbsd 386   openbsd amd64   openbsd arm   plan9 386   plan9 amd64   solaris amd64   windows 386   windows amd64    编译时命令格式如下：</description>
+      <description>&lt;p&gt;Golang在跨平台编译时是很方便的，下面这个表格列出了golang支持的平台和架构.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>gomod导入本地库</title>
-      <link>https://tcdspring.github.io/posts/gomod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</link>
-      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
-      
-      <guid>https://tcdspring.github.io/posts/gomod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</guid>
-      <description> 项目目前都已经切换到了go mod中，但是也遇到了一些问题，比如说导入本地依赖包.
-有这样一种场景，如果你修改了某个github库，那该怎样处理呢？
-这时候有两种做法：
-1. 在github上fork该库，修改后提交，然后导入该库 优点： 简单，方便
-缺点： 改动需要彻底，否则导入该库后容易出现类型错误
-2. 第二种就是在本地修改该github库，并引入 如果说这个库很稳定，很久都不会更新，那可以采用这种方式
-比如下面的做法：
-在项目目录中创建vender文件夹 将github库复制进去 修改go.mod文件 module daemon require ( github.com/paypal/gatt v0.0.0-20151011220935-4ae819d591cf github.com/pkg/errors v0.8.1 ) replace github.com/paypal/gatt =&amp;gt; ./vender/github.com/paypal/gatt  进入gatt目录，并执行下面命令 cd ./vender/github.com/paypal/gatt/ go mod init github.com/paypal/gatt  这种方式值得争议的地方就是vender目录中的依赖库是否有必要上传到代码仓库中，下面说一下个人的想法吧：
- 如果说你引用的这个库是github上的，并且自己做了修改，而且你用到了vender这种方式，那最好还是将vender中的代码一起提交，如果不提交的话，时间长了很容易忘记自己修改过该库，再次编译时容易出问题
-如果你的仓库是公司内部私有的，那无所谓了，直接一起交吧
- </description>
-    </item>
-    
-    <item>
-      <title>minio新版不支持IPv6访问</title>
+      <title>Minio新版不支持IPv6访问</title>
       <link>https://tcdspring.github.io/posts/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</guid>
-      <description>最近，公司的项目用到了minio, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;
-当时编译minio的时候也不知道用的是哪个版本，也不知道从哪个版本起，minio就不再支持ipv6访问了，所以只能将github上minio的tag一个一个去编译，然后尝试能否ipv6访问，从而确定哪个版本做了修改，经过多次的尝试，终于发现： RELEASE.2018-08-02T23-11-36Z.tar.gz是支持的，但是RELEASE.2018-08-18T03-49-57Z.zip已经不再支持了，所以将这两个tag的代码下载下来，进行diff操作
-diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/ minio-RELEASE.2018-08-18T03-49-57Z/ &amp;gt; diff.log  然后打开diff.log,发现有68000多行，不过ipv6不能访问，很大几率是跟监听的网络类型相关的，于是搜索关键字listen(，发现在 cmd/http/listener.go中有如下修改：
-diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go --- minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go	2018-08-03 05:21:38.000000000 +0800 +++ minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go	2018-08-18 09:51:34.000000000 +0800 @@ -300,6 +300,7 @@ updateBytesWrittenFunc func(int)) (listener *httpListener, err error) { var tcpListeners []*net.TCPListener + // Close all opened listeners on error defer func() { if err == nil { @@ -314,7 +315,7 @@ for _, serverAddr := range serverAddrs { var l net.</description>
+      <description>&lt;p&gt;最近，公司的项目用到了&lt;a href=&#34;https://minio.io/&#34;&gt;minio&lt;/a&gt;, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>ubuntu下查找so文件的归属</title>
+      <title>Ubuntu上apt-get命令使用代理</title>
+      <link>https://tcdspring.github.io/posts/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/posts/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      <description>&lt;p&gt;在使用&lt;code&gt;apt-get update&lt;/code&gt;时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu下查找so文件的归属</title>
       <link>https://tcdspring.github.io/posts/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</guid>
-      <description>在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：
-error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory，  这时候就需要知道libcrypto.so.1.0.0位于哪个包中，这样才能安装该包解决问题，那怎么知道这个so位于哪个包中呢？
-RedHat中有repoquery命令，可以解决该问题
-ubuntu中也可以安装该命令，但是这并不是一个好主意，这个工具会安装很多yum的库，没准儿会导致系统出现一些兼容性问题，那ubuntu中怎么做呢，可以尝试安装并使用下面的工具：
-sudo apt install apt-file sudo apt-file update apt-file search libcrypto.so.1.0.0 # output: # nsight-compute: /usr/lib/nsight-compute/host/ # linux-desktop-glibc_2_11_3-x64/libcrypto.so.1.0.0 # nsight-systems: /usr/lib/nsight-systems/Host-x86_64/libcrypto.so.1.0.0  这样我们就可以知道缺失的so属于哪个库，并安装该库。</description>
+      <description>&lt;p&gt;在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -169,8 +128,7 @@ sudo apt install apt-file sudo apt-file update apt-file search libcrypto.so.1.0.
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</guid>
-      <description>安装cloc
-npm install -g cloc # https://www.npmjs.com/package/cloc sudo apt-get install cloc # Debian, Ubuntu sudo yum install cloc # Red Hat, Fedora sudo dnf install cloc # Fedora 22 or later sudo pacman -S cloc # Arch sudo pkg install cloc # FreeBSD sudo port install cloc # Mac OS X with MacPorts brew install cloc # Mac OS X with Homebrew choco install cloc # Windows with Chocolatey  如何使用：</description>
+      <description>&lt;p&gt;项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具&lt;code&gt;cloc&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

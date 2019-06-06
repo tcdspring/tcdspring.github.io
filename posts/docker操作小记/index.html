@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.55.6" />
-		<title>Git误操作导致文件夹不能被提交 &middot; 路过麦田</title>
+		<title>Docker操作小记 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -42,11 +42,11 @@
             <article>
                 <header>
                     <h1>
-                        Git误操作导致文件夹不能被提交
+                        Docker操作小记
                     </h1>
                     <h2 class="headline">
                     Jun 4, 2019 16:13
-                    · 15 words
+                    · 35 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -55,29 +55,37 @@
                 </header>
                 
                 <section id="post-body">
-                    <p>在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.</p>
+                    <p>在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。</p>
 
-<p>也查看过<code>.gitignore</code>文件，里面并没有该目录，将目录改名也好，删除并重建，都不行</p>
+<p>方法一 使用<code>docker attach</code>进入</p>
 
-<p>在网上查看好久，终于找到了解决方案：</p>
+<pre><code>sudo docker run -itd ubuntu:16.04 /bin/bash
 
-<pre><code>// 查看当前被忽略的文件或目录
-git status --ignored
+// 输出一段字符串
+// 比如说 245b07d79040514233c306acc48d7f372f2adad3a045448156aedf4c604b0c50
 </code></pre>
 
-<p>发现里面确实有<code>build</code>目录</p>
+<p>拿到输出的字符串，然后执行下面命令：</p>
 
-<p>然后执行下面命令，将<code>build</code>目录强加回去</p>
-
-<pre><code>git add -f build
+<pre><code>sudo docker attach 245b07d79
 </code></pre>
 
-<p>这样<code>build</code>目录就可以和其他文件一样被git托管了.</p>
+<p>成功后会进入容器中，可以进行交互了。</p>
+
+<p>方法二 使用<code>docker exec</code>进入</p>
+
+<p>在docker1.3.x版本后提供了一个新的命令<code>exec</code>，用这种方式更简单一些</p>
+
+<pre><code>sudo docker ps
+sudo docker exec -it 245b07d79 /bin/bash
+</code></pre>
+
+<p>还有可以通过ssh进入容器，只不过还得需要先进入容器中安装或者配置ssh，比较麻烦，所以就不是很推荐这种方式。</p>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fgit%25E8%25AF%25AF%25E6%2593%258D%25E4%25BD%259C%25E5%25AF%25BC%25E8%2587%25B4%25E6%2596%2587%25E4%25BB%25B6%25E5%25A4%25B9%25E4%25B8%258D%25E8%2583%25BD%25E8%25A2%25AB%25E6%258F%2590%25E4%25BA%25A4%2f - Git%e8%af%af%e6%93%8d%e4%bd%9c%e5%af%bc%e8%87%b4%e6%96%87%e4%bb%b6%e5%a4%b9%e4%b8%8d%e8%83%bd%e8%a2%ab%e6%8f%90%e4%ba%a4 "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fdocker%25E6%2593%258D%25E4%25BD%259C%25E5%25B0%258F%25E8%25AE%25B0%2f - Docker%e6%93%8d%e4%bd%9c%e5%b0%8f%e8%ae%b0 "><span class="icon-twitter"> tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(

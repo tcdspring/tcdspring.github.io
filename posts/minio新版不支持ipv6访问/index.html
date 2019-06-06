@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.55.6" />
-		<title>minio新版不支持IPv6访问 &middot; 路过麦田</title>
+		<title>Minio新版不支持IPv6访问 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -42,7 +42,7 @@
             <article>
                 <header>
                     <h1>
-                        minio新版不支持IPv6访问
+                        Minio新版不支持IPv6访问
                     </h1>
                     <h2 class="headline">
                     Jun 4, 2019 16:13
@@ -87,12 +87,11 @@
 </code></pre>
 
 <p>监听的网络由之前的<code>tcp</code>变为了现在的<code>tcp4</code>，这就很明显了，<code>tcp</code>是支持ipv4和ipv6的，但是<code>tcp4</code>就只支持ipv4了，将<code>tcp4</code>改为<code>tcp</code>，然后重新编译运行，发现ipv6确实可以访问了，但是不知道minio开发组为何会限制ipv6的访问，去github上看递交的commit的note，也没看到相关的说明，当然也有可能这是开发人员的无心之举，还得再研究研究代码，看看这样修改会不会导致什么意想不到的BUG.</p>
-
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fminio%25E6%2596%25B0%25E7%2589%2588%25E4%25B8%258D%25E6%2594%25AF%25E6%258C%2581ipv6%25E8%25AE%25BF%25E9%2597%25AE%2f - minio%e6%96%b0%e7%89%88%e4%b8%8d%e6%94%af%e6%8c%81IPv6%e8%ae%bf%e9%97%ae "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fminio%25E6%2596%25B0%25E7%2589%2588%25E4%25B8%258D%25E6%2594%25AF%25E6%258C%2581ipv6%25E8%25AE%25BF%25E9%2597%25AE%2f - Minio%e6%96%b0%e7%89%88%e4%b8%8d%e6%94%af%e6%8c%81IPv6%e8%ae%bf%e9%97%ae "><span class="icon-twitter"> tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(

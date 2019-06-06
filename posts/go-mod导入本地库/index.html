@@ -8,7 +8,7 @@
 		<meta name="author" content="Tcdspring">
 		<meta name="description" content="Unknown">
 		<meta name="generator" content="Hugo 0.55.6" />
-		<title>Git误操作导致文件夹不能被提交 &middot; 路过麦田</title>
+		<title>Go mod导入本地库 &middot; 路过麦田</title>
 		<link rel="shortcut icon" href="https://tcdspring.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/style.css">
 		<link rel="stylesheet" href="https://tcdspring.github.io/css/highlight.css">
@@ -42,11 +42,11 @@
             <article>
                 <header>
                     <h1>
-                        Git误操作导致文件夹不能被提交
+                        Go mod导入本地库
                     </h1>
                     <h2 class="headline">
                     Jun 4, 2019 16:13
-                    · 15 words
+                    · 40 words
                     · 1 minute read
                       <span class="tags">
                       
@@ -55,29 +55,59 @@
                 </header>
                 
                 <section id="post-body">
-                    <p>在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.</p>
+                    <p>项目目前都已经切换到了<code>go mod</code>中，但是也遇到了一些问题，比如说导入本地依赖包.</p>
 
-<p>也查看过<code>.gitignore</code>文件，里面并没有该目录，将目录改名也好，删除并重建，都不行</p>
+<p>有这样一种场景，如果你修改了某个github库，那该怎样处理呢？</p>
 
-<p>在网上查看好久，终于找到了解决方案：</p>
+<p>这时候有两种做法：</p>
 
-<pre><code>// 查看当前被忽略的文件或目录
-git status --ignored
+<h4 id="1-在github上fork该库-修改后提交-然后导入该库">1. 在github上fork该库，修改后提交，然后导入该库</h4>
+
+<p>优点： 简单，方便</p>
+
+<p>缺点： 改动需要彻底，否则导入该库后容易出现类型错误</p>
+
+<h4 id="2-第二种就是在本地修改该github库-并引入">2. 第二种就是在本地修改该github库，并引入</h4>
+
+<p>如果说这个库很稳定，很久都不会更新，那可以采用这种方式</p>
+
+<p>比如下面的做法：</p>
+
+<h5 id="在项目目录中创建vender文件夹">在项目目录中创建vender文件夹</h5>
+
+<h5 id="将github库复制进去">将github库复制进去</h5>
+
+<h5 id="修改-go-mod-文件">修改<code>go.mod</code>文件</h5>
+
+<pre><code>module daemon
+
+require (
+	github.com/paypal/gatt v0.0.0-20151011220935-4ae819d591cf
+	github.com/pkg/errors v0.8.1
+)
+
+replace github.com/paypal/gatt =&gt; ./vender/github.com/paypal/gatt
 </code></pre>
 
-<p>发现里面确实有<code>build</code>目录</p>
+<h5 id="进入gatt目录-并执行下面命令">进入gatt目录，并执行下面命令</h5>
 
-<p>然后执行下面命令，将<code>build</code>目录强加回去</p>
+<pre><code>cd ./vender/github.com/paypal/gatt/
 
-<pre><code>git add -f build
+go mod init github.com/paypal/gatt
 </code></pre>
 
-<p>这样<code>build</code>目录就可以和其他文件一样被git托管了.</p>
+<p>这种方式值得争议的地方就是vender目录中的依赖库是否有必要上传到代码仓库中，下面说一下个人的想法吧：</p>
+
+<blockquote>
+<p>如果说你引用的这个库是github上的，并且自己做了修改，而且你用到了vender这种方式，那最好还是将vender中的代码一起提交，如果不提交的话，时间长了很容易忘记自己修改过该库，再次编译时容易出问题</p>
+
+<p>如果你的仓库是公司内部私有的，那无所谓了，直接一起交吧</p>
+</blockquote>
                 </section>
             </article>
 
             
-                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fgit%25E8%25AF%25AF%25E6%2593%258D%25E4%25BD%259C%25E5%25AF%25BC%25E8%2587%25B4%25E6%2596%2587%25E4%25BB%25B6%25E5%25A4%25B9%25E4%25B8%258D%25E8%2583%25BD%25E8%25A2%25AB%25E6%258F%2590%25E4%25BA%25A4%2f - Git%e8%af%af%e6%93%8d%e4%bd%9c%e5%af%bc%e8%87%b4%e6%96%87%e4%bb%b6%e5%a4%b9%e4%b8%8d%e8%83%bd%e8%a2%ab%e6%8f%90%e4%ba%a4 "><span class="icon-twitter"> tweet</span></a>
+                <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2ftcdspring.github.io%2fposts%2fgo-mod%25E5%25AF%25BC%25E5%2585%25A5%25E6%259C%25AC%25E5%259C%25B0%25E5%25BA%2593%2f - Go%20mod%e5%af%bc%e5%85%a5%e6%9c%ac%e5%9c%b0%e5%ba%93 "><span class="icon-twitter"> tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
