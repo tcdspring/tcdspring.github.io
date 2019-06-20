@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 18 Jun 2019 14:50:52 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 20 Jun 2019 20:55:35 +0800</lastBuildDate>
     
 	<atom:link href="https://tcdspring.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EddyStone</title>
+      <link>https://tcdspring.github.io/tags/eddystone/</link>
+      <pubDate>Thu, 20 Jun 2019 20:55:35 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/eddystone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gatt</title>
+      <link>https://tcdspring.github.io/tags/gatt/</link>
+      <pubDate>Thu, 20 Jun 2019 20:55:35 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/gatt/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>golang</title>

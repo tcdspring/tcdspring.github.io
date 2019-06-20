@@ -10,7 +10,50 @@
   
   <url>
     <loc>https://tcdspring.github.io/categories/</loc>
-    <lastmod>2019-06-18T14:50:52+08:00</lastmod>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/tags/eddystone/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/post/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/tags/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/tags/gatt/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/categories/golang/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/post/%E4%BD%BF%E7%94%A8gatt%E5%BA%93%E6%8E%A5%E6%94%B6eddystone%E5%B9%BF%E6%92%AD/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tcdspring.github.io/</loc>
+    <lastmod>2019-06-20T20:55:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -22,24 +65,6 @@
   </url>
   
   <url>
-    <loc>https://tcdspring.github.io/post/</loc>
-    <lastmod>2019-06-18T14:50:52+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tcdspring.github.io/tags/</loc>
-    <lastmod>2019-06-18T14:50:52+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tcdspring.github.io/categories/golang/</loc>
-    <lastmod>2019-06-18T14:50:52+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tcdspring.github.io/tags/golang/</loc>
     <lastmod>2019-06-18T14:50:52+08:00</lastmod>
     <priority>0</priority>
@@ -47,12 +72,6 @@
   
   <url>
     <loc>https://tcdspring.github.io/tags/proxy/</loc>
-    <lastmod>2019-06-18T14:50:52+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tcdspring.github.io/</loc>
     <lastmod>2019-06-18T14:50:52+08:00</lastmod>
     <priority>0</priority>
   </url>
