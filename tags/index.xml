@@ -5,11 +5,165 @@
     <link>https://tcdspring.github.io/tags/</link>
     <description>Recent content in Tags on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh_CN</language>
+    <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Tue, 18 Jun 2019 14:50:52 +0800</lastBuildDate>
     
 	<atom:link href="https://tcdspring.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://tcdspring.github.io/tags/golang/</link>
+      <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://tcdspring.github.io/tags/proxy/</link>
+      <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://tcdspring.github.io/tags/github/</link>
+      <pubDate>Wed, 05 Jun 2019 16:07:14 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://tcdspring.github.io/tags/hugo/</link>
+      <pubDate>Wed, 05 Jun 2019 16:07:14 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://tcdspring.github.io/tags/android/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android studio</title>
+      <link>https://tcdspring.github.io/tags/android-studio/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/android-studio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>app</title>
+      <link>https://tcdspring.github.io/tags/app/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloc</title>
+      <link>https://tcdspring.github.io/tags/cloc/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/cloc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cross compile</title>
+      <link>https://tcdspring.github.io/tags/cross-compile/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/cross-compile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>development</title>
+      <link>https://tcdspring.github.io/tags/development/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://tcdspring.github.io/tags/docker/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://tcdspring.github.io/tags/git/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gradle</title>
+      <link>https://tcdspring.github.io/tags/gradle/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/gradle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>https://tcdspring.github.io/tags/http/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minio</title>
+      <link>https://tcdspring.github.io/tags/minio/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/minio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socks5</title>
+      <link>https://tcdspring.github.io/tags/socks5/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/socks5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://tcdspring.github.io/tags/ubuntu/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

@@ -5,11 +5,66 @@
     <link>https://tcdspring.github.io/categories/</link>
     <description>Recent content in Categories on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh_CN</language>
+    <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Tue, 18 Jun 2019 14:50:52 +0800</lastBuildDate>
     
 	<atom:link href="https://tcdspring.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>golang</title>
+      <link>https://tcdspring.github.io/categories/golang/</link>
+      <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>https://tcdspring.github.io/categories/android/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://tcdspring.github.io/categories/docker/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://tcdspring.github.io/categories/git/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://tcdspring.github.io/categories/proxy/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://tcdspring.github.io/categories/ubuntu/</link>
+      <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
+      
+      <guid>https://tcdspring.github.io/categories/ubuntu/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

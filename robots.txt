@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://tcdspring.github.io/sitemap.xml

@@ -5,150 +5,1955 @@
     <link>https://tcdspring.github.io/</link>
     <description>Recent content on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh_CN</language>
+    <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 18 Jun 2019 14:50:52 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://tcdspring.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About Hugo</title>
+      <title>无聊的时候就爱瞎折腾</title>
       <link>https://tcdspring.github.io/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://tcdspring.github.io/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+      
+        <description>&lt;p&gt;这里记录的大多数内容，都是本人在工作之中总结的一些踩坑记录，好多东西都是浅尝辄止，对大家有帮助的自然是极好的，如果没帮助到各位，那就当个吃瓜群众吧。&lt;/p&gt;
+
+&lt;p&gt;绝大多数内容都会同步更新在&lt;a href=&#34;https://www.jianshu.com/u/29dc71d35eaf&#34;&gt;简书&lt;/a&gt;中。&lt;/p&gt;
+</description>
+      
     </item>
     
     <item>
       <title>Go get使用代理</title>
-      <link>https://tcdspring.github.io/posts/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <link>https://tcdspring.github.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
-      <description>&lt;p&gt;在vscode中使用golang时，经常会出现安装第三方工具的时候失败的问题，一般来说都是下载了&lt;code&gt;golang.org/x/...&lt;/code&gt;下面的包或者要下载的工具依赖于&lt;code&gt;golang.org/x/...&lt;/code&gt;的包所导致的，在国内是不会很顺利的下载和安装的。&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      
+        <description>&lt;p&gt;在vscode中使用golang时，经常会出现安装第三方工具的时候失败的问题，一般来说都是下载了&lt;code&gt;golang.org/x/...&lt;/code&gt;下面的包或者要下载的工具依赖于&lt;code&gt;golang.org/x/...&lt;/code&gt;的包所导致的，在国内是不会很顺利的下载和安装的。&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Installing github.com/mdempsky/gocode FAILED
+Installing github.com/uudashr/gopkgs/cmd/gopkgs FAILED
+Installing github.com/ramya-rao-a/go-outline FAILED
+Installing github.com/acroca/go-symbols FAILED
+Installing golang.org/x/tools/cmd/guru FAILED
+Installing golang.org/x/tools/cmd/gorename FAILED
+Installing github.com/go-delve/delve/cmd/dlv FAILED
+Installing github.com/rogpeppe/godef FAILED
+Installing golang.org/x/tools/cmd/goimports FAILED
+Installing golang.org/x/lint/golint FAILED&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;go get默认使用git来作为版本管理工具，如果对git设置了代理能否下载成功呢？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;git config --global http.proxy &amp;#39;http://127.0.0.1:8123&amp;#39;
+git config --global https.proxy &amp;#39;http://127.0.0.1:8123&amp;#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;很遗憾，即使你对git设置了代理，也无法成功的下载安装&lt;code&gt;golang.org&lt;/code&gt;下的包，假如你要安装&lt;code&gt;golang.org/x/tools/cmd/guru&lt;/code&gt;这个包，当你使用go get去下载安装包时，首先会访问&lt;code&gt;https://golang.org/x/tools/cmd/guru?go-get=1&lt;/code&gt;这个url来获取版本库的类型，是git还是svn或者其他的版本管理工具，这个http请求是git之外的，所以这有对这个http请求设置了代理，然后对git设置代理，才能成功的下载安装该库。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# 在终端中执行
+export https_proxy=http://127.0.0.1:8123
+export http_proxy=http://127.0.0.1:8123
+git config --global http.proxy &amp;#39;http://127.0.0.1:8123&amp;#39;
+git config --global https.proxy &amp;#39;http://127.0.0.1:8123&amp;#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;前提是你拥有一个http或者socks代理，如果没有的话，还是老老实实的在&lt;code&gt;github.com/golang/...&lt;/code&gt;上下载对应的包然后进行替换吧。&lt;/p&gt;
+
+&lt;p&gt;设置了代理之后，再次执行go get命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;go get -v github.com/acroca/go-symbols
+
+golang.org/x/tools/go/buildutil
+# golang.org/x/tools/go/buildutil
+Workbench/golang/src/golang.org/x/tools/go/buildutil/buildutil_go16.go:14:38: undefined: build.AllowVendor&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这次又出错了，原因应该是&lt;code&gt;golang.org/x/tools/go/buildutil&lt;/code&gt;包太老了，直接更新相关的依赖包即可：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;v&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;u&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;acroca&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;symbols&lt;/span&gt;
+
+&lt;span class=&#34;nx&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;acroca&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;symbols&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;download&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Fetching&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//golang.org/x/tools/go/buildutil?go-get=1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parsing&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tags&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//golang.org/x/tools/go/buildutil?go-get=1 (status code 200)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;golang.org/x/tools/go/buildutil&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;found&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tag&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;metaImport&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Prefix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;golang.org/x/tools&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;VCS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;git&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;RepoRoot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://go.googlesource.com/tools&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;at&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//golang.org/x/tools/go/buildutil?go-get=1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;golang.org/x/tools/go/buildutil&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;verifying&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;non&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;authoritative&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tag&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Fetching&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//golang.org/x/tools?go-get=1
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parsing&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tags&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//golang.org/x/tools?go-get=1 (status code 200)
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;golang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;org&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tools&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;buildutil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;golang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;org&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tools&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;custom&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;path&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;googlesource&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tools&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;but&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;home&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lu&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Workbench&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;golang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;golang&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;org&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tools&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;checked&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;golang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;tools&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这次就成功更新并安装了，重启vscode，各项功能也正常了。&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>使用Hugo搭建自己的博客</title>
-      <link>https://tcdspring.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://tcdspring.github.io/post/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Wed, 05 Jun 2019 16:07:14 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</guid>
-      <description>&lt;p&gt;生命在于折腾，生命不息，折腾不止。&lt;/p&gt;
+      <guid>https://tcdspring.github.io/post/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</guid>
+      
+        <description>&lt;p&gt;生命在于折腾，生命不息，折腾不止。&lt;/p&gt;
 
-&lt;p&gt;最近又开始了折腾博客，以前的文章都写在&lt;a href=&#34;https://www.jianshu.com/u/29dc71d35eaf&#34;&gt;简书&lt;/a&gt;上，现在准备使用&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;来搭建一个静态博客。&lt;/p&gt;</description>
+&lt;p&gt;最近又开始了折腾博客，以前的文章都写在&lt;a href=&#34;https://www.jianshu.com/u/29dc71d35eaf&#34;&gt;简书&lt;/a&gt;上，现在准备使用&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;来搭建一个静态博客。&lt;/p&gt;
+
+&lt;p&gt;对比了一下Jekyll、Hexo、Hugo，最终还是选择了Hugo。&lt;/p&gt;
+
+&lt;p&gt;Hugo使用go编写，编译后只有一个二进制文件，不用安装任何依赖，这一点让人很舒服。
+Jekyll使用ruby编写，Hexo则是使用nodejs编写，这两种都属于解释型语言，运行效率上比起go来还是要差一点的，Hexo在文章很多的时候编译生成静态网站是很费时的，但是Hugo就没有这个问题，编译速度很快。最主要的一点还是自己也是go的爱好者，这一年陆陆续续用go写了几个项目，包括公司的部分服务也开始用go来写，虽然跟Hugo没啥关系，但就是莫名的想支持一下，呵呵。&lt;/p&gt;
+
+&lt;p&gt;至于如何安装Hugo，如何搭建网站，网络上也有不少的教程，这里也不再叙述了，自己写出来的未必有官方文档那样详细，所以建议看官方文档。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/documentation/&#34;&gt;https://gohugo.io/documentation/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下面主要记录一些自己在搭建博客的过程中遇到的一些问题，以及如何解决，会不定期的更新。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;安装很简单，直接从官方文档上抄了一段：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# macos
+brew install hugo
+
+# ubuntu 
+sudo apt install hugo
+
+# windows
+choco install hugo -confirm
+# or
+scoop install hugo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果windows上不知道choco和scoop是啥的话，可以直接下载编译好的压缩包（各个平台都有），解压即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;https://github.com/gohugoio/hugo/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;创建网站&#34;&gt;创建网站&lt;/h2&gt;
+
+&lt;p&gt;创建网站可参考下面的文档：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.gohugo.org/&#34;&gt;https://www.gohugo.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;按照文档一步一步来就可以入门了，但是涉及到一些配置的话，还得深入查看文档才行。&lt;/p&gt;
+
+&lt;p&gt;创建网站后，需要下载主题，&lt;a href=&#34;https://www.gohugo.org/theme/&#34;&gt;https://www.gohugo.org/theme/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;如果本地网站目录中没有&lt;code&gt;themes&lt;/code&gt;目录的话，自己创建一个，然后下载主题到该目录内。&lt;/p&gt;
+
+&lt;p&gt;我个人使用的主题是&lt;a href=&#34;https://github.com/nodejh/hugo-theme-cactus-plus/blob/master/README_zh-cn.md&#34;&gt;hugo-theme-cactus-plus&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;$ cd themes
+$ git clone https://github.com/nodejh/hugo-theme-cactus-plus.git&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;一般来说，下载的主题都会自带一个配置样例的，具体的配置参考样例即可。或者可以参考下面这个配置样例：
+&lt;a href=&#34;https://github.com/gohugoio/hugo/blob/master/docs/config.toml&#34;&gt;https://github.com/gohugoio/hugo/blob/master/docs/config.toml&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;本地运行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;hugo server --theme=hugo-theme-cactus-plus --buildDrafts&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果在config.toml中指定了主题的话，这里就可以不用指定&lt;code&gt;--theme&lt;/code&gt;参数了，&lt;code&gt;--buildDrafts&lt;/code&gt;参数指定了的话，就会连草稿一同展示出来。&lt;/p&gt;
+
+&lt;p&gt;编译：
+进入站点根目录，然后执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;hugo &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;没错，只要输入命令回车即可，都不用带什么参数就可以生成网站的静态文件，并存放在&lt;code&gt;public&lt;/code&gt;文件夹中，非常简单。&lt;/p&gt;
+
+&lt;h2 id=&#34;使用github-pages发布网站&#34;&gt;使用Github Pages发布网站&lt;/h2&gt;
+
+&lt;p&gt;如果只在本地机器上玩那就没意思了，所以还是得把网站发布到网上去，github就提供了这样一个功能
+&lt;a href=&#34;https://www.gohugo.org/doc/tutorials/github-pages-blog/&#34;&gt;https://www.gohugo.org/doc/tutorials/github-pages-blog/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;拿bob来举例吧&lt;/p&gt;
+
+&lt;p&gt;github帐号名：bob，本地利用Hugo生成的网站：blogs&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在github上创建名为bob.github.io的repository，创建完成后，添加一个文件index.html，内容就找一个&lt;code&gt;hello world&lt;/code&gt;的网页，把源码贴进去就行，保存后，就可以访问&lt;code&gt;https://bob.github.io&lt;/code&gt;，展示的内容就是你的&lt;code&gt;hello world&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;clone该repository到blogs的public文件夹中，此时最好确保public是空文件夹，否则push的时候会出现问题&lt;/li&gt;
+&lt;li&gt;clone完成以后，执行hugo命令来生成静态网站，这时候index.html会有冲突，解决冲突后push即可&lt;/li&gt;
+&lt;li&gt;过一分钟左右，访问&lt;code&gt;https://bob.github.io&lt;/code&gt;，网站内容应该已经生效&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;gh-pages分支问题&#34;&gt;gh-pages分支问题&lt;/h4&gt;
+
+&lt;p&gt;我在搭建博客的时候，也遇到了gh-pages的问题，严格来说算不上什么问题，只是不太明白这个分支是干嘛用的，后来慢慢清楚了。&lt;/p&gt;
+
+&lt;p&gt;上面举例的bob.github.io，所有的操作都在master分支上，github pages会使用bob.github.io这个repository的master分支的内容作为网站来显示，所以对于bob.github.io这个repository来说，就不需要创建gh-pages分支。&lt;/p&gt;
+
+&lt;p&gt;但是如果你的其他项目需要网页来展示呢，比如有一个项目hugo001，其中也有一些网页需要展示，那怎么办？&lt;/p&gt;
+
+&lt;p&gt;访问&lt;code&gt;https://bob.github.io&lt;/code&gt;这个网站，这时网站展示的是bob.github.io这个repository中的静态网站，如果你想展示hugo001中网页的内容，那就需要给hugo001创建分支gh-pages，并将需要展示的静态网页push到该分支上，然后访问&lt;code&gt;https://bob.github.io/hugo001&lt;/code&gt;就可以展示该项目中静态网站了。&lt;/p&gt;
+
+&lt;p&gt;总结一下就是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;https://bob.github.io&lt;/code&gt; 展示的是帐号为bob的github用户创建的名为bob.github.io的repository中master分支的内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;https://bob.github.io/hugo001&lt;/code&gt; 展示的是帐号为bob的github用户创建的名为hugo001的repository中gh-pages分支的内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;googleanalytics踩坑&#34;&gt;GoogleAnalytics踩坑&lt;/h2&gt;
+
+&lt;p&gt;这个问题是自己失误导致的，毕竟刚入门，照葫芦画瓢，一不小心，就出问题了，搞了一个小时才搞定。&lt;/p&gt;
+
+&lt;p&gt;Hugo是支持google统计的，依照官网的说法，只需要两步就可以搞定了：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://tcdspring.github.io/static/configuring_google_analytics.png&#34; alt=&#34;Example image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;1-在config-toml中添加-googleanalytics-ua-123-45&#34;&gt;1. 在config.toml中添加&lt;code&gt;googleAnalytics = &amp;quot;UA-123-45&amp;quot;&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;这个UA-123-45改为你自己在&lt;a href=&#34;https://analytics.google.com&#34;&gt;https://analytics.google.com&lt;/a&gt;上申请的tracking id&lt;/p&gt;
+
+&lt;h3 id=&#34;2-在你的模板中添加下面的代码&#34;&gt;2. 在你的模板中添加下面的代码&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;{{ template &amp;#34;_internal/google_analytics.html&amp;#34; . }}
+
+# or
+
+{{ template &amp;#34;_internal/google_analytics_async.html&amp;#34; . }}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这段代码可以加在你下载的主题（比如说hugo-theme-cactus-plus这个主题）目录中的layouts/partials/head.html文件中，加在&lt;head&gt;标签中&lt;/p&gt;
+
+&lt;p&gt;但是，有的主题已经包含了这段代码，所以你只需要在config.toml中加入你的tracking id即可，这个hugo-theme-cactus-plus主题在themes/hugo-theme-cactus-plus/partials/js.html中已经包含了这段代码，并且还包含的百度统计的代码，真是厉害了&lt;/p&gt;
+
+&lt;p&gt;一般来说你按上面操作完成后，就基本上搞定了，剩下的就是打开google统计来查看数据是否生效了，但是我犯了一个错误，让我纠结了好久，我把&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;googleAnalytics = &amp;#34;UA-123-45&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这行代码加在了config.toml文件中的[params]属性后面：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;languageCode = &amp;#34;zh_CN&amp;#34; #语言
+paginate = 15 #分页每页记录数
+theme = &amp;#34;hugo-theme-cactus-plus&amp;#34;
+....
+
+[params]
+
+  description = &amp;#34;Unknown&amp;#34;
+
+  bio= &amp;#34;无聊的时候就爱瞎折腾...&amp;#34; #作者简介
+  
+  enableGoogleAnalytics = true
+  enableBaiduAnalytics = false
+
+  googleAnalytics = &amp;#34;UA-123-45&amp;#34;
+
+  ....&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;就是因为这行代码加在了[params]所属的范围内，导致Hugo在解析模板的时候找不到googleAnalytics这个参数的值，所以将其忽略，生成的html中就不会包含google统计的代码，我还以为访问google统计很慢呢，刷新了好几次，数据都不变，真的是很尴尬&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;往往最简单的地方也越容易出错，所以在这些细小的地方一定要仔细。&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>Android studio gradle 问题汇总</title>
-      <link>https://tcdspring.github.io/posts/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <link>https://tcdspring.github.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
-      <description>&lt;p&gt;总结一下在android开发中遇到的各式各样的问题，不定期更新&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      
+        <description>&lt;p&gt;总结一下在android开发中遇到的各式各样的问题，不定期更新&lt;/p&gt;
+
+&lt;h2 id=&#34;1-mac上android-studio更新gradle时出现no-route-to-host&#34;&gt;1. Mac上Android Studio更新Gradle时出现No route to host&lt;/h2&gt;
+
+&lt;p&gt;更新代码后，android studio又出现了&lt;code&gt;Gradle project sync failed&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;又是老问题&lt;code&gt;No route to host&lt;/code&gt;，
+很明显，又被墙了，只能用代理了&lt;/p&gt;
+
+&lt;h4 id=&#34;方案一&#34;&gt;方案一&lt;/h4&gt;
+
+&lt;p&gt;开启Shadowsocks全局代理模式&lt;/p&gt;
+
+&lt;p&gt;结果：更新失败&lt;/p&gt;
+
+&lt;h4 id=&#34;方案二&#34;&gt;方案二&lt;/h4&gt;
+
+&lt;p&gt;手动代理&lt;/p&gt;
+
+&lt;p&gt;Appparance &amp;amp; Behavior &amp;gt; System Settings &amp;gt; HTTP Proxy&lt;/p&gt;
+
+&lt;p&gt;选择Manual proxy configuration&lt;/p&gt;
+
+&lt;p&gt;选择 SOCKS&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Host name:&lt;/strong&gt; 127.0.0.1&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Port number:&lt;/strong&gt; 1080&lt;/p&gt;
+
+&lt;p&gt;结果：更新失败&lt;/p&gt;
+
+&lt;h4 id=&#34;方案三&#34;&gt;方案三&lt;/h4&gt;
+
+&lt;p&gt;在gradle.properties文件中添加下面代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;systemProp.http.proxyHost=127.0.0.1
+systemProp.http.proxyPort=1080&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;结果：更新失败&lt;/p&gt;
+
+&lt;h4 id=&#34;方案四&#34;&gt;方案四&lt;/h4&gt;
+
+&lt;p&gt;在gradle.properties文件中添加下面代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;org.gradle.jvmargs=-Xmx1536m -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;结果：更新成功&lt;/p&gt;
+
+&lt;h3 id=&#34;代理服务器汇总&#34;&gt;代理服务器汇总：&lt;/h3&gt;
+
+&lt;p&gt;南阳理工学院镜像服务器地址:&lt;/p&gt;
+
+&lt;p&gt;mirror.nyist.edu.cn 端口：80&lt;/p&gt;
+
+&lt;p&gt;中国科学院开源协会镜像站地址:&lt;/p&gt;
+
+&lt;p&gt;IPV4/IPV6: mirrors.opencas.cn 端口：80&lt;/p&gt;
+
+&lt;p&gt;IPV4/IPV6: mirrors.opencas.org 端口：80&lt;/p&gt;
+
+&lt;p&gt;IPV4/IPV6: mirrors.opencas.ac.cn 端口：80&lt;/p&gt;
+
+&lt;p&gt;上海GDG镜像服务器地址:&lt;/p&gt;
+
+&lt;p&gt;sdk.gdgshanghai.com 端口：8000&lt;/p&gt;
+
+&lt;p&gt;北京化工大学镜像服务器地址:&lt;/p&gt;
+
+&lt;p&gt;IPv4: ubuntu.buct.edu.cn/ 端口：80&lt;/p&gt;
+
+&lt;p&gt;IPv4: ubuntu.buct.cn/ 端口：80&lt;/p&gt;
+
+&lt;p&gt;IPv6: ubuntu.buct6.edu.cn/ 端口：80&lt;/p&gt;
+
+&lt;p&gt;大连东软信息学院镜像服务器地址:&lt;/p&gt;
+
+&lt;p&gt;mirrors.neusoft.edu.cn 端口：80&lt;/p&gt;
+
+&lt;p&gt;腾讯Bugly 镜像:&lt;/p&gt;
+
+&lt;p&gt;android-mirror.bugly.qq.com 端口：8080&lt;/p&gt;
+
+&lt;p&gt;腾讯镜像使用方法:&lt;a href=&#34;http://android-mirror.bugly.qq.com:8080/include/usage.html&#34;&gt;http://android-mirror.bugly.qq.com:8080/include/usage.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;2-shell命令更新android-sdk&#34;&gt;2. shell命令更新android sdk&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# android/sdk/tools/sdkmanager
+# 使用http代理 --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+# proxy_host以及proxy_port列表可以上网搜索
+
+sdkmanager --list --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+
+# 更新所有可更新的模块
+sdkmanager --update --no_https --proxy=http --proxy_host=g.cn --proxy_port=80
+
+# 按模块名更新
+# sdkmanager &amp;#34;&amp;lt;package&amp;gt;&amp;#34; 
+# &amp;lt;package&amp;gt; is a sdk-style path (e.g. &amp;#34;build-tools;23.0.0&amp;#34; or &amp;#34;platforms;android-23&amp;#34;).
+
+sdkmanager &amp;#34;platforms;android-28&amp;#34; --no_https --proxy=http --proxy_host=g.cn --proxy_port=80&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;可能会遇到下面的问题：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;File /Users/lu/.android/repositories.cfg could not be loaded&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;直接在该目录创建该文件即可&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;touch ~/.android/repositories.cfg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;3-gradle使用阿里云镜像&#34;&gt;3. Gradle使用阿里云镜像&lt;/h2&gt;
+
+&lt;p&gt;gradle 生命周期中有一个叫初始化(Initialization)的过程，这个过程运行在 build script之前，我们可以在这个地方做一点系统全局的设置，就比如&lt;em&gt;配置仓库地址&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;对单个项目生效，在项目中的build.gradle修改内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;buildscript {
+    repositories {
+        maven { url &amp;#39;http://maven.aliyun.com/nexus/content/groups/public/&amp;#39; }
+        maven { url &amp;#39;http://maven.aliyun.com/nexus/content/repositories/jcenter&amp;#39;}
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url &amp;#39;http://maven.aliyun.com/nexus/content/groups/public/&amp;#39; }
+        maven { url &amp;#39;http://maven.aliyun.com/nexus/content/repositories/jcenter&amp;#39;}
+    }
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对所有项目生效：
+1. 命令行
+2. 放一个init.gradle 文件到USER_HOME/.gradle/目录下
+3. 放一个后缀是.gradle的文件到 USER_HOME/.gradle/init.d/ 目录下
+4. 放一个后缀是.gradle的文件到 GRADLE_HOME/init.d/ 目录下&lt;/p&gt;
+
+&lt;p&gt;init.gradle文件内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;allprojects {
+    repositories {
+         maven {
+             name &amp;#34;aliyunmaven&amp;#34;
+             url &amp;#34;http://maven.aliyun.com/nexus/content/groups/public/&amp;#34;
+         }
+    }
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;4-使用d8编译器&#34;&gt;4. 使用D8编译器&lt;/h2&gt;
+
+&lt;p&gt;转载：&lt;a href=&#34;http://yifeng.studio/2018/04/07/android-studio-d8-dex-compiler/&#34;&gt;http://yifeng.studio/2018/04/07/android-studio-d8-dex-compiler/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Google在 Android Studio 3.1 新版本中，将 D8 作为新版本开发工具默认的 Dex 编译器。那么什么是 D8 呢，D8 与之前的 Dex 打包器有何区别呢？&lt;/p&gt;
+
+&lt;p&gt;大家知道，安卓项目在打包生成 Apk 安装文件的过程中，最重要的一步便是将我们所写的 java 代码编译过成 .class 字节文件再打包转化成一个或多个 .dex 格式的代码压缩文件。这种 dex 文件便是 Android 虚拟机所能识别、解析并运行的程序。&lt;/p&gt;
+
+&lt;p&gt;Google 一直在致力于提升 Dex 文件的编译和运行优化工作，并开发出称之为下一代 dex 编译器：D8。其实早在 AS 3.0 Beta 版本中，Google 已经引入 D8 的测试使用。直到当前 3.1 新版本的发布，才正式将其作为默认 Dex 编译器。&lt;/p&gt;
+
+&lt;p&gt;根据官方介绍，新版 D8 Dex 编译器相比之前称之为 DX 的旧版编译器，在 dex 文件的编译和使用上，至少具备这么三个优势：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;更快的编译速度；2. 更小的文件大小；3. 更优的运行性能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;大家也可以亲自体验一下 D8 的效果。如果你使用的 Android Studio 还是 3.0 版本，可以在项目的 gradle.properties 文件手动开启 D8 编译器：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;android.enableD8=true&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;5-修复app-transformdexwithinstantrunslicesapkxxx&#34;&gt;5. 修复app:transformDexWithInstantRunSlicesApkxxx&lt;/h2&gt;
+
+&lt;p&gt;类似这样的异常记录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;java.lang.RuntimeException: java.lang.RuntimeException: java.io.FileNotFoundException: XXX\app\build\intermediates\instant_run_split_apk_resources\debug\instantRunSplitApkResourcesDebug\out\slice_3\resources_ap &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;升级Gradle到5.4版本&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;打开&lt;code&gt;gradle/gradle-wrapper.properties&lt;/code&gt;
+将gradle版本改为5.4&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;distributionUrl=https\://services.gradle.org/distributions/gradle-5.4-all.zip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重新编译即可&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;禁用&lt;code&gt;instant run&lt;/code&gt;功能&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;File -&amp;gt; Settings -&amp;gt; Instant Run &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;取消勾选，重新编译即可&lt;/p&gt;
+
+&lt;h2 id=&#34;6-解决android-studio中gradle-sync操作卡住的问题&#34;&gt;6. 解决android studio中Gradle Sync操作卡住的问题&lt;/h2&gt;
+
+&lt;p&gt;在同步的时候经常会出现卡在访问&lt;code&gt;dl.google.com&lt;/code&gt;的时候，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;Could not get resource &amp;#39;https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/3.3.2/gradle-3.3.2.pom&amp;#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对于自定义的maven也经常会出现这个问题，忽略自定义的maven服务器，直接访问google的服务器，针对这个问题，可以在命令行中执行同步的命令，因为非命令行同步时不容易指定参数，肯定是通过不了的&lt;/p&gt;
+
+&lt;p&gt;还有一种方式是采用&lt;code&gt;Offline work&lt;/code&gt;，将该选项打勾，每次都从缓存中读取，也勉强能用，但是一旦依赖库有更新时，还是会遇到这个问题&lt;/p&gt;
+
+&lt;p&gt;下面记录一下目前可以使用的解决方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# 安装了http代理工具，比如polipo
+./gradlew --refresh-dependencies --info -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123
+
+# 或者
+
+# 使用shadowsocks
+./gradlew --refresh-dependencies --info -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
+
+# --refresh-dependencies 更新依赖项
+# --info 显示执行过程
+# --stacktrace 显示堆栈信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
     <item>
       <title>Convert socks5 to http proxy</title>
-      <link>https://tcdspring.github.io/posts/convert-socks5-to-http-proxy/</link>
+      <link>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/convert-socks5-to-http-proxy/</guid>
-      <description>&lt;p&gt;在某些场景下需要将socks5的流量转化为http，在网上搜索了一下，找到了这个工具：&lt;code&gt;polipo&lt;/code&gt;&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</guid>
+      
+        <description>&lt;p&gt;在某些场景下需要将socks5的流量转化为http，在网上搜索了一下，找到了这个工具：&lt;code&gt;polipo&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get install polipo
+
+sudo service polipo stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;设置&#34;&gt;设置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# 快速运行
+sudo polipo socksParentProxy=localhost:1080
+
+# 使用配置文件
+
+sudo vi /etc/polipo/config
+
+# 输入下面内容
+
+socksParentProxy = “127.0.0.1:1080″
+socksProxyType = socks5
+proxyAddress = &amp;#34;::0&amp;#34;        # both IPv4 and IPv6
+# or IPv4 only
+# proxyAddress = &amp;#34;0.0.0.0&amp;#34;
+proxyPort = 8123
+
+
+运行：
+
+$ sudo polipo -c /etc/polipo/config&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;使用&#34;&gt;使用&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# http/https
+http_proxy=http://localhost:8123 apt-get update
+http_proxy=http://localhost:8123 curl www.google.com
+http_proxy=http://localhost:8123 wget www.google.com
+
+https_proxy=http://localhost:8123 wget https://google.com
+
+# ftp
+ftp_proxy=http://localhost:8123 
+
+# git
+git config --global http.proxy 127.0.0.1:8123
+git clone https://github.com/xxx/xxx.git
+git xxx
+git xxx
+git config --global --unset-all http.proxy
+
+# gradle
+gradlew -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
+gradlew -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123
+gradlew -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123
+gradlew -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8123 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8123&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;开机启动&#34;&gt;开机启动&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# 编写polipo.service
+sudo vi /etc/systemd/system/polipo.service
+
+[Unit]
+Description=polipo service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/polipo -c /etc/polipo/config
+
+[Install]
+WantedBy=multi-user.target
+
+# 使polipo.service生效
+sudo systemctl daemon-reload
+sudo systemctl start polipo.service
+
+# 写入环境变量
+
+vi ~/.bashrc
+
+# 添加下面代码
+
+export http_proxy=http://localhost:8123
+export https_proxy=http://localhost:8123
+
+# 保存后执行
+
+source ~/.bashrc # 使环境变量生效&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
     <item>
       <title>Docker容器中交叉编译go项目</title>
-      <link>https://tcdspring.github.io/posts/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</link>
+      <link>https://tcdspring.github.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</guid>
-      <description>&lt;p&gt;项目正在逐步使用&lt;code&gt;go mod&lt;/code&gt;工具做版本管理，但是在这过程中也遇到了一些问题，主要还是交叉编译的问题&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</guid>
+      
+        <description>&lt;p&gt;项目正在逐步使用&lt;code&gt;go mod&lt;/code&gt;工具做版本管理，但是在这过程中也遇到了一些问题，主要还是交叉编译的问题&lt;/p&gt;
+
+&lt;p&gt;之前项目在GOPATH中，编译就交给&lt;code&gt;xgo&lt;/code&gt;这个工具来做，一直很顺利，但是&lt;code&gt;xgo&lt;/code&gt;是不支持非GOPATH目录的项目的，如果将项目移到其他目录中，并使用&lt;code&gt;xgo&lt;/code&gt;来编译，会出现如下的错误：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Checking&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;required&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;docker&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;image&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;karalabe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;xgo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;latest&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;found&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Cross&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;compiling&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Building&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;locally&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;Compiling&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;...&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;can&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;load&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;no&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;files&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;
+&lt;span class=&#34;mi&#34;&gt;2019&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mo&#34;&gt;05&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;16&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;52&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Failed&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;compile&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;status&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;用到&lt;code&gt;xgo&lt;/code&gt;主要是因为项目中引用了&lt;a href=&#34;github.com/mattn/go-sqlite3&#34;&gt;github.com/mattn/go-sqlite3&lt;/a&gt;，而且编译的二进制主要运行在arm平台上，所以用到了交叉编译&lt;/p&gt;
+
+&lt;p&gt;目标平台是arm64架构的ubuntu16.04，自己正在用的是amd64架构的ubuntu19.04，在安装了各种gcc后也能编译出arm64的二进制，但是运行时会报错：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;anet@anet-box:/data$ ./minioext 
+./minioext: /lib/aarch64-linux-gnu/libc.so.6: version `GLIBC_2.28&amp;#39; not found (required by ./minioext)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;查看GLIBC版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;anet@anet-box:/lib/aarch64-linux-gnu$ strings libc.so.6 |grep GLIBC_ 
+GLIBC_2.17
+GLIBC_2.18
+GLIBC_2.22
+GLIBC_2.23
+GLIBC_PRIVATE&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;目标平台版本太低，而我自己的系统又太高，所以编译出来的二进制无法运行，自己系统上编译器是&lt;code&gt;arm-linux-gnueabi-gcc-7&lt;/code&gt;以及&lt;code&gt;aarch64-linux-gnu-gcc-7&lt;/code&gt;，版本也是太高了&lt;/p&gt;
+
+&lt;p&gt;在查看了&lt;code&gt;xgo&lt;/code&gt;的shell脚本后，发现&lt;code&gt;xgo&lt;/code&gt;使用的是&lt;code&gt;arm-linux-gnueabi-gcc-5&lt;/code&gt;，所有的toolchain都是5系列的，但是通过执行命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;apt-cache search gcc-5-arm-linux-gnueabi&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;来搜索&lt;code&gt;gcc-5*&lt;/code&gt;发现是没结果的，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;apt-cache search gcc-7-arm-linux-gnueabi&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;是有结果的，所以可以猜测ubuntu19.04应该去掉了&lt;code&gt;gcc-5*&lt;/code&gt;的源信息，自己安装的话需要解决很多的依赖问题，所以只好采用另一种方案，顺便熟悉一下docker&lt;/p&gt;
+
+&lt;p&gt;其实也就是使用&lt;code&gt;xgo&lt;/code&gt;中的docker镜像来进行编译，省得自己再重新创建容器并安装各种库&lt;/p&gt;
+
+&lt;p&gt;GOPATH: ~/Workbench/golang/&lt;/p&gt;
+
+&lt;p&gt;本地项目位置：
+~/Workbench/project/&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;$ docker images
+
+// 输出
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+karalabe/xgo-latest   latest              2ba69a095751        2 months ago        5.01GB
+hello-world           latest              fce289e99eb9        4 months ago        1.84kB
+
+$ docker run --rm -v ~/Workbench/project/:/build -v ~/Workbench/golang/src/:/go/src -it karalabe/xgo-latest /bin/bash&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;进入容器后会一直输出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;/build.sh: line 65: /usr/bin/dirname: Argument list too long
+/build.sh: line 65: /usr/bin/dirname: Argument list too long
+/build.sh: line 65: /usr/bin/dirname: Argument list too long&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;导致该shell用不了，所以需要另外开启一个shell来进行操作&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;$ docker ps
+
+// 输出
+CONTAINER ID        IMAGE                 COMMAND                 CREATED             STATUS              PORTS               NAMES
+de72bd416888        karalabe/xgo-latest   &amp;#34;/build.sh /bin/bash&amp;#34;   14 seconds ago      Up 13 seconds                           adoring_greider
+
+$ docker exec -it de72bd416888 /bin/bash&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;进入到容器后，可以执行编译命令进行编译&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;root@de72bd416888:/# cd build
+root@de72bd416888:/build# CGO_ENABLED=1 GOOS=linux GOARCH=arm64 CC=aarch64-linux-gnu-gcc-5 go build
+
+// 编译完成后关闭容器即可
+
+root@de72bd416888:/build# exit
+
+$ docker container stop de72bd416888&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;过程比较曲折，但是也算是解决了问题，如果有时间的话，可以搭建自己的ubuntu镜像，或者说自己封装一套工具也是可以的&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;下面是从&lt;code&gt;xgo&lt;/code&gt;项目中挑出来的一些东西，感觉挺有用，贴出来&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;创建ubuntu16.04容器时，需要安装的package&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Make&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sure&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;up&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;date&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dependent&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;packages&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;are&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;installed&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;RUN&lt;/span&gt; \
+&lt;span class=&#34;nx&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;update&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; \
+&lt;span class=&#34;nx&#34;&gt;apt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;automake&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;autogen&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;build&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;essential&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ca&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;certificates&lt;/span&gt;                    \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnueabi&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnueabi&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;armel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;                \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnueabihf&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnueabihf&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;armhf&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;            \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;aarch64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;aarch64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;arm64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;                \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;                       \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mipsel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mipsel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnu&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mipsel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;                 \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnuabi64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnuabi64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt;       \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64el&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnuabi64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64el&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;linux&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gnuabi64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libc6&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mips64el&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cross&lt;/span&gt; \
+&lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;multilib&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;multilib&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gcc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mingw&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;mingw&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w64&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;clang&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;llvm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt;             \
+&lt;span class=&#34;nx&#34;&gt;libtool&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libxml2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;uuid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;libssl&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dev&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;swig&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;openjdk&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;jdk&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;pkg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;config&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;patch&lt;/span&gt;          \
+&lt;span class=&#34;nx&#34;&gt;make&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xz&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;utils&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;cpio&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;wget&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;zip&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;unzip&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;p7zip&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;git&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;mercurial&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;bzr&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;texinfo&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;help2man&lt;/span&gt;           \
+&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;no&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;recommends&lt;/span&gt;
+
+&lt;span class=&#34;err&#34;&gt;#&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Fix&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;any&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stock&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;issues&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ln&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;usr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;asm&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;generic&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;usr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;asm&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;交叉编译时各个平台的CC列表&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// android arm7
+CC=arm-linux-androideabi-gcc CXX=arm-linux-androideabi-g++ GOOS=android GOARCH=arm GOARM=7 CGO_ENABLED=1 
+
+// android 386
+CC=i686-linux-android-gcc CXX=i686-linux-android-g++ GOOS=android GOARCH=386 CGO_ENABLED=1 
+
+// android arm64
+CC=aarch64-linux-android-gcc CXX=aarch64-linux-android-g++ GOOS=android GOARCH=arm64 CGO_ENABLED=1
+          
+// linux armv5     
+CC=arm-linux-gnueabi-gcc-5 CXX=arm-linux-gnueabi-g++-5 GOOS=linux GOARCH=arm GOARM=5 CGO_ENABLED=1 CGO_CFLAGS=&amp;#34;-march=armv5&amp;#34; CGO_CXXFLAGS=&amp;#34;-march=armv5&amp;#34; 
+    
+// linux armv6
+CC=arm-linux-gnueabi-gcc-5 GOOS=linux GOARCH=arm GOARM=6 CGO_ENABLED=1 CGO_CFLAGS=&amp;#34;-march=armv6&amp;#34; CGO_CXXFLAGS=&amp;#34;-march=armv6&amp;#34;
+
+// linux armv7-a
+CC=arm-linux-gnueabihf-gcc-5 CXX=arm-linux-gnueabihf-g++-5 GOOS=linux GOARCH=arm GOARM=7 CGO_ENABLED=1 CGO_CFLAGS=&amp;#34;-march=armv7-a -fPIC&amp;#34; CGO_CXXFLAGS=&amp;#34;-march=armv7-a -fPIC&amp;#34;
+   
+// linux arm64
+CC=aarch64-linux-gnu-gcc-5 CXX=aarch64-linux-gnu-g++-5 GOOS=linux GOARCH=arm64 CGO_ENABLED=1
+    
+// linux mips64
+CC=mips64-linux-gnuabi64-gcc-5 CXX=mips64-linux-gnuabi64-g++-5 GOOS=linux GOARCH=mips64 CGO_ENABLED=1
+
+// linux mips64le
+CC=mips64el-linux-gnuabi64-gcc-5 CXX=mips64el-linux-gnuabi64-g++-5 GOOS=linux GOARCH=mips64le CGO_ENABLED=1
+ 
+// linux mips
+CC=mips-linux-gnu-gcc-5 CXX=mips-linux-gnu-g++-5 GOOS=linux GOARCH=mips CGO_ENABLED=1 
+
+// linux mipsle
+CC=mipsel-linux-gnu-gcc-5 CXX=mipsel-linux-gnu-g++-5 GOOS=linux GOARCH=mipsle CGO_ENABLED=1
+
+// windows amd64
+CC=x86_64-w64-mingw32-gcc-posix CXX=x86_64-w64-mingw32-g++-posix GOOS=windows GOARCH=amd64 CGO_ENABLED=1
+
+// windows 386
+CC=i686-w64-mingw32-gcc-posix CXX=i686-w64-mingw32-g++-posix GOOS=windows GOARCH=386 CGO_ENABLED=1 
+
+// darwin amd64
+CC=o64-clang CXX=o64-clang++ GOOS=darwin GOARCH=amd64 CGO_ENABLED=1
+
+// darwin 386   
+CC=o32-clang CXX=o32-clang++ GOOS=darwin GOARCH=386 CGO_ENABLED=1
+
+// ios arm-7
+CC=arm-apple-darwin11-clang CXX=arm-apple-darwin11-clang++ GOOS=darwin GOARCH=arm GOARM=7 CGO_ENABLED=1
+
+// ios arm64
+GOOS=darwin GOARCH=arm64 CGO_ENABLED=1 CC=arm-apple-darwin11-clang&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
+      
     </item>
     
     <item>
       <title>Docker操作小记</title>
-      <link>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://tcdspring.github.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</guid>
-      <description>&lt;p&gt;在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</guid>
+      
+        <description>&lt;p&gt;在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。&lt;/p&gt;
+
+&lt;p&gt;方法一 使用&lt;code&gt;docker attach&lt;/code&gt;进入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo docker run -itd ubuntu:16.04 /bin/bash
+
+// 输出一段字符串
+// 比如说 245b07d79040514233c306acc48d7f372f2adad3a045448156aedf4c604b0c50&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;拿到输出的字符串，然后执行下面命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo docker attach 245b07d79&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;成功后会进入容器中，可以进行交互了。&lt;/p&gt;
+
+&lt;p&gt;方法二 使用&lt;code&gt;docker exec&lt;/code&gt;进入&lt;/p&gt;
+
+&lt;p&gt;在docker1.3.x版本后提供了一个新的命令&lt;code&gt;exec&lt;/code&gt;，用这种方式更简单一些&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo docker ps
+sudo docker exec -it 245b07d79 /bin/bash&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;还有可以通过ssh进入容器，只不过还得需要先进入容器中安装或者配置ssh，比较麻烦，所以就不是很推荐这种方式。&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>Git误操作导致文件夹不能被提交</title>
-      <link>https://tcdspring.github.io/posts/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</link>
+      <link>https://tcdspring.github.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</guid>
-      <description>&lt;p&gt;在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</guid>
+      
+        <description>&lt;p&gt;在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.&lt;/p&gt;
+
+&lt;p&gt;也查看过&lt;code&gt;.gitignore&lt;/code&gt;文件，里面并没有该目录，将目录改名也好，删除并重建，都不行&lt;/p&gt;
+
+&lt;p&gt;在网上查看好久，终于找到了解决方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// 查看当前被忽略的文件或目录
+git status --ignored&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;发现里面确实有&lt;code&gt;build&lt;/code&gt;目录&lt;/p&gt;
+
+&lt;p&gt;然后执行下面命令，将&lt;code&gt;build&lt;/code&gt;目录强加回去&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;git add -f build&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样&lt;code&gt;build&lt;/code&gt;目录就可以和其他文件一样被git托管了.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>Go mod导入本地库</title>
-      <link>https://tcdspring.github.io/posts/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</link>
+      <link>https://tcdspring.github.io/post/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</guid>
-      <description>&lt;p&gt;项目目前都已经切换到了&lt;code&gt;go mod&lt;/code&gt;中，但是也遇到了一些问题，比如说导入本地依赖包.&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/go-mod%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%BA%93/</guid>
+      
+        <description>&lt;p&gt;项目目前都已经切换到了&lt;code&gt;go mod&lt;/code&gt;中，但是也遇到了一些问题，比如说导入本地依赖包.&lt;/p&gt;
+
+&lt;p&gt;有这样一种场景，如果你修改了某个github库，那该怎样处理呢？&lt;/p&gt;
+
+&lt;p&gt;这时候有两种做法：&lt;/p&gt;
+
+&lt;h4 id=&#34;1-在github上fork该库-修改后提交-然后导入该库&#34;&gt;1. 在github上fork该库，修改后提交，然后导入该库&lt;/h4&gt;
+
+&lt;p&gt;优点： 简单，方便&lt;/p&gt;
+
+&lt;p&gt;缺点： 改动需要彻底，否则导入该库后容易出现类型错误&lt;/p&gt;
+
+&lt;h4 id=&#34;2-第二种就是在本地修改该github库-并引入&#34;&gt;2. 第二种就是在本地修改该github库，并引入&lt;/h4&gt;
+
+&lt;p&gt;如果说这个库很稳定，很久都不会更新，那可以采用这种方式&lt;/p&gt;
+
+&lt;p&gt;比如下面的做法：&lt;/p&gt;
+
+&lt;h5 id=&#34;在项目目录中创建vender文件夹&#34;&gt;在项目目录中创建vender文件夹&lt;/h5&gt;
+
+&lt;h5 id=&#34;将github库复制进去&#34;&gt;将github库复制进去&lt;/h5&gt;
+
+&lt;h5 id=&#34;修改-go-mod-文件&#34;&gt;修改&lt;code&gt;go.mod&lt;/code&gt;文件&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;module daemon
+
+require (
+	github.com/paypal/gatt v0.0.0-20151011220935-4ae819d591cf
+	github.com/pkg/errors v0.8.1
+)
+
+replace github.com/paypal/gatt =&amp;gt; ./vender/github.com/paypal/gatt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;进入gatt目录-并执行下面命令&#34;&gt;进入gatt目录，并执行下面命令&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;cd ./vender/github.com/paypal/gatt/
+
+go mod init github.com/paypal/gatt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这种方式值得争议的地方就是vender目录中的依赖库是否有必要上传到代码仓库中，下面说一下个人的想法吧：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;如果说你引用的这个库是github上的，并且自己做了修改，而且你用到了vender这种方式，那最好还是将vender中的代码一起提交，如果不提交的话，时间长了很容易忘记自己修改过该库，再次编译时容易出问题&lt;/p&gt;
+
+&lt;p&gt;如果你的仓库是公司内部私有的，那无所谓了，直接一起交吧&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+      
     </item>
     
     <item>
       <title>Golang判断当前字符串编码格式</title>
-      <link>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
+      <link>https://tcdspring.github.io/post/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
-      <description>&lt;p&gt;由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/golang%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
+      
+        <description>&lt;p&gt;由于项目经历了多次迭代，协议也发生了多次变化，所以导致有些数据中是hex编码，有的是base64编码，所以需要区分开来，写了一个苟且的方法来区分&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;func DecodeHexOrBase64(content string) ([]byte, error) {
+	dat := []byte(content)
+	isHex := true
+	for _, v := range dat {
+		if v &amp;gt;= 48 &amp;amp;&amp;amp; v &amp;lt;= 57 || v &amp;gt;= 65 &amp;amp;&amp;amp; v &amp;lt;= 70 || v &amp;gt;= 97 &amp;amp;&amp;amp; v &amp;lt;= 102 {
+			// isHex = true
+		} else {
+			isHex = false
+			break
+		}
+	}
+	if isHex {
+		d, err := hex.DecodeString(content)
+		if len(d) == 0 || err != nil {
+			return base64.StdEncoding.DecodeString(content)
+		} 
+		return d, err
+	} else {
+		return base64.StdEncoding.DecodeString(content)
+	}
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
     <item>
       <title>Golang跨平台编译</title>
-      <link>https://tcdspring.github.io/posts/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</link>
+      <link>https://tcdspring.github.io/post/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</guid>
-      <description>&lt;p&gt;Golang在跨平台编译时是很方便的，下面这个表格列出了golang支持的平台和架构.&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/golang%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%BC%96%E8%AF%91/</guid>
+      
+        <description>&lt;p&gt;Golang在跨平台编译时是很方便的，下面这个表格列出了golang支持的平台和架构.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;GOOS - Target Operating System&lt;/th&gt;
+&lt;th&gt;GOARCH - Target Platform&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;android&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;darwin&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;darwin&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;darwin&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;darwin&lt;/td&gt;
+&lt;td&gt;arm64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;dragonfly&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;freebsd&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;freebsd&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;freebsd&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;arm64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;ppc64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;ppc64le&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;mips&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;mipsle&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;mips64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;td&gt;mips64le&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;netbsd&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;netbsd&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;netbsd&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;openbsd&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;openbsd&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;openbsd&lt;/td&gt;
+&lt;td&gt;arm&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;plan9&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;plan9&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;solaris&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;windows&lt;/td&gt;
+&lt;td&gt;386&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;windows&lt;/td&gt;
+&lt;td&gt;amd64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;编译时命令格式如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;env GOOS=target-OS GOARCH=target-architecture go build package-import-path
+
+# 例如在ubuntu上编译arm64架构的二进制
+$ GOOS=linux GOARCH=arm64 go build&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果代码中不包含C的代码，纯Go编写的，则以上命令就可以跨平台编译了&lt;/p&gt;
+
+&lt;p&gt;如果代码中包含C代码，则需要CGO来交叉编译&lt;/p&gt;
+
+&lt;p&gt;在linux上编译arm平台的二进制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev
+
+sudo apt-get install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+
+CGO_ENABLED=1 GOOS=linux GOARCH=arm go build&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;在linux上编译arm64平台的二进制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get install gcc-aarch64-linux-gnu
+
+CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;提示找不到&lt;code&gt;openssl/rand.h&lt;/code&gt;文件，如果出现了上述的问题，可以尝试下面的方案：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# for macOS：
+
+brew install openssl
+brew link openssl --force
+
+或者
+export CGO_LDFLAGS=&amp;#34;-L/usr/local/opt/openssl/lib&amp;#34;
+export CGO_CPPFLAGS=&amp;#34;-I/usr/local/opt/openssl/include&amp;#34;
+
+# for Debian, Ubuntu
+sudo apt-get install libssl-dev&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;完成之后，重新安装即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;go get -v github.com/xeodou/go-sqlcipher&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
     <item>
       <title>Minio新版不支持IPv6访问</title>
-      <link>https://tcdspring.github.io/posts/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</link>
+      <link>https://tcdspring.github.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</guid>
-      <description>&lt;p&gt;最近，公司的项目用到了&lt;a href=&#34;https://minio.io/&#34;&gt;minio&lt;/a&gt;, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</guid>
+      
+        <description>&lt;p&gt;最近，公司的项目用到了&lt;a href=&#34;https://minio.io/&#34;&gt;minio&lt;/a&gt;, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;当时编译minio的时候也不知道用的是哪个版本，也不知道从哪个版本起，minio就不再支持ipv6访问了，所以只能将github上minio的tag一个一个去编译，然后尝试能否ipv6访问，从而确定哪个版本做了修改，经过多次的尝试，终于发现：
+&lt;a href=&#34;https://github.com/minio/minio/releases/tag/RELEASE.2018-08-02T23-11-36Z&#34;&gt;RELEASE.2018-08-02T23-11-36Z.tar.gz&lt;/a&gt;是支持的，但是&lt;a href=&#34;https://github.com/minio/minio/releases/tag/RELEASE.2018-08-18T03-49-57Z&#34;&gt;RELEASE.2018-08-18T03-49-57Z.zip&lt;/a&gt;已经不再支持了，所以将这两个tag的代码下载下来，进行diff操作&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/ minio-RELEASE.2018-08-18T03-49-57Z/ &amp;gt; diff.log&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后打开diff.log,发现有68000多行，不过ipv6不能访问，很大几率是跟监听的网络类型相关的，于是搜索关键字&lt;code&gt;listen(&lt;/code&gt;，发现在 &lt;code&gt;cmd/http/listener.go&lt;/code&gt;中有如下修改：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;diff -ruNa minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go
+--- minio-RELEASE.2018-08-02T23-11-36Z/cmd/http/listener.go	2018-08-03 05:21:38.000000000 +0800
++++ minio-RELEASE.2018-08-18T03-49-57Z/cmd/http/listener.go	2018-08-18 09:51:34.000000000 +0800
+@@ -300,6 +300,7 @@
+ 	updateBytesWrittenFunc func(int)) (listener *httpListener, err error) {
+ 
+ 	var tcpListeners []*net.TCPListener
++
+ 	// Close all opened listeners on error
+ 	defer func() {
+ 		if err == nil {
+@@ -314,7 +315,7 @@
+ 
+ 	for _, serverAddr := range serverAddrs {
+ 		var l net.Listener
+-		if l, err = net.Listen(&amp;#34;tcp&amp;#34;, serverAddr); err != nil {
++		if l, err = listen(&amp;#34;tcp4&amp;#34;, serverAddr); err != nil {
+ 			return nil, err
+ 		}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;监听的网络由之前的&lt;code&gt;tcp&lt;/code&gt;变为了现在的&lt;code&gt;tcp4&lt;/code&gt;，这就很明显了，&lt;code&gt;tcp&lt;/code&gt;是支持ipv4和ipv6的，但是&lt;code&gt;tcp4&lt;/code&gt;就只支持ipv4了，将&lt;code&gt;tcp4&lt;/code&gt;改为&lt;code&gt;tcp&lt;/code&gt;，然后重新编译运行，发现ipv6确实可以访问了，但是不知道minio开发组为何会限制ipv6的访问，去github上看递交的commit的note，也没看到相关的说明，当然也有可能这是开发人员的无心之举，还得再研究研究代码，看看这样修改会不会导致什么意想不到的BUG.&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>Ubuntu上apt-get命令使用代理</title>
-      <link>https://tcdspring.github.io/posts/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <link>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
-      <description>&lt;p&gt;在使用&lt;code&gt;apt-get update&lt;/code&gt;时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      
+        <description>&lt;p&gt;在使用&lt;code&gt;apt-get update&lt;/code&gt;时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;export http_proxy=http://127.0.0.1:8123
+sudo apt-get update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;目前是不可行的，因为apt-get已经不再使用这种方式来指定代理了&lt;/p&gt;
+
+&lt;p&gt;方法1：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get -c ~/apt_proxy.conf update
+
+# apt_proxy.conf 内容：
+
+Acquire::http::proxy &amp;#34;http://127.0.0.1:8123/&amp;#34;;
+Acquire::ftp::proxy &amp;#34;ftp://127.0.0.1:8123/&amp;#34;;
+Acquire::https::proxy &amp;#34;https://127.0.0.1:8123/&amp;#34;;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;方法2：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt-get -o Acquire::http::proxy=&amp;#34;http://127.0.0.1:8123/&amp;#34; update&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
     <item>
       <title>Ubuntu下查找so文件的归属</title>
-      <link>https://tcdspring.github.io/posts/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</link>
+      <link>https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</guid>
-      <description>&lt;p&gt;在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</guid>
+      
+        <description>&lt;p&gt;在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory，&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这时候就需要知道&lt;code&gt;libcrypto.so.1.0.0&lt;/code&gt;位于哪个包中，这样才能安装该包解决问题，那怎么知道这个so位于哪个包中呢？&lt;/p&gt;
+
+&lt;p&gt;RedHat中有&lt;a href=&#34;http://manpages.ubuntu.com/manpages/xenial/man1/repoquery.1.html&#34;&gt;repoquery&lt;/a&gt;命令，可以解决该问题&lt;/p&gt;
+
+&lt;p&gt;ubuntu中也可以安装该命令，但是这并不是一个好主意，这个工具会安装很多&lt;code&gt;yum&lt;/code&gt;的库，没准儿会导致系统出现一些兼容性问题，那ubuntu中怎么做呢，可以尝试安装并使用下面的工具：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;sudo apt install apt-file
+
+sudo apt-file update
+
+apt-file search libcrypto.so.1.0.0
+
+# output:
+# nsight-compute: /usr/lib/nsight-compute/host/
+# linux-desktop-glibc_2_11_3-x64/libcrypto.so.1.0.0
+# nsight-systems: /usr/lib/nsight-systems/Host-x86_64/libcrypto.so.1.0.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样我们就可以知道缺失的so属于哪个库，并安装该库。&lt;/p&gt;</description>
+      
     </item>
     
     <item>
       <title>代码行数统计工具（cloc）</title>
-      <link>https://tcdspring.github.io/posts/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</link>
+      <link>https://tcdspring.github.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/posts/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</guid>
-      <description>&lt;p&gt;项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具&lt;code&gt;cloc&lt;/code&gt;&lt;/p&gt;</description>
+      <guid>https://tcdspring.github.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</guid>
+      
+        <description>&lt;p&gt;项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具&lt;code&gt;cloc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装&lt;code&gt;cloc&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;npm install -g cloc                    # https://www.npmjs.com/package/cloc
+sudo apt-get install cloc              # Debian, Ubuntu
+sudo yum install cloc                  # Red Hat, Fedora
+sudo dnf install cloc                  # Fedora 22 or later
+sudo pacman -S cloc                    # Arch
+sudo pkg install cloc                  # FreeBSD
+sudo port install cloc                 # Mac OS X with MacPorts
+brew install cloc                      # Mac OS X with Homebrew
+choco install cloc                     # Windows with Chocolatey&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如何使用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;lu@lu-Z87-HD3:~$ cloc .
+      67 text files.
+      67 unique files.                              
+       4 files ignored.
+
+github.com/AlDanial/cloc v 1.76  T=1.02 s (62.6 files/s, 12778.9 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Go                              54           2018           1118           9463
+Markdown                         2             92              0            229
+Bourne Shell                     6             43             29             68
+JSON                             2              0              0             11
+-------------------------------------------------------------------------------
+SUM:                            64           2153           1147           9771
+-------------------------------------------------------------------------------&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
     </item>
     
   </channel>
