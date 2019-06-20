@@ -29,13 +29,7 @@ It makes use of a variety of open source projects including:
       <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
       
       <guid>https://tcdspring.github.io/posts/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
-      <description>在vscode中使用golang时，经常会出现安装第三方工具的时候失败的问题，一般来说都是下载了golang.org/x/...下面的包或者要下载的工具依赖于golang.org/x/...的包所导致的，在国内是不会很顺利的下载和安装的。
-&amp;lt;&amp;ndash;more&amp;ndash;&amp;gt;
-Installing github.com/mdempsky/gocode FAILED Installing github.com/uudashr/gopkgs/cmd/gopkgs FAILED Installing github.com/ramya-rao-a/go-outline FAILED Installing github.com/acroca/go-symbols FAILED Installing golang.org/x/tools/cmd/guru FAILED Installing golang.org/x/tools/cmd/gorename FAILED Installing github.com/go-delve/delve/cmd/dlv FAILED Installing github.com/rogpeppe/godef FAILED Installing golang.org/x/tools/cmd/goimports FAILED Installing golang.org/x/lint/golint FAILED  go get默认使用git来作为版本管理工具，如果对git设置了代理能否下载成功呢？
-git config --global http.proxy &#39;http://127.0.0.1:8123&#39; git config --global https.proxy &#39;http://127.0.0.1:8123&#39;  很遗憾，即使你对git设置了代理，也无法成功的下载安装golang.org下的包，假如你要安装golang.org/x/tools/cmd/guru这个包，当你使用go get去下载安装包时，首先会访问https://golang.org/x/tools/cmd/guru?go-get=1这个url来获取版本库的类型，是git还是svn或者其他的版本管理工具，这个http请求是git之外的，所以这有对这个http请求设置了代理，然后对git设置代理，才能成功的下载安装该库。
-# 在终端中执行 export https_proxy=http://127.0.0.1:8123 export http_proxy=http://127.0.0.1:8123 git config --global http.proxy &#39;http://127.0.0.1:8123&#39; git config --global https.proxy &#39;http://127.0.0.1:8123&#39;  前提是你拥有一个http或者socks代理，如果没有的话，还是老老实实的在github.com/golang/...上下载对应的包然后进行替换吧。
-设置了代理之后，再次执行go get命令：
- go get -v github.</description>
+      <description>&lt;p&gt;在vscode中使用golang时，经常会出现安装第三方工具的时候失败的问题，一般来说都是下载了&lt;code&gt;golang.org/x/...&lt;/code&gt;下面的包或者要下载的工具依赖于&lt;code&gt;golang.org/x/...&lt;/code&gt;的包所导致的，在国内是不会很顺利的下载和安装的。&lt;/p&gt;</description>
     </item>
     
     <item>
