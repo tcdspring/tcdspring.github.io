@@ -435,24 +435,25 @@ git status --ignored</pre></td></tr></table>
 
   
 
+  
+
+
   <div class="post bg-white">
-      <div id="comments-gitment"></div>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <script type="text/javascript">
-      const gitment = new Gitment({
-        id: 'Git误操作导致文件夹不能被提交.md',
-        title: 'Git误操作导致文件夹不能被提交',
-        link: decodeURI(location.href),
-        desc: '\x3cp\x3e在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.\x3c\/p\x3e',
-        owner: 'tcdspring',
-        repo: 'blog_issues',
-        oauth: {
-          client_id: '7dfc0ce524b77c345f81',
-          client_secret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6'
-        }
-      })
-      gitment.render('comments-gitment')
+        var gitalk = new Gitalk({
+          id: 'Git误操作导致文件夹不能被提交.md',
+          title: 'Git误操作导致文件夹不能被提交',
+          clientID: '7dfc0ce524b77c345f81',
+          clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
+          repo: 'blog_issues',
+          owner: 'tcdspring',
+          admin: ['tcdspring'],
+          body: decodeURI(location.href),
+        });
+        gitalk.render('gitalk-container');
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>

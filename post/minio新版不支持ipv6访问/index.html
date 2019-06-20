@@ -467,24 +467,25 @@ if (!doNotTrack) {
 
   
 
+  
+
+
   <div class="post bg-white">
-      <div id="comments-gitment"></div>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <script type="text/javascript">
-      const gitment = new Gitment({
-        id: 'Minio新版不支持IPv6访问.md',
-        title: 'Minio新版不支持IPv6访问',
-        link: decodeURI(location.href),
-        desc: '\x3cp\x3e最近，公司的项目用到了\x3ca href=\x22https:\/\/minio.io\/\x22\x3eminio\x3c\/a\x3e, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了\x26hellip;\x3c\/p\x3e',
-        owner: 'tcdspring',
-        repo: 'blog_issues',
-        oauth: {
-          client_id: '7dfc0ce524b77c345f81',
-          client_secret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6'
-        }
-      })
-      gitment.render('comments-gitment')
+        var gitalk = new Gitalk({
+          id: 'Minio新版不支持IPv6访问.md',
+          title: 'Minio新版不支持IPv6访问',
+          clientID: '7dfc0ce524b77c345f81',
+          clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
+          repo: 'blog_issues',
+          owner: 'tcdspring',
+          admin: ['tcdspring'],
+          body: decodeURI(location.href),
+        });
+        gitalk.render('gitalk-container');
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>

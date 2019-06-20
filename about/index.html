@@ -362,24 +362,25 @@ if (!doNotTrack) {
 
   
 
+  
+
+
   <div class="post bg-white">
-      <div id="comments-gitment"></div>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitment@0.0.3/style/default.min.css" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/gitment@0.0.3/dist/gitment.browser.min.js" crossorigin="anonymous"></script>
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <script type="text/javascript">
-      const gitment = new Gitment({
-        id: 'about.md',
-        title: '无聊的时候就爱瞎折腾',
-        link: decodeURI(location.href),
-        desc: '这里记录的大多数内容，都是本人在工作之中总结的一些踩坑记录，好多东西都是浅尝辄止，对大家有帮助的自然是极好的，如果没帮助到各位，那就当个吃瓜群众吧。\n绝大多数内容都会同步更新在简书中。',
-        owner: 'tcdspring',
-        repo: 'blog_issues',
-        oauth: {
-          client_id: '7dfc0ce524b77c345f81',
-          client_secret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6'
-        }
-      })
-      gitment.render('comments-gitment')
+        var gitalk = new Gitalk({
+          id: 'about.md',
+          title: '无聊的时候就爱瞎折腾',
+          clientID: '7dfc0ce524b77c345f81',
+          clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
+          repo: 'blog_issues',
+          owner: 'tcdspring',
+          admin: ['tcdspring'],
+          body: decodeURI(location.href),
+        });
+        gitalk.render('gitalk-container');
       </script>
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>
