@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>proxy on 路过麦田</title>
-    <link>https://tcdspring.github.io/tags/proxy/</link>
+    <link>https://www.maitian.io/tags/proxy/</link>
     <description>Recent content in proxy on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 18 Jun 2019 14:50:52 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/tags/proxy/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.maitian.io/tags/proxy/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go get使用代理</title>
-      <link>https://tcdspring.github.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <link>https://www.maitian.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 18 Jun 2019 14:50:52 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://www.maitian.io/post/go-get%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
       <description>&lt;p&gt;在vscode中使用golang时，经常会出现安装第三方工具的时候失败的问题，一般来说都是下载了&lt;code&gt;golang.org/x/...&lt;/code&gt;下面的包或者要下载的工具依赖于&lt;code&gt;golang.org/x/...&lt;/code&gt;的包所导致的，在国内是不会很顺利的下载和安装的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Convert socks5 to http proxy</title>
-      <link>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</link>
+      <link>https://www.maitian.io/post/convert-socks5-to-http-proxy/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</guid>
+      <guid>https://www.maitian.io/post/convert-socks5-to-http-proxy/</guid>
       <description>&lt;p&gt;在某些场景下需要将socks5的流量转化为http，在网上搜索了一下，找到了这个工具：&lt;code&gt;polipo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ubuntu上apt-get命令使用代理</title>
-      <link>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <link>https://www.maitian.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://www.maitian.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
       <description>&lt;p&gt;在使用&lt;code&gt;apt-get update&lt;/code&gt;时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：&lt;/p&gt;</description>
     </item>
     

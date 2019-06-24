@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://tcdspring.github.io/sitemap.xml
+Sitemap: https://www.maitian.io/sitemap.xml

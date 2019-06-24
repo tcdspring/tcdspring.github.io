@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ubuntu on 路过麦田</title>
-    <link>https://tcdspring.github.io/categories/ubuntu/</link>
+    <link>https://www.maitian.io/categories/ubuntu/</link>
     <description>Recent content in ubuntu on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.maitian.io/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu上apt-get命令使用代理</title>
-      <link>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
+      <link>https://www.maitian.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://www.maitian.io/post/ubuntu%E4%B8%8Aapt-get%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86/</guid>
       <description>&lt;p&gt;在使用&lt;code&gt;apt-get update&lt;/code&gt;时如果遇到dl.google.com肯定会失败了，所以有时候还需要设置代理才行，如果使用下面方式设置：&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ubuntu下查找so文件的归属</title>
-      <link>https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</link>
+      <link>https://www.maitian.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</guid>
+      <guid>https://www.maitian.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/</guid>
       <description>&lt;p&gt;在开发的过程中偶尔会遇到缺失某个so文件的问题，比如：&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>代码行数统计工具（cloc）</title>
-      <link>https://tcdspring.github.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</link>
+      <link>https://www.maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</guid>
+      <guid>https://www.maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/</guid>
       <description>&lt;p&gt;项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具&lt;code&gt;cloc&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     

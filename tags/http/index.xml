@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>http on 路过麦田</title>
-    <link>https://tcdspring.github.io/tags/http/</link>
+    <link>https://www.maitian.io/tags/http/</link>
     <description>Recent content in http on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.maitian.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Convert socks5 to http proxy</title>
-      <link>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</link>
+      <link>https://www.maitian.io/post/convert-socks5-to-http-proxy/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/convert-socks5-to-http-proxy/</guid>
+      <guid>https://www.maitian.io/post/convert-socks5-to-http-proxy/</guid>
       <description>&lt;p&gt;在某些场景下需要将socks5的流量转化为http，在网上搜索了一下，找到了这个工具：&lt;code&gt;polipo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     

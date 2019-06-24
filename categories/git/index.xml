@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>git on 路过麦田</title>
-    <link>https://tcdspring.github.io/categories/git/</link>
+    <link>https://www.maitian.io/categories/git/</link>
     <description>Recent content in git on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://tcdspring.github.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.maitian.io/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Git误操作导致文件夹不能被提交</title>
-      <link>https://tcdspring.github.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</link>
+      <link>https://www.maitian.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://tcdspring.github.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</guid>
+      <guid>https://www.maitian.io/post/git%E8%AF%AF%E6%93%8D%E4%BD%9C%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8D%E8%83%BD%E8%A2%AB%E6%8F%90%E4%BA%A4/</guid>
       <description>&lt;p&gt;在操作git的时候，误操作，导致build目录无论如何也不能被添加到git中.&lt;/p&gt;</description>
     </item>
     
