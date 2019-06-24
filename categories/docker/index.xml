@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on 路过麦田</title>
-    <link>https://www.maitian.io/categories/docker/</link>
+    <link>https://maitian.io/categories/docker/</link>
     <description>Recent content in docker on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://www.maitian.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://maitian.io/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker容器中交叉编译go项目</title>
-      <link>https://www.maitian.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</link>
+      <link>https://maitian.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://www.maitian.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</guid>
+      <guid>https://maitian.io/post/docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91go%E9%A1%B9%E7%9B%AE/</guid>
       <description>&lt;p&gt;项目正在逐步使用&lt;code&gt;go mod&lt;/code&gt;工具做版本管理，但是在这过程中也遇到了一些问题，主要还是交叉编译的问题&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Docker操作小记</title>
-      <link>https://www.maitian.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://maitian.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://www.maitian.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://maitian.io/post/docker%E6%93%8D%E4%BD%9C%E5%B0%8F%E8%AE%B0/</guid>
       <description>&lt;p&gt;在使用docker创建了容器后，那如何进入容器呢，下面记录一下自己常用的两种方法。&lt;/p&gt;</description>
     </item>
     

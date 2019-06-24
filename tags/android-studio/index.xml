@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>android studio on 路过麦田</title>
-    <link>https://www.maitian.io/tags/android-studio/</link>
+    <link>https://maitian.io/tags/android-studio/</link>
     <description>Recent content in android studio on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://www.maitian.io/tags/android-studio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://maitian.io/tags/android-studio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Android studio gradle 问题汇总</title>
-      <link>https://www.maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
+      <link>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://www.maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
+      <guid>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/</guid>
       <description>&lt;p&gt;总结一下在android开发中遇到的各式各样的问题，不定期更新&lt;/p&gt;</description>
     </item>
     

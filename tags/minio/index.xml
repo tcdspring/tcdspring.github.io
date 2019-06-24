@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>minio on 路过麦田</title>
-    <link>https://www.maitian.io/tags/minio/</link>
+    <link>https://maitian.io/tags/minio/</link>
     <description>Recent content in minio on 路过麦田</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
     
-	<atom:link href="https://www.maitian.io/tags/minio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://maitian.io/tags/minio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Minio新版不支持IPv6访问</title>
-      <link>https://www.maitian.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</link>
+      <link>https://maitian.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</link>
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
-      <guid>https://www.maitian.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</guid>
+      <guid>https://maitian.io/post/minio%E6%96%B0%E7%89%88%E4%B8%8D%E6%94%AF%E6%8C%81ipv6%E8%AE%BF%E9%97%AE/</guid>
       <description>&lt;p&gt;最近，公司的项目用到了&lt;a href=&#34;https://minio.io/&#34;&gt;minio&lt;/a&gt;, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;&lt;/p&gt;</description>
     </item>
     

@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://www.maitian.io/sitemap.xml
+Sitemap: https://maitian.io/sitemap.xml
