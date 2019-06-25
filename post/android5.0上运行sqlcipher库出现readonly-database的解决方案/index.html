@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>代码行数统计工具（cloc） - 路过麦田</title>
+  <title>Android5.0上运行SQLCipher库出现readonly database的解决方案 - 路过麦田</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Tcdspring" />
-  <meta name="description" content="项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具cloc
+  <meta name="description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
+好的，闲话不多说，下面进入主题。
 " />
 
 
@@ -35,7 +36,7 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/" />
+<link rel="canonical" href="https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
 
 
 
@@ -57,27 +58,33 @@
 
 
 
-<meta property="og:title" content="代码行数统计工具（cloc）" />
-<meta property="og:description" content="项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具cloc" />
+<meta property="og:title" content="Android5.0上运行SQLCipher库出现readonly database的解决方案" />
+<meta property="og:description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
+
+好的，闲话不多说，下面进入主题。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/" />
-<meta property="article:published_time" content="2019-06-04T16:13:53&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-04T16:13:53&#43;08:00"/>
+<meta property="og:url" content="https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+<meta property="article:published_time" content="2019-06-25T18:53:36&#43;08:00"/>
+<meta property="article:modified_time" content="2019-06-25T18:53:36&#43;08:00"/>
 
-<meta itemprop="name" content="代码行数统计工具（cloc）">
-<meta itemprop="description" content="项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具cloc">
+<meta itemprop="name" content="Android5.0上运行SQLCipher库出现readonly database的解决方案">
+<meta itemprop="description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
 
-
-<meta itemprop="datePublished" content="2019-06-04T16:13:53&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-04T16:13:53&#43;08:00" />
-<meta itemprop="wordCount" content="196">
+好的，闲话不多说，下面进入主题。">
 
 
+<meta itemprop="datePublished" content="2019-06-25T18:53:36&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-25T18:53:36&#43;08:00" />
+<meta itemprop="wordCount" content="986">
 
-<meta itemprop="keywords" content="ubuntu,cloc," />
+
+
+<meta itemprop="keywords" content="sqlcipher,数据库," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="代码行数统计工具（cloc）"/>
-<meta name="twitter:description" content="项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具cloc"/>
+<meta name="twitter:title" content="Android5.0上运行SQLCipher库出现readonly database的解决方案"/>
+<meta name="twitter:description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
+
+好的，闲话不多说，下面进入主题。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -300,18 +307,18 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">代码行数统计工具（cloc）</h1>
+      <h1 class="post-title">Android5.0上运行SQLCipher库出现readonly database的解决方案</h1>
       
       <div class="post-meta">
-        <time datetime="2019-06-04" class="post-time">
-          2019-06-04
+        <time datetime="2019-06-25" class="post-time">
+          2019-06-25
         </time>
         <div class="post-category">
-            <a href="https://maitian.io/categories/ubuntu/"> ubuntu </a>
+            <a href="https://maitian.io/categories/android/"> android </a>
             
           </div>
-        <span class="more-meta"> 约 196 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 986 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -332,34 +339,29 @@ if (!doNotTrack) {
 
     
     <div class="post-content">
-      <p>项目写了一段时间，突然想统计一下代码量，于是乎找到了这样一个工具<code>cloc</code></p>
+      <p>这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。</p>
 
-<p>安装<code>cloc</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">npm install -g cloc                    # https://www.npmjs.com/package/cloc
-sudo apt-get install cloc              # Debian, Ubuntu
-sudo yum install cloc                  # Red Hat, Fedora
-sudo dnf install cloc                  # Fedora 22 or later
-sudo pacman -S cloc                    # Arch
-sudo pkg install cloc                  # FreeBSD
-sudo port install cloc                 # Mac OS X with MacPorts
-brew install cloc                      # Mac OS X with Homebrew
-choco install cloc                     # Windows with Chocolatey</pre></td></tr></table>
-</div>
-</div>
-<p>如何使用：</p>
+<p>好的，闲话不多说，下面进入主题。</p>
+
+<p>公司的一些产品中采用了 SQLCipher 这个库来来对数据库中的数据进行加密，但是在Android5.0版本上SQLCipher会出现readonly database错误：</p>
+
+<p>net.sqlcipher.database.SQLiteException: attempt to write a readonly database</p>
+
+<p>一直以为这是SQLCipher的问题，在Github上也有人提出过这个问题，但是这些方案没能解决我遇到的问题。</p>
+
+<p><a href="https://github.com/sqlcipher/android-database-sqlcipher/issues/161">https://github.com/sqlcipher/android-database-sqlcipher/issues/161</a></p>
+
+<p>这个问题只有在Android5.0上才会出现，但是目前采用5.0版本的机型应该不会很多（很多机型要么4.4要么就直接 &gt;5.0）而且采用SQLCipher加密库的App也不是很多，所以这个问题出现的几率并不高，但是谁让我们的用户偏偏就用了Android5.0的机型呢，所以不得不去啃这块硬骨头（攻城狮嘛，攻不下城怎么能叫攻城狮呢）。</p>
+
+<p>经过不懈的努力后，终于找到了解决方案:</p>
+
+<p>Workaround for Nexus 9 SQLite file write operations on external dirs?</p>
+
+<p>其实这并不是SQLCipher的问题，而是Android5.0的一个BUG，Google在Android的下一个版本中进行了修复，所以这个问题只有在Android5.0上才会出现。</p>
+
+<p>国外大神也给出了非官方的解决方案：</p>
+
+<p><a href="https://android-review.googlesource.com/#/c/115351/">https://android-review.googlesource.com/#/c/115351/</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -378,26 +380,111 @@ choco install cloc                     # Windows with Chocolatey</pre></td></tr>
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">lu@lu-Z87-HD3:~$ cloc .
-      67 text files.
-      67 unique files.                              
-       4 files ignored.
+<pre class="chroma">Store inodes in unsigned long long
 
-github.com/AlDanial/cloc v 1.76  T=1.02 s (62.6 files/s, 12778.9 lines/s)
--------------------------------------------------------------------------------
-Language                     files          blank        comment           code
--------------------------------------------------------------------------------
-Go                              54           2018           1118           9463
-Markdown                         2             92              0            229
-Bourne Shell                     6             43             29             68
-JSON                             2              0              0             11
--------------------------------------------------------------------------------
-SUM:                            64           2153           1147           9771
--------------------------------------------------------------------------------</pre></td></tr></table>
+In 32 bit ABIs, ino_t is a 32 bit type, while the st_ino field
+
+in struct stat is 64 bits wide in both 32 and 64 bit processes.
+
+This means that struct stat can expose inode numbers that are
+
+truncated when stored in an ino_t.
+
+The SDCard fuse daemon (/system/bin/sdcard) uses raw pointer
+
+values as inode numbers, so on 64 bit devices, we&#39;re very likely
+
+to observe inodes that need &gt; 32 bits to represent.
+
+The fileHasMoved function in sqlite compares the stored
+
+inode value with a new one from stat, and when the stored
+
+value is truncated, this check will falsely indicate that
+
+the file has been moved. When the fileHasMoved function
+
+triggers, other functions start returning errors indicating
+
+that the database is in read-only mode.
+
+NOTE: Bionic differs from glibc in that struct stat&#39;s st_ino
+
+is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></table>
 </div>
 </div>
+<p>如果要修复该BUG的话，肯定得自己下载SQLCipher源码自己进行编译了，源码是C编写的，所以需要下载NDK才能进行编译。</p>
+
+<p>NDK环境的搭建这里就不再叙述了，网上有很多的教程。</p>
+
+<p>NDK环境搭建好之后，可以根据官方的教程进行编译：</p>
+
+<p><a href="https://www.zetetic.net/sqlcipher/sqlcipher-for-android/">https://www.zetetic.net/sqlcipher/sqlcipher-for-android/</a></p>
+
+<p>当然在编译之前需要对源码进行修改，打开</p>
+
+<p><a href="https://android-review.googlesource.com/#/c/115351/3/dist/sqlite3.c">https://android-review.googlesource.com/#/c/115351/3/dist/sqlite3.c</a></p>
+
+<p>可以看到 sqlite.c 文件需要修改的地方：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">25322    ino_t ino; /* Inode number */</pre></td></tr></table>
+</div>
+</div>
+<p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">25322    #ifdef ANDROID
+
+25323    // Bionic&#39;s struct stat has a 64 bit st_ino on both 32 and
+25324    // 64 bit architectures. ino_t remains 32 bits wide on 32 bit
+25325    // architectures and can lead to inode truncation.
+
+25326    unsigned long long ino; /* Inode number */
+
+25327    #else
+
+25328    ino_t ino; /* Inode number */
+
+25329    #endif</pre></td></tr></table>
+</div>
+</div>
+<p>修改完成后保存文件，然后按照官方教程进行编译，编译完成后得到的so文件和jar文件即可用在Android5.0版本上。</p>
     </div>
 
     
@@ -409,7 +496,7 @@ SUM:                            64           2153           1147           9771
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-04</span>
+    <span class="item-content">2019-06-25</span>
   </p>
   
   <p class="copyright-item">
@@ -424,30 +511,17 @@ SUM:                            64           2153           1147           9771
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://maitian.io/tags/ubuntu/">ubuntu</a>
-          <a href="https://maitian.io/tags/cloc/">cloc</a>
+          <a href="https://maitian.io/tags/sqlcipher/">sqlcipher</a>
+          <a href="https://maitian.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="https://maitian.io/post/ubuntu%E4%B8%8B%E6%9F%A5%E6%89%BEso%E6%96%87%E4%BB%B6%E7%9A%84%E5%BD%92%E5%B1%9E/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">Ubuntu下查找so文件的归属</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="https://maitian.io/post/glide&#43;okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-            <span class="next-text nav-default">Glide&#43;OkHttp访问IPv6出错的解决方案</span>
+          <a class="next" href="https://maitian.io/post/%E4%BD%BF%E7%94%A8gatt%E5%BA%93%E6%8E%A5%E6%94%B6eddystone%E5%B9%BF%E6%92%AD/">
+            <span class="next-text nav-default">使用gatt库接收EddyStone广播</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
@@ -484,8 +558,8 @@ SUM:                            64           2153           1147           9771
       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <script type="text/javascript">
         var gitalk = new Gitalk({
-          id: '代码行数统计工具(cloc).md',
-          title: '代码行数统计工具（cloc）',
+          id: 'Android5.0上运行SQLCipher库出现readonly database的解决方案.md',
+          title: 'Android5.0上运行SQLCipher库出现readonly database的解决方案',
           clientID: '7dfc0ce524b77c345f81',
           clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
           repo: 'blog_issues',
@@ -505,7 +579,7 @@ SUM:                            64           2153           1147           9771
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
-      this.page.url = "https://maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/";
+      this.page.url = "https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/";
     };
     function load_disqus() {
       

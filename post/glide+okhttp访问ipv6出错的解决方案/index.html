@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Glide&#43;OkHttp访问IPv6出错的解决方案 - 路过麦田</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Tcdspring" />
+  <meta name="description" content="在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide&#43;OkHttp&#43;Https(私有证书)，方案网上也有，自定义GlideModule即可
+" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+
+<link rel="canonical" href="https://maitian.io/post/glide&#43;okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+
+
+
+<link rel="icon" href="https://maitian.io/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://maitian.io/sass/jane.min.19ae5a432863a072ec64433bb1020bd6d3401129f87d6f2ad5af3bcfd84168a1.css" integrity="sha256-Ga5aQyhjoHLsZEM7sQIL1tNAESn4fW8q1a87z9hBaKE=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Glide&#43;OkHttp访问IPv6出错的解决方案" />
+<meta property="og:description" content="在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide&#43;OkHttp&#43;Https(私有证书)，方案网上也有，自定义GlideModule即可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://maitian.io/post/glide&#43;okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+<meta property="article:published_time" content="2018-09-03T18:41:25&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-03T18:41:25&#43;08:00"/>
+
+<meta itemprop="name" content="Glide&#43;OkHttp访问IPv6出错的解决方案">
+<meta itemprop="description" content="在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide&#43;OkHttp&#43;Https(私有证书)，方案网上也有，自定义GlideModule即可">
+
+
+<meta itemprop="datePublished" content="2018-09-03T18:41:25&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-03T18:41:25&#43;08:00" />
+<meta itemprop="wordCount" content="1917">
+
+
+
+<meta itemprop="keywords" content="Glide,OkHttp," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Glide&#43;OkHttp访问IPv6出错的解决方案"/>
+<meta name="twitter:description" content="在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide&#43;OkHttp&#43;Https(私有证书)，方案网上也有，自定义GlideModule即可"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-141492264-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="https://maitian.io/" class="logo">路过麦田</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/about/">关于</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css" integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css" integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin="anonymous">
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="https://maitian.io/" class="logo">
+    
+      路过麦田
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://maitian.io/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Glide&#43;OkHttp访问IPv6出错的解决方案</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-09-03" class="post-time">
+          2018-09-03
+        </time>
+        <div class="post-category">
+            <a href="https://maitian.io/categories/android/"> android </a>
+            
+          </div>
+        <span class="more-meta"> 约 1917 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide+OkHttp+Https(私有证书)，方案网上也有，自定义GlideModule即可</p>
+
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@GlideModule
+public class OkHttpGlideModule extends AppGlideModule {
+
+    @Override
+    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
+        OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(client));
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>这个<code>UnsafeOkHttpClient.java</code>的定义用过Okhttp的我觉得都知道怎么写，无非就是忽略对https证书的校验</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">public class UnsafeOkHttpClient {
+
+    public static OkHttpClient getUnsafeOkHttpClient() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance(&#34;SSL&#34;);
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+
+            OkHttpClient okHttpClient = builder.build();
+            return okHttpClient;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>到目前为止，已经可以用Glide来加载采用Https传输的图片了，并且忽略了证书校验，更高级点的来了，如果想要加载的url是下面这种形式呢：
+<code>https://[ipv6]:3000/demo.png</code>
+不再是域名了，改为ipv6了，如果还是按上面的方案，会出现如下的问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">09-02 08:21:19.494 30626-30626/W/Glide: Load failed for https://[fbb9:62a0:fad4:bb4a:966:11e1:e147:a8b3]:3000/static/fb4c5e3e67dac4100ea88905827ea96c//Download/MiXun/CloudFile/2b8f54a68b338e34f595f1fba0472d91.png with size [179x179]
+    class com.bumptech.glide.load.engine.GlideException: Failed to load resource
+    There was 1 cause:
+    java.lang.IllegalArgumentException(Invalid URL port: &#34;62a0:fad4:bb4a:966:11e1:e147:a8b3%5D:3000&#34;)
+     call GlideException#logRootCauses(String) for more detail
+      Cause (1 of 1): class java.lang.IllegalArgumentException: Invalid URL port: &#34;62a0:fad4:bb4a:966:11e1:e147:a8b3%5D:3000&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>很明显，Glide把url中的<code>[]</code>给编码了，导致okhttp识别url错误，可以查看 <a href="https://github.com/bumptech/glide/blob/master/library/src/main/java/com/bumptech/glide/load/model/GlideUrl.java">GlideUrl.java</a> 的源码中有这样一句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">private static final String ALLOWED_URI_CHARS = &#34;@#&amp;=*+-_.,:!?()/~&#39;%;$&#34;;</pre></td></tr></table>
+</div>
+</div>
+<p>这里面恰恰没有<code>[]</code>
+在<code>getSafeStringUrl</code>方法中会根据这个<code>ALLOWED_URI_CHARS</code>来决定哪些字符不需要被转码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">private String getSafeStringUrl() {
+    if (TextUtils.isEmpty(safeStringUrl)) {
+      String unsafeStringUrl = stringUrl;
+      if (TextUtils.isEmpty(unsafeStringUrl)) {
+        unsafeStringUrl = Preconditions.checkNotNull(url).toString();
+      }
+      safeStringUrl = Uri.encode(unsafeStringUrl, ALLOWED_URI_CHARS);
+    }
+    return safeStringUrl;
+  }</pre></td></tr></table>
+</div>
+</div>
+<p>也就是说只要<code>ALLOWED_URI_CHARS</code>中包含了<code>[]</code>就可以了，但是Glide的源码不是说改就能改的</p>
+
+<p>下面说一下我自己比较苟且的做法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// OkHttpGlideModule.java
+@GlideModule
+public class OkHttpGlideModule extends AppGlideModule {
+
+    @Override
+    public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
+        // 自定义OkHttpClient
+        OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
+        // 采用自定义的CustomOkHttpUrlLoader
+        registry.replace(GlideUrl.class, InputStream.class, new CustomOkHttpUrlLoader.Factory(client));
+    }
+}
+
+
+
+
+// CustomOkHttpUrlLoader.java
+// 按照Glide提供的OkHttpUrlLoader.java复制过来的，把里面的OkHttpUrlLoader全部替换为CustomOkHttpUrlLoader
+public class CustomOkHttpUrlLoader implements ModelLoader&lt;GlideUrl, InputStream&gt; {
+
+    private final Call.Factory client;
+
+    // Public API.
+    @SuppressWarnings(&#34;WeakerAccess&#34;)
+    public CustomOkHttpUrlLoader(@NonNull Call.Factory client) {
+        this.client = client;
+    }
+
+    @Override
+    public boolean handles(@NonNull GlideUrl url) {
+        return true;
+    }
+
+    @Override
+    public LoadData&lt;InputStream&gt; buildLoadData(@NonNull GlideUrl model, int width, int height,
+                                               @NonNull Options options) {
+
+        // 注意这里，不再是原来的OkHttpStreamFetcher，而是改为自定义的CustomOkHttpStreamFetcher
+        return new LoadData&lt;&gt;(model, new CustomOkHttpStreamFetcher(client, model));
+    }
+
+    /**
+     * The default factory for {@link com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader}s.
+     */
+    // Public API.
+    @SuppressWarnings(&#34;WeakerAccess&#34;)
+    public static class Factory implements ModelLoaderFactory&lt;GlideUrl, InputStream&gt; {
+        private static volatile Call.Factory internalClient;
+        private final Call.Factory client;
+
+        private static Call.Factory getInternalClient() {
+            if (internalClient == null) {
+                synchronized (CustomOkHttpUrlLoader.Factory.class) {
+                    if (internalClient == null) {
+                        internalClient = new OkHttpClient();
+                    }
+                }
+            }
+            return internalClient;
+        }
+
+        /**
+         * Constructor for a new Factory that runs requests using a static singleton client.
+         */
+        public Factory() {
+            this(getInternalClient());
+        }
+
+        /**
+         * Constructor for a new Factory that runs requests using given client.
+         *
+         * @param client this is typically an instance of {@code OkHttpClient}.
+         */
+        public Factory(@NonNull Call.Factory client) {
+            this.client = client;
+        }
+
+        @NonNull
+        @Override
+        public ModelLoader&lt;GlideUrl, InputStream&gt; build(MultiModelLoaderFactory multiFactory) {
+            return new CustomOkHttpUrlLoader(client);
+        }
+
+        @Override
+        public void teardown() {
+            // Do nothing, this instance doesn&#39;t own the client.
+        }
+    }
+}
+
+
+// CustomOkHttpStreamFetcher.java 
+// 这个类也是复制的OkHttpStreamFetcher.java，需要注意的是改动了一个地方
+public class CustomOkHttpStreamFetcher implements DataFetcher&lt;InputStream&gt;, okhttp3.Callback {
+    private static final String TAG = &#34;OkHttpFetcher&#34;;
+    private final Call.Factory client;
+    private final GlideUrl url;
+    private InputStream stream;
+    private ResponseBody responseBody;
+    private DataCallback&lt;? super InputStream&gt; callback;
+    // call may be accessed on the main thread while the object is in use on other threads. All other
+    // accesses to variables may occur on different threads, but only one at a time.
+    private volatile Call call;
+
+    // Public API.
+    @SuppressWarnings(&#34;WeakerAccess&#34;)
+    public CustomOkHttpStreamFetcher(Call.Factory client, GlideUrl url) {
+        this.client = client;
+        this.url = url;
+    }
+
+    @Override
+    public void loadData(@NonNull Priority priority,
+                         @NonNull final DataCallback&lt;? super InputStream&gt; callback) {
+        // 不再是url.toStringUrl()，而是改为了 url.getCacheKey()
+        // 这样Glide不会将url进行转义了，或者说自己对url进行转义，不再采用GlideUrl中提供的方法
+        Request.Builder requestBuilder = new Request.Builder().url(url.getCacheKey());
+        for (Map.Entry&lt;String, String&gt; headerEntry : url.getHeaders().entrySet()) {
+            String key = headerEntry.getKey();
+            requestBuilder.addHeader(key, headerEntry.getValue());
+        }
+        Request request = requestBuilder.build();
+        this.callback = callback;
+
+        call = client.newCall(request);
+        call.enqueue(this);
+    }
+
+    @Override
+    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, &#34;OkHttp failed to obtain result&#34;, e);
+        }
+
+        callback.onLoadFailed(e);
+    }
+
+    @Override
+    public void onResponse(@NonNull Call call, @NonNull Response response) {
+        responseBody = response.body();
+        if (response.isSuccessful()) {
+            long contentLength = Preconditions.checkNotNull(responseBody).contentLength();
+            stream = ContentLengthInputStream.obtain(responseBody.byteStream(), contentLength);
+            callback.onDataReady(stream);
+        } else {
+            callback.onLoadFailed(new HttpException(response.message(), response.code()));
+        }
+    }
+
+    @Override
+    public void cleanup() {
+        try {
+            if (stream != null) {
+                stream.close();
+            }
+        } catch (IOException e) {
+            // Ignored
+        }
+        if (responseBody != null) {
+            responseBody.close();
+        }
+        callback = null;
+    }
+
+    @Override
+    public void cancel() {
+        Call local = call;
+        if (local != null) {
+            local.cancel();
+        }
+    }
+
+    @NonNull
+    @Override
+    public Class&lt;InputStream&gt; getDataClass() {
+        return InputStream.class;
+    }
+
+    @NonNull
+    @Override
+    public DataSource getDataSource() {
+        return DataSource.REMOTE;
+    }
+}</pre></td></tr></table>
+</div>
+</div>
+<p>上述方案采用苟且的方式绕过了GlideUrl.java中的编码，不用担心url编码的问题，因为okhttp会给你再次编码的。</p>
+
+<p>这样，无论是域名，ipv4还是ipv6，采用http还是https，都可以愉快的撸起来了。</p>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Tcdspring</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-09-03</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content">原创文章，如需转载请注明文章作者和出处，谢谢！</span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://maitian.io/tags/glide/">Glide</a>
+          <a href="https://maitian.io/tags/okhttp/">OkHttp</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="https://maitian.io/post/%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E7%BB%9F%E8%AE%A1%E5%B7%A5%E5%85%B7cloc/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">代码行数统计工具（cloc）</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="https://maitian.io/post/%E8%BD%AC%E8%BD%BD%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%B1%BB/">
+            <span class="next-text nav-default">[转载]系统内置的一些工具类</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="post bg-white">
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+      <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          id: 'Glide\x2bOkHttp访问IPv6出错的解决方案.md',
+          title: 'Glide\x2bOkHttp访问IPv6出错的解决方案',
+          clientID: '7dfc0ce524b77c345f81',
+          clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
+          repo: 'blog_issues',
+          owner: 'tcdspring',
+          admin: ['tcdspring'],
+          body: decodeURI(location.href),
+        });
+        gitalk.render('gitalk-container');
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://maitian.io/post/glide+okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'Tcdspring';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+    
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="https://www.github.com/tcdspring" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://maitian.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        All rights reserved - 2019
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript" src="https://maitian.io/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="https://maitian.io/js/load-photoswipe.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.js" integrity="sha256-AC9ChpELidrhGHX23ZU53vmRdz3FhKaN9E28+BbcWBw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js" integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具类 on 路过麦田</title>
+    <link>https://maitian.io/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/</link>
+    <description>Recent content in 工具类 on 路过麦田</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Wed, 30 Mar 2016 18:45:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://maitian.io/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[转载]系统内置的一些工具类</title>
+      <link>https://maitian.io/post/%E8%BD%AC%E8%BD%BD%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%B1%BB/</link>
+      <pubDate>Wed, 30 Mar 2016 18:45:15 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/%E8%BD%AC%E8%BD%BD%E7%B3%BB%E7%BB%9F%E5%86%85%E7%BD%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%B1%BB/</guid>
+      <description>转载自你应该知道的那些Android小经验 在AOSP源码全局搜了一下包含Util关键字的类，整理出这个列表供大家参考： 1 2 3 4 5 6 7 8 9 10 11</description>
+    </item>
+    
+  </channel>
+</rss>

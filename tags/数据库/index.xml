@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on 路过麦田</title>
+    <link>https://maitian.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on 路过麦田</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Tue, 25 Jun 2019 18:53:36 +0800</lastBuildDate>
+    
+	<atom:link href="https://maitian.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android5.0上运行SQLCipher库出现readonly database的解决方案</title>
+      <link>https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Tue, 25 Jun 2019 18:53:36 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;p&gt;这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。&lt;/p&gt;
+
+&lt;p&gt;好的，闲话不多说，下面进入主题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
