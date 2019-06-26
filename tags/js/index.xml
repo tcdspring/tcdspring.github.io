@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>js on 路过麦田</title>
+    <link>https://maitian.io/tags/js/</link>
+    <description>Recent content in js on 路过麦田</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Thu, 10 May 2018 18:34:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://maitian.io/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在js中使用中文输入法时keyCode出现229</title>
+      <link>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</link>
+      <pubDate>Thu, 10 May 2018 18:34:55 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</guid>
+      <description>&lt;p&gt;在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

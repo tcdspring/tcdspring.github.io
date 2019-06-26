@@ -234,25 +234,25 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/docker/</loc>
-    <lastmod>2019-06-04T16:13:53+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://maitian.io/categories/docker/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/git/</loc>
+    <loc>https://maitian.io/tags/docker/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://maitian.io/categories/git/</loc>
+    <lastmod>2019-06-04T16:13:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/tags/git/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -288,13 +288,13 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/ubuntu/</loc>
+    <loc>https://maitian.io/categories/ubuntu/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/ubuntu/</loc>
+    <loc>https://maitian.io/tags/ubuntu/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -322,6 +322,44 @@
   <url>
     <loc>https://maitian.io/tags/okhttp/</loc>
     <lastmod>2018-09-03T18:41:25+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/categories/electron/</loc>
+    <lastmod>2018-05-10T18:34:55+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/tags/electron/</loc>
+    <lastmod>2018-05-10T18:34:55+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/tags/js/</loc>
+    <lastmod>2018-05-10T18:34:55+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</loc>
+    <lastmod>2018-05-10T18:34:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</loc>
+    <lastmod>2018-02-07T18:40:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://maitian.io/tags/%E7%BC%A9%E7%95%A5%E5%9B%BE/</loc>
+    <lastmod>2018-02-07T18:40:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   

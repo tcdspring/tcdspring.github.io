@@ -77,5 +77,14 @@
       <description>&lt;p&gt;最近，公司的项目用到了&lt;a href=&#34;https://minio.io/&#34;&gt;minio&lt;/a&gt;, 几个月前编译的minio服务器，一直用的好好的，但是这两天遇到个问题，需要调试一下服务器，于是更新了最新的minio代码，进行编译，发现minio不再支持ipv6访问了，真是见了鬼了&amp;hellip;&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Golang获取图片尺寸并生成缩略图</title>
+      <link>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</link>
+      <pubDate>Wed, 07 Feb 2018 18:40:30 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</guid>
+      <description>&lt;p&gt;有一个需求是生成图片的缩略图，并限定大小，比如说长和宽分别不能超过320和240，由于输入的是图片的路径，所以需要先获取图片的宽高，根据宽高计算出缩略图的宽高，然后生成缩略图，这里遇到了一个问题&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

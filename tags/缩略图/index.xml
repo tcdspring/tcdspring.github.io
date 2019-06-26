@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>缩略图 on 路过麦田</title>
+    <link>https://maitian.io/tags/%E7%BC%A9%E7%95%A5%E5%9B%BE/</link>
+    <description>Recent content in 缩略图 on 路过麦田</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Wed, 07 Feb 2018 18:40:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://maitian.io/tags/%E7%BC%A9%E7%95%A5%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang获取图片尺寸并生成缩略图</title>
+      <link>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</link>
+      <pubDate>Wed, 07 Feb 2018 18:40:30 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</guid>
+      <description>&lt;p&gt;有一个需求是生成图片的缩略图，并限定大小，比如说长和宽分别不能超过320和240，由于输入的是图片的路径，所以需要先获取图片的宽高，根据宽高计算出缩略图的宽高，然后生成缩略图，这里遇到了一个问题&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
