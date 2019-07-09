@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 04 Jun 2019 16:13:53 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 14:52:59 +0800</lastBuildDate>
     
 	<atom:link href="https://maitian.io/tags/android-studio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Android Studio Gradle问题汇总2.md</title>
+      <link>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</link>
+      <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</guid>
+      <description>&lt;p&gt;这几天又把mac上的开发环境搭建起来了，方便周六日的时候在家干活，唉，这种思想，怪不得一辈子程序员&lt;/p&gt;
+
+&lt;p&gt;毫无疑问，android studio + gradle在我国的网络环境中，不出问题是不现实的，虽然之前写过一些踩过的坑，但这次搭环境，比之前有过之而无不及，满满的都是坑&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Android studio gradle 问题汇总</title>

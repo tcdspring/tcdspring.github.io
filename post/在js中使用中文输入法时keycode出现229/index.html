@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Android5.0上运行SQLCipher库出现readonly database的解决方案 - 路过麦田</title>
+  <title>在js中使用中文输入法时keyCode出现229 - 路过麦田</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Tcdspring" />
-  <meta name="description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
-好的，闲话不多说，下面进入主题。
+  <meta name="description" content="在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。
 " />
 
 
@@ -36,7 +35,7 @@
 <meta name="generator" content="Hugo 0.55.6" />
 
 
-<link rel="canonical" href="https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+<link rel="canonical" href="https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/" />
 
 
 
@@ -58,33 +57,27 @@
 
 
 
-<meta property="og:title" content="Android5.0上运行SQLCipher库出现readonly database的解决方案" />
-<meta property="og:description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
-
-好的，闲话不多说，下面进入主题。" />
+<meta property="og:title" content="在js中使用中文输入法时keyCode出现229" />
+<meta property="og:description" content="在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
-<meta property="article:published_time" content="2019-06-25T18:53:36&#43;08:00"/>
-<meta property="article:modified_time" content="2019-06-25T18:53:36&#43;08:00"/>
+<meta property="og:url" content="https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/" />
+<meta property="article:published_time" content="2018-05-10T18:34:55&#43;08:00"/>
+<meta property="article:modified_time" content="2018-05-10T18:34:55&#43;08:00"/>
 
-<meta itemprop="name" content="Android5.0上运行SQLCipher库出现readonly database的解决方案">
-<meta itemprop="description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
-
-好的，闲话不多说，下面进入主题。">
+<meta itemprop="name" content="在js中使用中文输入法时keyCode出现229">
+<meta itemprop="description" content="在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。">
 
 
-<meta itemprop="datePublished" content="2019-06-25T18:53:36&#43;08:00" />
-<meta itemprop="dateModified" content="2019-06-25T18:53:36&#43;08:00" />
-<meta itemprop="wordCount" content="986">
+<meta itemprop="datePublished" content="2018-05-10T18:34:55&#43;08:00" />
+<meta itemprop="dateModified" content="2018-05-10T18:34:55&#43;08:00" />
+<meta itemprop="wordCount" content="694">
 
 
 
-<meta itemprop="keywords" content="sqlcipher,数据库," />
+<meta itemprop="keywords" content="js,Electron," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Android5.0上运行SQLCipher库出现readonly database的解决方案"/>
-<meta name="twitter:description" content="这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。
-
-好的，闲话不多说，下面进入主题。"/>
+<meta name="twitter:title" content="在js中使用中文输入法时keyCode出现229"/>
+<meta name="twitter:description" content="在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -307,17 +300,17 @@ if (!doNotTrack) {
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Android5.0上运行SQLCipher库出现readonly database的解决方案</h1>
+      <h1 class="post-title">在js中使用中文输入法时keyCode出现229</h1>
       
       <div class="post-meta">
-        <time datetime="2019-06-25" class="post-time">
-          2019-06-25
+        <time datetime="2018-05-10" class="post-time">
+          2018-05-10
         </time>
         <div class="post-category">
-            <a href="https://maitian.io/categories/android/"> android </a>
+            <a href="https://maitian.io/categories/electron/"> Electron </a>
             
           </div>
-        <span class="more-meta"> 约 986 字 </span>
+        <span class="more-meta"> 约 694 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -339,29 +332,35 @@ if (!doNotTrack) {
 
     
     <div class="post-content">
-      <p>这两天也没写东西，只是把以前在简书上的文章同步过来了，以后要发文章的话，还得两个平台兼顾啊。</p>
+      <p>在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。</p>
 
-<p>好的，闲话不多说，下面进入主题。</p>
+<p>PS: IM使用Electron框架开发，在输入框中输入@时，会弹出可以@的人的列表</p>
 
-<p>公司的一些产品中采用了 SQLCipher 这个库来来对数据库中的数据进行加密，但是在Android5.0版本上SQLCipher会出现readonly database错误：</p>
-
-<p>net.sqlcipher.database.SQLiteException: attempt to write a readonly database</p>
-
-<p>一直以为这是SQLCipher的问题，在Github上也有人提出过这个问题，但是这些方案没能解决我遇到的问题。</p>
-
-<p><a href="https://github.com/sqlcipher/android-database-sqlcipher/issues/161">https://github.com/sqlcipher/android-database-sqlcipher/issues/161</a></p>
-
-<p>这个问题只有在Android5.0上才会出现，但是目前采用5.0版本的机型应该不会很多（很多机型要么4.4要么就直接 &gt;5.0）而且采用SQLCipher加密库的App也不是很多，所以这个问题出现的几率并不高，但是谁让我们的用户偏偏就用了Android5.0的机型呢，所以不得不去啃这块硬骨头（攻城狮嘛，攻不下城怎么能叫攻城狮呢）。</p>
-
-<p>经过不懈的努力后，终于找到了解决方案:</p>
-
-<p>Workaround for Nexus 9 SQLite file write operations on external dirs?</p>
-
-<p>其实这并不是SQLCipher的问题，而是Android5.0的一个BUG，Google在Android的下一个版本中进行了修复，所以这个问题只有在Android5.0上才会出现。</p>
-
-<p>国外大神也给出了非官方的解决方案：</p>
-
-<p><a href="https://android-review.googlesource.com/#/c/115351/">https://android-review.googlesource.com/#/c/115351/</a></p>
+<p>代码是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 监听输入框的键盘事件
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#chat-input-area&#39;</span><span class="p">).</span><span class="nx">keydown</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">key</span> <span class="o">==</span> <span class="s1">&#39;@&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 逻辑处理...
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>网上搜索了好多方案，结果都不行，这个问题貌似无解啊，原因呢，好像是因为中文输入法还在处理，会给调用者先返回一个值，但是js中接收了值就不会再处理了，所以中文输入法下拿到的keyCode全部都是229，既然网上没有好的方案，那只能采用最笨的方法了。
+每次输入记录下输入框中的值，再次输入时拿当前的值和上次记录的值做diff，然后拿到差异，也就是最后输入的数据了，但是这个diff算法的效率成了关键了，一个字符一个字符的比对，那效率肯定不高了，拿到当前焦点的索引，然后减1，就可以得到最后的输入字符，但是获取当前的索引还是比较复杂的，尤其是输入框里可能会有表情等特殊字符，所以一向比较懒的我选择了diff方案：
+用到了这个开源库，diff速度很快：
+<a href="https://github.com/jhchen/fast-diff">https://github.com/jhchen/fast-diff</a>
+下面是部分代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -391,100 +390,38 @@ if (!doNotTrack) {
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">Store inodes in unsigned long long
+<pre class="chroma">const diff = require(&#39;fast-diff&#39;);
+let inputContent = &#39;&#39;;
 
-In 32 bit ABIs, ino_t is a 32 bit type, while the st_ino field
+// 监听输入框的键盘事件
+$(&#39;#chat-input-area&#39;).on(&#39;input&#39;, function (e) {
+    let innerText = $(&#39;#chat-input-area&#39;)[0].innerText;
+    let d = diff(inputContent, innerText);
+    // console.log(&#39;diff result = &#39;, d);
+    inputContent = innerText;
+    
+    let isAt = false;
+    if (!empty(d)) {
+        for (let i = 0; i &lt; d.length; i++) {
+            if (d[i][0] == diff.INSERT &amp;&amp; d[i][1].trimLeft(&#39; &#39;) == &#39;@&#39;) {
+                isAt = true;
+                break;
+            }
+        }
+    }
 
-in struct stat is 64 bits wide in both 32 and 64 bit processes.
-
-This means that struct stat can expose inode numbers that are
-
-truncated when stored in an ino_t.
-
-The SDCard fuse daemon (/system/bin/sdcard) uses raw pointer
-
-values as inode numbers, so on 64 bit devices, we&#39;re very likely
-
-to observe inodes that need &gt; 32 bits to represent.
-
-The fileHasMoved function in sqlite compares the stored
-
-inode value with a new one from stat, and when the stored
-
-value is truncated, this check will falsely indicate that
-
-the file has been moved. When the fileHasMoved function
-
-triggers, other functions start returning errors indicating
-
-that the database is in read-only mode.
-
-NOTE: Bionic differs from glibc in that struct stat&#39;s st_ino
-
-is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></table>
+    if (!isAt) {
+        return;
+    }
+    
+    // 处理@
+    // ...
+});</pre></td></tr></table>
 </div>
 </div>
-<p>如果要修复该BUG的话，肯定得自己下载SQLCipher源码自己进行编译了，源码是C编写的，所以需要下载NDK才能进行编译。</p>
-
-<p>NDK环境的搭建这里就不再叙述了，网上有很多的教程。</p>
-
-<p>NDK环境搭建好之后，可以根据官方的教程进行编译：</p>
-
-<p><a href="https://www.zetetic.net/sqlcipher/sqlcipher-for-android/">https://www.zetetic.net/sqlcipher/sqlcipher-for-android/</a></p>
-
-<p>当然在编译之前需要对源码进行修改，打开</p>
-
-<p><a href="https://android-review.googlesource.com/#/c/115351/3/dist/sqlite3.c">https://android-review.googlesource.com/#/c/115351/3/dist/sqlite3.c</a></p>
-
-<p>可以看到 sqlite.c 文件需要修改的地方：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">25322    ino_t ino; /* Inode number */</pre></td></tr></table>
-</div>
-</div>
-<p>修改为：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">25322    #ifdef ANDROID
-
-25323    // Bionic&#39;s struct stat has a 64 bit st_ino on both 32 and
-25324    // 64 bit architectures. ino_t remains 32 bits wide on 32 bit
-25325    // architectures and can lead to inode truncation.
-
-25326    unsigned long long ino; /* Inode number */
-
-25327    #else
-
-25328    ino_t ino; /* Inode number */
-
-25329    #endif</pre></td></tr></table>
-</div>
-</div>
-<p>修改完成后保存文件，然后按照官方教程进行编译，编译完成后得到的so文件和jar文件即可用在Android5.0版本上。</p>
+<p>经测试，3k+的一篇文章copy进去，然后按下Shift + 2，@弹窗基本上是秒开，根本感觉不到慢，效率还可以。</p>
     </div>
 
     
@@ -496,7 +433,7 @@ is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></tabl
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-06-25</span>
+    <span class="item-content">2018-05-10</span>
   </p>
   
   <p class="copyright-item">
@@ -511,15 +448,15 @@ is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></tabl
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://maitian.io/tags/sqlcipher/">sqlcipher</a>
-          <a href="https://maitian.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a href="https://maitian.io/tags/js/">js</a>
+          <a href="https://maitian.io/tags/electron/">Electron</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/">
+          <a class="prev" href="https://maitian.io/post/glide&#43;okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -529,12 +466,12 @@ is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></tabl
 </svg>
 
             </i>
-            <span class="prev-text nav-default">Android Studio Gradle问题汇总2.md</span>
+            <span class="prev-text nav-default">Glide&#43;OkHttp访问IPv6出错的解决方案</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="https://maitian.io/post/%E4%BD%BF%E7%94%A8gatt%E5%BA%93%E6%8E%A5%E6%94%B6eddystone%E5%B9%BF%E6%92%AD/">
-            <span class="next-text nav-default">使用gatt库接收EddyStone广播</span>
+          <a class="next" href="https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/">
+            <span class="next-text nav-default">Golang获取图片尺寸并生成缩略图</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
@@ -571,8 +508,8 @@ is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></tabl
       <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
       <script type="text/javascript">
         var gitalk = new Gitalk({
-          id: 'Android5.0上运行SQLCipher库出现readonly database的解决方案.md',
-          title: 'Android5.0上运行SQLCipher库出现readonly database的解决方案',
+          id: '在js中使用中文输入法时keyCode出现229.md',
+          title: '在js中使用中文输入法时keyCode出现229',
           clientID: '7dfc0ce524b77c345f81',
           clientSecret: '1dc5779865a2a102e6ecc880dcf9517d34a60fe6',
           repo: 'blog_issues',
@@ -592,7 +529,7 @@ is *always* 64 bits wide, and not the same width as ino_t.</pre></td></tr></tabl
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
-      this.page.url = "https://maitian.io/post/android5.0%E4%B8%8A%E8%BF%90%E8%A1%8Csqlcipher%E5%BA%93%E5%87%BA%E7%8E%B0readonly-database%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/";
+      this.page.url = "https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/";
     };
     function load_disqus() {
       

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 25 Jun 2019 18:53:36 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 14:52:59 +0800</lastBuildDate>
     
         <atom:link href="https://maitian.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,6 +23,83 @@
 
 &lt;p&gt;绝大多数内容都会同步更新在&lt;a href=&#34;https://www.jianshu.com/u/29dc71d35eaf&#34;&gt;简书&lt;/a&gt;中。&lt;/p&gt;
 </description>
+      
+    </item>
+    
+    <item>
+      <title>Android Studio Gradle问题汇总2.md</title>
+      <link>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</link>
+      <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</guid>
+      
+        <description>&lt;p&gt;这几天又把mac上的开发环境搭建起来了，方便周六日的时候在家干活，唉，这种思想，怪不得一辈子程序员&lt;/p&gt;
+
+&lt;p&gt;毫无疑问，android studio + gradle在我国的网络环境中，不出问题是不现实的，虽然之前写过一些踩过的坑，但这次搭环境，比之前有过之而无不及，满满的都是坑&lt;/p&gt;
+
+&lt;h2 id=&#34;1-mac上出现-no-route-to-host&#34;&gt;1. mac上出现 no route to host&lt;/h2&gt;
+
+&lt;p&gt;在&lt;a href=&#34;https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/&#34;&gt;Android studio gradle 问题汇总&lt;/a&gt;这篇文章中也有解决方案，就是在gradle.properties文件中添加下面代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;org.gradle.jvmargs=-Xmx1536m -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;当时的确是解决了问题，但是后来又出现了同样的问题，然后用这种方案就行不通了，当然也有可能跟公司的网络环境有关系，如果你也遇到了这个问题，并且设置了代理依旧不行的话，可以试试下面的做法：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;将jdk的版本升级到&lt;code&gt;jdk8 8u202&lt;/code&gt;及以上版本，刚好当时我自己的版本是201，就遇到了这儿问题，将版本升级了以后，就好了，貌似这是java的一个BUG，然后在202版本修复了，具体的BUG说明链接找不到了，如果需要下载jdk的话，可以从下面的链接下载，不用注册或登录oracle的帐号&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/frekele/oracle-java/releases&#34;&gt;https://github.com/frekele/oracle-java/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;2-使用自定义的maven服务器&#34;&gt;2. 使用自定义的maven服务器&lt;/h2&gt;
+
+&lt;p&gt;有一个依赖库放在了公司内的maven服务器上，每次更新时，如果设置了代码，那肯定是访问不了maven服务器的，因为默认maven服务器也会走代理的，所以需要啊将maven服务器排除掉&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;# gradle.properties
+
+org.gradle.jvmargs=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080 -DsocksNonProxyHosts=maven.example.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果在命令行中执行的话，需要这样设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;./gradlew yourTaskName -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080 -DsocksNonProxyHosts=maven.example.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;3-命令行编译安装运行apk&#34;&gt;3. 命令行编译安装运行apk&lt;/h2&gt;
+
+&lt;p&gt;在mac上开发时，本来屏幕就小，还要打开底部的各种窗口来看log输出，总感觉很不爽，所以一般我都是开一个终端，在终端中执行命令来编译，安装，运行&lt;/p&gt;
+
+&lt;p&gt;例如，我的项目名为 &lt;code&gt;minio&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;./gradlew clean compileMinioReleaseSources installMinioRelease --info &amp;amp;&amp;amp; adb shell am start -n com.example.minio/.ui.SplashActivity&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;清理缓存： &lt;code&gt;clean&lt;/code&gt;（如果你的xml资源文件改过，请执行clean任务，否则有可能安装后界面不会变化，而且会导致空指针异常，如果资源文件没改动过，可以去掉clean任务，节省一些时间）&lt;/p&gt;
+
+&lt;p&gt;编译： &lt;code&gt;compileMinioReleaseSources&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装： &lt;code&gt;installMinioRelease&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;运行： &lt;code&gt;adb shell am start -n com.example.minio/.ui.SplashActivity&lt;/code&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -2796,6 +2873,388 @@ public class CustomOkHttpStreamFetcher implements DataFetcher&amp;lt;InputStream
 &lt;p&gt;上述方案采用苟且的方式绕过了GlideUrl.java中的编码，不用担心url编码的问题，因为okhttp会给你再次编码的。&lt;/p&gt;
 
 &lt;p&gt;这样，无论是域名，ipv4还是ipv6，采用http还是https，都可以愉快的撸起来了。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>在js中使用中文输入法时keyCode出现229</title>
+      <link>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</link>
+      <pubDate>Thu, 10 May 2018 18:34:55 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</guid>
+      
+        <description>&lt;p&gt;在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。&lt;/p&gt;
+
+&lt;p&gt;PS: IM使用Electron框架开发，在输入框中输入@时，会弹出可以@的人的列表&lt;/p&gt;
+
+&lt;p&gt;代码是这样的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 监听输入框的键盘事件
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;#chat-input-area&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;keydown&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;@&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// 逻辑处理...
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;网上搜索了好多方案，结果都不行，这个问题貌似无解啊，原因呢，好像是因为中文输入法还在处理，会给调用者先返回一个值，但是js中接收了值就不会再处理了，所以中文输入法下拿到的keyCode全部都是229，既然网上没有好的方案，那只能采用最笨的方法了。
+每次输入记录下输入框中的值，再次输入时拿当前的值和上次记录的值做diff，然后拿到差异，也就是最后输入的数据了，但是这个diff算法的效率成了关键了，一个字符一个字符的比对，那效率肯定不高了，拿到当前焦点的索引，然后减1，就可以得到最后的输入字符，但是获取当前的索引还是比较复杂的，尤其是输入框里可能会有表情等特殊字符，所以一向比较懒的我选择了diff方案：
+用到了这个开源库，diff速度很快：
+&lt;a href=&#34;https://github.com/jhchen/fast-diff&#34;&gt;https://github.com/jhchen/fast-diff&lt;/a&gt;
+下面是部分代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;const diff = require(&amp;#39;fast-diff&amp;#39;);
+let inputContent = &amp;#39;&amp;#39;;
+
+// 监听输入框的键盘事件
+$(&amp;#39;#chat-input-area&amp;#39;).on(&amp;#39;input&amp;#39;, function (e) {
+    let innerText = $(&amp;#39;#chat-input-area&amp;#39;)[0].innerText;
+    let d = diff(inputContent, innerText);
+    // console.log(&amp;#39;diff result = &amp;#39;, d);
+    inputContent = innerText;
+    
+    let isAt = false;
+    if (!empty(d)) {
+        for (let i = 0; i &amp;lt; d.length; i++) {
+            if (d[i][0] == diff.INSERT &amp;amp;&amp;amp; d[i][1].trimLeft(&amp;#39; &amp;#39;) == &amp;#39;@&amp;#39;) {
+                isAt = true;
+                break;
+            }
+        }
+    }
+
+    if (!isAt) {
+        return;
+    }
+    
+    // 处理@
+    // ...
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;经测试，3k+的一篇文章copy进去，然后按下Shift + 2，@弹窗基本上是秒开，根本感觉不到慢，效率还可以。&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Golang获取图片尺寸并生成缩略图</title>
+      <link>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</link>
+      <pubDate>Wed, 07 Feb 2018 18:40:30 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</guid>
+      
+        <description>&lt;p&gt;有一个需求是生成图片的缩略图，并限定大小，比如说长和宽分别不能超过320和240，由于输入的是图片的路径，所以需要先获取图片的宽高，根据宽高计算出缩略图的宽高，然后生成缩略图，这里遇到了一个问题&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;c, _, err := image.DecodeConfig(file)
+fmt.Println(&amp;#34;width = &amp;#34;, c.Width)
+fmt.Println(&amp;#34;height = &amp;#34;, c.Height)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;上面代码可以获取到图片的宽高，但是后面加载图片数据的时候，会出现错误&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;img, _, err := image.Decode(file)
+if err != nil {
+	fmt.Println(&amp;#34;err = &amp;#34;, err)
+	return
+}
+
+// 输出 err =  image: unknown format&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;已经导入了相关包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;import(
+    &amp;#34;image&amp;#34;
+    _ &amp;#34;image/gif&amp;#34;
+    _ &amp;#34;image/jpeg&amp;#34;
+    _ &amp;#34;image/png&amp;#34;
+)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;先&lt;code&gt;image.DecodeConfig(file)&lt;/code&gt;后&lt;code&gt;image.Decode(file)&lt;/code&gt;
+跟先&lt;code&gt;image.Decode(file)&lt;/code&gt;后&lt;code&gt;image.DecodeConfig(file)&lt;/code&gt;
+的结果时一样的，都是后面的会报错，估计就是因为已经Decode过了，所以才会报错
+那Decode后将该文件关掉，然后再次Decode会不会解决问题呢？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;imagePath := &amp;#34;./6.png&amp;#34;
+file, _ := os.Open(imagePath)
+	
+c, _, err := image.DecodeConfig(file)
+if err != nil {
+	fmt.Println(&amp;#34;err1 = &amp;#34;, err)
+	return
+}
+width := c.Width
+height := c.Height
+
+file.Close()
+
+file, _ = os.Open(imagePath)
+img, _, err := image.Decode(file)
+if err != nil {
+	fmt.Println(&amp;#34;err2 = &amp;#34;, err)
+	return
+}
+
+fmt.Println(&amp;#34;width = &amp;#34;, width)
+fmt.Println(&amp;#34;height = &amp;#34;, height)
+
+defer file.Close()&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;实验了一把，果然不会报错了，如果你只想获取图片的宽高，那肯定只需要&lt;code&gt;image.DecodeConfig(file)&lt;/code&gt;了，如果你跟我的需求一样，需要读取图片并获取图片的宽高，那其实还有一种方法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;imagePath := &amp;#34;./6.png&amp;#34;
+file, _ := os.Open(imagePath)
+defer file.Close()
+
+img, _, err := image.Decode(file)
+if err != nil {
+	fmt.Println(&amp;#34;err = &amp;#34;, err)
+	return
+}
+
+b := img.Bounds()
+width := b.Max.X
+height := b.Max.Y
+
+fmt.Println(&amp;#34;width = &amp;#34;, width)
+fmt.Println(&amp;#34;height = &amp;#34;, height)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样也是可以正确获取图片的宽高的，下面是完整代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;import (
+	&amp;#34;fmt&amp;#34;
+	&amp;#34;github.com/nfnt/resize&amp;#34;
+	&amp;#34;image&amp;#34;
+	_ &amp;#34;image/gif&amp;#34;
+	_ &amp;#34;image/jpeg&amp;#34;
+	&amp;#34;image/png&amp;#34;
+	&amp;#34;math&amp;#34;
+	&amp;#34;os&amp;#34;
+	&amp;#34;path/filepath&amp;#34;
+	&amp;#34;time&amp;#34;
+)
+
+const DEFAULT_MAX_WIDTH float64 = 320
+const DEFAULT_MAX_HEIGHT float64 = 240
+
+// 计算图片缩放后的尺寸
+func calculateRatioFit(srcWidth, srcHeight int) (int, int) {
+    ratio := math.Min(DEFAULT_MAX_WIDTH/float64(srcWidth), DEFAULT_MAX_HEIGHT/float64(srcHeight))
+    return int(math.Ceil(float64(srcWidth) * ratio)), int(math.Ceil(float64(srcHeight) * ratio))
+}
+
+// 生成缩略图
+func makeThumbnail(imagePath, savePath string) (string, error) {
+    
+    file, _ := os.Open(imagePath)
+    defer file.Close()
+
+    img, _, err := image.Decode(file)
+    if err != nil {
+        return err
+    }
+
+    b := img.Bounds()
+    width := b.Max.X
+    height := b.Max.Y
+
+    w, h := calculateRatioFit(width, height)
+
+    fmt.Println(&amp;#34;width = &amp;#34;, width, &amp;#34; height = &amp;#34;, height)
+    fmt.Println(&amp;#34;w = &amp;#34;, w, &amp;#34; h = &amp;#34;, h)
+
+    // 调用resize库进行图片缩放
+    m := resize.Resize(uint(w), uint(h), img, resize.Lanczos3)
+
+    // 需要保存的文件
+    imgfile, _ := os.Create(savePath)
+    defer imgfile.Close()
+
+    // 以PNG格式保存文件
+    err = png.Encode(imgfile, m)
+    if err != nil {
+        return err
+    }
+
+    return nil
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
       
     </item>
     

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 25 Jun 2019 18:53:36 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 14:52:59 +0800</lastBuildDate>
     
 	<atom:link href="https://maitian.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>android</title>
       <link>https://maitian.io/categories/android/</link>
-      <pubDate>Tue, 25 Jun 2019 18:53:36 +0800</pubDate>
+      <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
       
       <guid>https://maitian.io/categories/android/</guid>
       <description></description>
@@ -63,6 +63,15 @@
       <pubDate>Tue, 04 Jun 2019 16:13:53 +0800</pubDate>
       
       <guid>https://maitian.io/categories/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Electron</title>
+      <link>https://maitian.io/categories/electron/</link>
+      <pubDate>Thu, 10 May 2018 18:34:55 +0800</pubDate>
+      
+      <guid>https://maitian.io/categories/electron/</guid>
       <description></description>
     </item>
     

@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Tue, 25 Jun 2019 18:53:36 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 14:52:59 +0800</lastBuildDate>
     
 	<atom:link href="https://maitian.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Android Studio Gradle问题汇总2.md</title>
+      <link>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</link>
+      <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</guid>
+      <description>&lt;p&gt;这几天又把mac上的开发环境搭建起来了，方便周六日的时候在家干活，唉，这种思想，怪不得一辈子程序员&lt;/p&gt;
+
+&lt;p&gt;毫无疑问，android studio + gradle在我国的网络环境中，不出问题是不现实的，虽然之前写过一些踩过的坑，但这次搭环境，比之前有过之而无不及，满满的都是坑&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Android5.0上运行SQLCipher库出现readonly database的解决方案</title>
@@ -167,6 +178,24 @@
       
       <guid>https://maitian.io/post/glide&#43;okhttp%E8%AE%BF%E9%97%AEipv6%E5%87%BA%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
       <description>&lt;p&gt;在使用Glide的过程中踩了不少坑，相信很多人也遇到过，首先Glide默认使用的是HttpUrlConnection来下载图片，一般场景足够了，高级点的，直接换用okhttp，Glide官网也有相关教程，再高级点，Glide+OkHttp+Https(私有证书)，方案网上也有，自定义GlideModule即可&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在js中使用中文输入法时keyCode出现229</title>
+      <link>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</link>
+      <pubDate>Thu, 10 May 2018 18:34:55 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/%E5%9C%A8js%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E6%97%B6keycode%E5%87%BA%E7%8E%B0229/</guid>
+      <description>&lt;p&gt;在最近开发的IM中，QA测出了一个BUG，使用中文输入法输入@时，不会弹出待选列表，但是英文输入法就可以，很奇怪，打开调试工具一看才知道原来在jquery的keydown事件中，获取到的keyCode的值为229，并非所期待的值。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Golang获取图片尺寸并生成缩略图</title>
+      <link>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</link>
+      <pubDate>Wed, 07 Feb 2018 18:40:30 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/golang%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E5%B0%BA%E5%AF%B8%E5%B9%B6%E7%94%9F%E6%88%90%E7%BC%A9%E7%95%A5%E5%9B%BE/</guid>
+      <description>&lt;p&gt;有一个需求是生成图片的缩略图，并限定大小，比如说长和宽分别不能超过320和240，由于输入的是图片的路径，所以需要先获取图片的宽高，根据宽高计算出缩略图的宽高，然后生成缩略图，这里遇到了一个问题&lt;/p&gt;</description>
     </item>
     
     <item>
