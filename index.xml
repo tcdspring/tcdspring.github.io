@@ -193,6 +193,172 @@
     </item>
     
     <item>
+      <title>DatagramSocket不能断开的问题排查</title>
+      <link>https://maitian.io/post/datagramsock%E4%B8%8D%E8%83%BD%E6%96%AD%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</link>
+      <pubDate>Thu, 17 Oct 2019 15:42:43 +0800</pubDate>
+      
+      <guid>https://maitian.io/post/datagramsock%E4%B8%8D%E8%83%BD%E6%96%AD%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</guid>
+      
+        <description>&lt;p&gt;最近在重构蓝牙配网的时候，发现了一个问题，在完成wifi账号密码传输后，设备连接wifi，并将自己的ipv4地址在局域网中广播出来，android手机在收到广播后，可以得到设备在局域网中的ip地址，从而进行下一步的操作&lt;/p&gt;
+
+&lt;p&gt;但是在android手机接收局域网广播的过程中，代码出现了问题，一般来说，使用&lt;code&gt;DatagramSocket&lt;/code&gt;是这样的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    DatagramSocket datagramSocket;
+    String boxIPV4 = null;
+    int port = 3005;
+    byte[] message = new byte[1024];
+    try {
+        // 建立Socket连接
+        datagramSocket = new DatagramSocket(port);
+        DatagramPacket dp = new DatagramPacket(message, message.length);
+        // 准备接收数据
+        // datagramSocket.setSoTimeout(165000);
+        datagramSocket.receive(dp);
+        boxIPV4 = new String(dp.getData(), 0, dp.getLength(), &amp;#34;UTF-8&amp;#34;);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果不设置超时时间，那线程就会一直堵在&lt;code&gt;datagramSocket.receive(datagramPacket)&lt;/code&gt;这行，但是如果设置了超时时间，那如果是用户自己取消呢，所以就需要手动取消接收广播，像下面代码一样：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    try {
+        if (datagramSocket != null &amp;amp;&amp;amp; !datagramSocket.isClosed()) {
+            datagramSocket.disconnect();
+            datagramSocket.close();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;但是奇怪的是，即使执行了上述的代码，socket也没有从receive方法处跳出来，反而出现了anr，查看了&lt;code&gt;disconnect()&lt;/code&gt;以及&lt;code&gt;close()&lt;/code&gt;两个方法的代码后，才明白，原来&lt;code&gt;disconnect()&lt;/code&gt;方法加了&lt;code&gt;synchronized&lt;/code&gt;关键字，而&lt;code&gt;receive()&lt;/code&gt;方法也同样加了一个大大的&lt;code&gt;synchronized&lt;/code&gt;代码块&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    // DatagramSocket.java
+
+    public void disconnect() {
+        synchronized (this) {
+            if (isClosed())
+                return;
+            if (connectState == ST_CONNECTED) {
+                impl.disconnect ();
+            }
+            connectedAddress = null;
+            connectedPort = -1;
+            connectState = ST_NOT_CONNECTED;
+            explicitFilter = false;
+        }
+    }
+
+    public synchronized void receive(DatagramPacket p) throws IOException {
+        synchronized (p) {
+            if (!isBound())
+                bind(new InetSocketAddress(0));
+
+            // BEGIN Android-changed
+            if (pendingConnectException != null) {
+                throw new SocketException(&amp;#34;Pending connect failure&amp;#34;, pendingConnectException);
+            }
+            // END Android-changed
+
+            ...
+        }
+    }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;receive方法还在等待接收数据，而disconnect方法又要断开连接，导致死锁，所以出现了anr，所以这里需要先close，然后再disconnect才行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    try {
+        if (datagramSocket != null &amp;amp;&amp;amp; !datagramSocket.isClosed()) {
+            datagramSocket.close();
+            datagramSocket.disconnect();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;调整了close和disconnect的顺序后，就可以顺利跳出receive方法了&lt;/p&gt;
+
+&lt;p&gt;网上也搜到了一篇类似的文章：
+&lt;a href=&#34;https://blog.csdn.net/qq_35522272/article/details/54314289&#34;&gt;https://blog.csdn.net/qq_35522272/article/details/54314289&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Android Studio Gradle问题汇总2</title>
       <link>https://maitian.io/post/android-studio-gradle%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB2/</link>
       <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
