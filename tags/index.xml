@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Wed, 03 Jul 2019 14:52:59 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Oct 2019 15:42:43 +0800</lastBuildDate>
     
 	<atom:link href="https://maitian.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,27 @@
     <item>
       <title>android</title>
       <link>https://maitian.io/tags/android/</link>
-      <pubDate>Wed, 03 Jul 2019 14:52:59 +0800</pubDate>
+      <pubDate>Thu, 17 Oct 2019 15:42:43 +0800</pubDate>
       
       <guid>https://maitian.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>socket</title>
+      <link>https://maitian.io/tags/socket/</link>
+      <pubDate>Thu, 17 Oct 2019 15:42:43 +0800</pubDate>
+      
+      <guid>https://maitian.io/tags/socket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>udp</title>
+      <link>https://maitian.io/tags/udp/</link>
+      <pubDate>Thu, 17 Oct 2019 15:42:43 +0800</pubDate>
+      
+      <guid>https://maitian.io/tags/udp/</guid>
       <description></description>
     </item>
     
