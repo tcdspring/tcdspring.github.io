@@ -9,14 +9,14 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/android/</loc>
+    <loc>https://maitian.io/tags/android/</loc>
     <lastmod>2019-10-17T15:42:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/android/</loc>
+    <loc>https://maitian.io/categories/android/</loc>
     <lastmod>2019-10-17T15:42:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -31,13 +31,6 @@
   
   <url>
     <loc>https://maitian.io/post/datagramsocket%E4%B8%8D%E8%83%BD%E6%96%AD%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</loc>
-    <lastmod>2019-10-17T15:42:43+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://maitian.io/post/datagramsock%E4%B8%8D%E8%83%BD%E6%96%AD%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/</loc>
     <lastmod>2019-10-17T15:42:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -233,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/docker/</loc>
+    <loc>https://maitian.io/tags/docker/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/docker/</loc>
+    <loc>https://maitian.io/categories/docker/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -261,14 +254,14 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/git/</loc>
+    <loc>https://maitian.io/tags/git/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/git/</loc>
+    <loc>https://maitian.io/categories/git/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -338,14 +331,14 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/ubuntu/</loc>
+    <loc>https://maitian.io/categories/ubuntu/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/ubuntu/</loc>
+    <loc>https://maitian.io/tags/ubuntu/</loc>
     <lastmod>2019-06-04T16:13:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -394,14 +387,14 @@
   </url>
   
   <url>
-    <loc>https://maitian.io/tags/electron/</loc>
+    <loc>https://maitian.io/categories/electron/</loc>
     <lastmod>2018-05-10T18:34:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://maitian.io/categories/electron/</loc>
+    <loc>https://maitian.io/tags/electron/</loc>
     <lastmod>2018-05-10T18:34:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
